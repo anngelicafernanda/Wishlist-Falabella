@@ -6,11 +6,13 @@ import { List } from '../components/List';
 import { Timestamp, addDoc, collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import {db} from '../firebase/config'
 import { ListContext } from '../context/ListContext';
+import { Popup } from '../components/Popup'
 
 
 export function MisListas() {
     const navigate = useNavigate();
     const { lists, getLists } = useContext(ListContext);
+    const [popUp, setPopUp] = useState(false)
 
     useEffect(()=>{
         getLists()
@@ -27,12 +29,14 @@ export function MisListas() {
                 products: [],
                 userId: 'JuanaPerez1234'
             })
+            setPopUp(false)
     }
 
   return (
     <>
     <button onClick={navigateListaDetalle} className='bg-orange-500'>Mis Listas</button>
-    <button onClick={()=>{createList('Cumpleaños')}}>Crear Lista</button>
+    <button onClick={() => setPopUp(true)} >Crear Lista</button>
+    <Popup trigger={popUp} setTrigger={setPopUp} btnName={"Crear"} clickFunction ={createList} />
     <div>
         {lists.map((list)=>
         <List list={list} />
