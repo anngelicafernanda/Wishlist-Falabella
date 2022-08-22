@@ -16,6 +16,9 @@ module.exports = {
 			black: '#000000',
 			info: '#4A4A4A',
 			container: '#F5F5F5',
+			copyright: '#181818',
+			textCopyright: '#848484',
+			footer:'#222222',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
