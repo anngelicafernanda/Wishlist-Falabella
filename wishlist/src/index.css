@@ -4,3 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #f6f6f6;
+}
+
+@layer components {
+	.btn-orange {
+		@apply bg-orangeButton rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[19px];
+	}
+
+	.card-image {
+		@apply h-[71px] w-auto align-middle mt-3;
+	}
+}
