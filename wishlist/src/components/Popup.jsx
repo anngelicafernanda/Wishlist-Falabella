@@ -8,13 +8,11 @@ export function Popup(props) {
 
     const [name, setName] = useState("");
 
-
     const handleClick = () => {
         if(props.btnName === "Crear") {
-            console.log(name)
+            props.clickFunction(name)
         }
     }
-
 
     return (props.trigger) ? (
         <div className="popup">
