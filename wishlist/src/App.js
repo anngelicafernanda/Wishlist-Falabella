@@ -4,9 +4,11 @@ import { MainLayout } from './Layout/MainLayout';
 import { Catalogo } from './views/Catalogo';
 import { MisListas } from './views/MisListas';
 import { ListaDetalle } from './views/ListaDetalle';
+import { ListContextProvider } from './context/ListContext';
 
 export function App() {
   return (
+    <ListContextProvider>
     <MainLayout>
       <Routes>
         <Route path="/" element={<Catalogo />}/>
@@ -14,5 +16,6 @@ export function App() {
         <Route path="/Lista-detalle" element={<ListaDetalle />}/>
       </Routes>
     </MainLayout>
+    </ListContextProvider>
   );
 }
