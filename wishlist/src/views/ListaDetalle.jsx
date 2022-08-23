@@ -42,7 +42,7 @@ export function ListaDetalle() {
                 <div className='font-bold mr-5'>{state.list.name}</div>
                 <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
             </div>
-            <Popup trigger={popUp} setTrigger={setPopUp} title={<h4>Eliminar Producto</h4>} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
+            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar producto'} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
             {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
                     <img src={product.images[0]} className="w-14 mr-5"></img>
