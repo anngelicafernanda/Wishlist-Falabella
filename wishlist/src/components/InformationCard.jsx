@@ -1,4 +1,4 @@
-const InformationCard = ({ title, description, icon }) => {
+export const InformationCard = ({ title, description, icon }) => {
 	return (
 		<div className="bg-container flex  p-4">
 			{icon}
@@ -9,5 +9,3 @@ const InformationCard = ({ title, description, icon }) => {
 		</div>
 	);
 };
-
-export default InformationCard;

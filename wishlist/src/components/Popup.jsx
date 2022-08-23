@@ -1,13 +1,9 @@
-//fabi
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import "./popup.css";
-
 
 export function Popup(props) {
 
     const [name, setName] = useState("");
-
 
     const handleClick = () => { //hacer un switch case
         if(props.title.props.children === "Nueva Lista") {

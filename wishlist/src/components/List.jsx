@@ -1,7 +1,7 @@
 //trini (con ange)
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import CountProducts from '../components/CountProducts';
+import {CountProducts} from '../components/CountProducts';
 
 export function List({ list }) {
 	const navigate = useNavigate();
@@ -18,7 +18,7 @@ export function List({ list }) {
 		>
 			<CountProducts
 				nameList={list.name}
-				productCounter={'prueba'}
+				productCounter={list.products.length}
 				imgProduct={list.products.map((product) => product.images[0])}
 			/>
 		</div>

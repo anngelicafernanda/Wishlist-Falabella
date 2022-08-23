@@ -7,7 +7,7 @@ import trash from '../images/trash.png'
 
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { lists, getLists, deleteProduct } = useContext(ListContext);
+    const { getLists, deleteProduct } = useContext(ListContext);
     const [popUp, setPopUp] = useState(false);
     const [confirm, setConfirm] = useState(false);
 

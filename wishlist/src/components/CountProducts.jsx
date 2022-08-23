@@ -1,4 +1,6 @@
-const CountProducts = ({
+import trash from '../images/trash.png'
+
+export const CountProducts = ({
 	nameList,
 	productCounter,
 	products,
@@ -21,10 +23,8 @@ const CountProducts = ({
 						</div>
 					)}
 				</div>
-				<img src="" alt="Eliminar" className="w-[20px] h-auto" />
+				<img src={trash} alt="Eliminar" className="w-[20px] h-auto" />
 			</div>
 		</div>
 	);
 };
-
-export default CountProducts;
