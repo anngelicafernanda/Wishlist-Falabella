@@ -1,17 +1,22 @@
 //trini (con ange)
 import React, {useContext} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ListContext } from '../context/ListContext';
+import { Popup } from './Popup';
 //import {CountProducts} from '../components/CountProducts';
 import trash from '../images/trash.png'
 
 export function List({ list }) {
 	const navigate = useNavigate();
   const { lists, getLists, deleteList } = useContext(ListContext);
+  const [popUpDelete, setPopupDelete] = useState(false);
 
   const navigateListDetails = () =>{
     navigate(`/Mis-Listas/${list.name}`, { state: { list } })
   }
+
+
 
   console.log(list.products.images)
 
@@ -31,7 +36,8 @@ export function List({ list }) {
               </div>
             )}
 				  </div>
-				  <img onClick={()=>{deleteList(list.docId)}} src={trash} alt="Eliminar" className="w-[20px] h-auto" />
+				  <img onClick={()=>(setPopupDelete(true))} src={trash} alt="Eliminar" className="w-[20px] h-auto" />
+				  <Popup trigger={popUpDelete} setTrigger={setPopupDelete} title={'Eliminar lista'} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} id={list.docId} clickFunction ={deleteList}/>
 			  </div>
 		  </div>
 	);
