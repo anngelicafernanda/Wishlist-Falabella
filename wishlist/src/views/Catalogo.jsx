@@ -48,14 +48,15 @@ export function Catalogo() {
 						<div className='flex flex-col items-center'>
 							<button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
 							<div className="dropdrown">
-							<div className="addToList" onClick={(e) => setIsActive(!isActive)}>Agregar a la Lista</div>
-								{isActive && (
+							<div className="addToList" onClick={() => setIsActive(!isActive)}>Agregar a la Lista</div>
+								{isActive ?  
 								<div className="dropdownContent">
-									{lists.map((list)=>
+									{lists.map((list)=> 
 										<div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
 									)}
 								</div>
-								)}
+								: null
+								}
 							</div>
 						</div>
 					</div>

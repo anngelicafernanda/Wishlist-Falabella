@@ -20,9 +20,11 @@ module.exports = {
 			textCopyright: '#848484',
 			footer: '#222222',
 			btnlista: '#495867',
-      alert: '#FAFAFA',
-			bgAlert: '#4A4A4A',
+			alert: '#FAFAFA',
 			marca: '#767676',
+			footerText: '#6A6A6A',
+			inputFooter: '#333333',
+
 
 		},
 		fontFamily: {

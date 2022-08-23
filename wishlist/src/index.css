@@ -27,6 +27,6 @@ body {
 	}
 
 	.footer {
-		@apply bg-footer h-[300px] w-full;
+		@apply flex justify-between bg-footer h-[300px] w-full text-white text-[12px];
 	}
 }

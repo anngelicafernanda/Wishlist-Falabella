@@ -39,7 +39,7 @@ export function ListaDetalle() {
                 <div className='flex'>
                     <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
-            </div>
+            </div
 
             
             {state.list.products.length != 0?
@@ -55,7 +55,9 @@ export function ListaDetalle() {
                 </div>
             }
          
+           <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
          </div>
+
     )
 }
 
