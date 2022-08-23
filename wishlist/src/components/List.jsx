@@ -1,11 +1,14 @@
 //trini (con ange)
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ListContext } from '../context/ListContext';
 //import {CountProducts} from '../components/CountProducts';
 import trash from '../images/trash.png'
 
 export function List({ list }) {
 	const navigate = useNavigate();
+  const { lists, getLists, deleteList } = useContext(ListContext);
+
   const navigateListDetails = () =>{
     navigate(`/Mis-Listas/${list.name}`, { state: { list } })
   }
@@ -13,9 +16,8 @@ export function List({ list }) {
   console.log(list.products.images)
 
 	return (
-		<div onClick={navigateListDetails}>
 		  <div className="rounded border border-slate-300 h-[126px] mt-4 p-4">
-			  <h1 className="text-black font-bold text-[18px]">
+			  <h1 onClick={navigateListDetails} className="text-black font-bold text-[18px]">
 				  {list.name} ({list.products.length})
 			  </h1>
 			  <div className="text-black flex justify-between items-center">
@@ -29,9 +31,8 @@ export function List({ list }) {
               </div>
             )}
 				  </div>
-				  <img src={trash} alt="Eliminar" className="w-[20px] h-auto" />
+				  <img onClick={()=>{deleteList(list.docId)}} src={trash} alt="Eliminar" className="w-[20px] h-auto" />
 			  </div>
 		  </div>
-		</div>
 	);
 }

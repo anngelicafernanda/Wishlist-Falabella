@@ -24,8 +24,12 @@ export function ListaDetalle() {
     }
     
     return (
-        <div>      
-            <Link className='bg-orange-500' to="/">Agregar producto</Link>
+        <div>
+            <div className='flex justify-between m-10'>
+            <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
+            <Link className='text-s bg-gray-ligth' to="/">Agregar productos a la lista</Link>
+            </div>
+           
             <Popup trigger={popUp} setTrigger={setPopUp} title={<h4>Eliminar Producto</h4>} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
             {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
