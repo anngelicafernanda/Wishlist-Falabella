@@ -8,8 +8,9 @@ export function Popup(props) {
 
     const [name, setName] = useState("");
 
+
     const handleClick = () => {
-        if(props.btnName === "Crear") {
+        if(props.btnName === "Crear lista") {
             props.clickFunction(name)
         }
     }
@@ -17,15 +18,15 @@ export function Popup(props) {
     return (props.trigger) ? (
         <div className="popup">
             <div className="popup-inner">
-                <button className="close-btn"></button>
-            </div>
-            <div className="popup-text">
-                {props.title}
-                {props.desc}
-            </div>
-            <div className="popupsubmit">
-                {props.btnName === "Crear" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> : null}
-                <button onClick={handleClick}>{props.btnName}</button>
+                <button onClick={() => props.setTrigger(false)} className="close-btn">X</button>
+                <div className="popup-text">
+                    {props.title}
+                    {props.desc}
+                </div>
+                <div className="popup-submit">
+                    {props.btnName === "Crear lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> : null}
+                    <button onClick={handleClick}>{props.btnName}</button>
+                </div>
             </div>
         </div>
     ) : "";

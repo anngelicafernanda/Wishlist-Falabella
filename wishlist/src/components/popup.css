@@ -6,6 +6,11 @@
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup-inner {
@@ -18,7 +23,44 @@
     background-color: #fff;
 }
 
+.popup-inner .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background-color: #fff;
+}
+
+.popup-text p {
+    color: #7A7A7A;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 8px 0px;
+}
+
+.popup-text h4 {
+    font-weight: 700;
+}
+
+.popup-submit {
+    display: flex;
+    flex-direction: column;
+}
+
 .inputText {
-    color: black;
+    margin: 40px 0px 30px 0px;
+    border: none;
+    border-bottom: 0.1px solid #767676;
+}
+
+.popup-submit button {
+    width: 240px;
+    height: 35px;
+    margin: 0px auto;
+    border-radius: 24px;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    background: rgba(73, 88, 103, 1);
 }
 
