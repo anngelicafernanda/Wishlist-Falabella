@@ -50,7 +50,7 @@ export function MisListas() {
 							<Popup
 								trigger={popUp}
 								setTrigger={setPopUp}
-								title={<h4>Nueva Lista</h4>}
+								title={'Nueva lista'}
 								desc={<p>Dale nombre a tu lista</p>}
 								btnName={'Crear lista'}
 								clickFunction={createList}
@@ -78,7 +78,7 @@ export function MisListas() {
 						<Popup
 							trigger={popUp}
 							setTrigger={setPopUp}
-							title={<h4>Nueva Lista</h4>}
+							title={'Nueva lista'}
 							desc={<p>Dale nombre a tu lista</p>}
 							btnName={'Crear lista'}
 							clickFunction={createList}

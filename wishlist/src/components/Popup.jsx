@@ -6,14 +6,23 @@ export function Popup(props) {
     const [name, setName] = useState("");
 
     const handleClick = () => { //hacer un switch case
-        if(props.title.props.children === "Nueva Lista") {
+        if(props.title === "Nueva lista") {
             props.clickFunction(name)
         }
-        else if(props.title.props.children === "Eliminar Producto"){
+        else if(props.title === "Eliminar producto"){
             console.log('hola')
             props.clickFunction(true)
             props.setTrigger(false)
         }
+        else if(props.title === "Eliminar lista"){
+            props.clickFunction(props.id)
+            props.setTrigger(false)
+        }
+        else if(props.title === "Editar lista"){
+            props.clickFunction(name)
+            props.setTrigger(false)
+        }
+
     }
 
     return (props.trigger) ? (
@@ -21,11 +30,13 @@ export function Popup(props) {
             <div className="popup-inner">
                 <button onClick={() => props.setTrigger(false)} className="close-btn">X</button>
                 <div className="popup-text">
-                    {props.title}
+                    <h4>{props.title}</h4>
                     {props.desc}
                 </div>
                 <div className="popup-submit">
                     {props.btnName === "Crear lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> : null}
+                    {props.title === "Editar lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> : null}
+
                     <button onClick={handleClick}>{props.btnName}</button>
                 </div>
             </div>
