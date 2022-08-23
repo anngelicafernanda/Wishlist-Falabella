@@ -7,15 +7,20 @@ import trash from '../images/trash.png'
 
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { getLists, deleteProduct } = useContext(ListContext);
+    const { getLists, deleteProduct, editList } = useContext(ListContext);
     const [popUp, setPopUp] = useState(false);
+    const [popUpEdit, setPopUpEdit] = useState(false);
     const [confirm, setConfirm] = useState(false);
 
     useEffect(()=>{
         getLists()
     },[])
 
-    const handleClickDeleteProduct = async (id, product) =>{
+    const handleEditList = (name) =>{
+        editList(state.list.docId, name)
+    }
+
+    const handleDeleteProduct = async (id, product) =>{
         setPopUp(true);
         if(confirm){
             await deleteProduct(id, product);
@@ -25,11 +30,15 @@ export function ListaDetalle() {
     
     return (
         <div>
-            <div className='flex justify-between m-10'>
-            <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
-            <Link className='text-s bg-gray-ligth' to="/">Agregar productos a la lista</Link>
+            <div className='flex justify-between mx-10 my-5'>
+                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
+                <Link className='text-s bg-gray-ligth' to="/">Agregar productos a la lista</Link>
             </div>
-           
+            <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={<h4>Editar Lista</h4>} btnName={"Aceptar"} clickFunction ={handleEditList}/>
+            <div className='flex p-5 '>
+                <div className='font-bold mr-5'>{state.list.name}</div>
+                <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
+            </div>
             <Popup trigger={popUp} setTrigger={setPopUp} title={<h4>Eliminar Producto</h4>} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
             {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
@@ -38,7 +47,7 @@ export function ListaDetalle() {
                         <p className="text-xs">{product.brand}</p>
                         <p className="text-sm">{product.name}</p>
                     </div>
-                    <button className='justify-self-end w-auto' onClick={()=>{handleClickDeleteProduct(state.list.docId, product)}}>
+                    <button className='justify-self-end w-auto' onClick={()=>{handleDeleteProduct(state.list.docId, product)}}>
                         <img className='w-4' src={trash}/>
                     </button>
                 </div>
