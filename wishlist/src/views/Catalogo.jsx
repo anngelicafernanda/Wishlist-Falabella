@@ -11,7 +11,7 @@ import Select from 'react-select';
 export function Catalogo() {
 
     const [products, setProducts] = useState([]);
-    const { lists, getLists, updateList } = useContext(ListContext);
+    const { lists, getLists, addProduct } = useContext(ListContext);
 
     const getProduct = async () => {
      try {
@@ -27,10 +27,10 @@ export function Catalogo() {
        getLists();
      },[]) 
 
-      const addProduct = (list, product) =>{
-          updateList(list.docId, product);
-          alert(`Tu producto ha sido agregado a ${list.name}`)
-      }
+     const handleAddProduct = (list, product) =>{
+        addProduct(list.docId, product);
+        alert(`Tu producto ha sido agregado a ${list.name}`)
+     }
 
  /* ORDENAR TAILWIND */
   return (
