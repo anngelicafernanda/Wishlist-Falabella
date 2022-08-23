@@ -47,7 +47,7 @@ export function Header() {
 					</p>
 				</div>
 				<div className="grid place-content-center auto-cols-max text-[19px] leading-[16px] ml-[30px] pr-[50px] border-r my-[12px]">
-					<Link to="/my-lists">
+					<Link to="/Mis-listas">
 						<p className="font-bold">Mis</p>
 						<p className="">Listas</p>
 					</Link>
