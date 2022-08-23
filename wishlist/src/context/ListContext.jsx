@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { db } from '../firebase/config'
-import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore'
 
 export const ListContext = createContext();
 
@@ -15,7 +15,6 @@ export const ListContextProvider = ({ children }) => {
                 return ({ ...list.data(), docId: list.id })
             }))
         })
-        console.log(lists)
     };
 
     const addProduct = (id, product) => {
@@ -31,13 +30,17 @@ export const ListContextProvider = ({ children }) => {
         });
     }
 
+    const deleteList = (id) =>{
+        deleteDoc(doc(db, "lists", id));
+    }
 
     return (
         <ListContext.Provider value={{
             lists,
             getLists,
             addProduct,
-            deleteProduct
+            deleteProduct,
+            deleteList
         }}>
             {children}
         </ListContext.Provider>
