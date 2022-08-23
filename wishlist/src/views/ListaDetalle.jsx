@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
 import {ListProduct} from '../components/ListProduct'
+import { Alert } from '../components/Alert';
 
 import ActionButton from "../components/ActionButton";
 
@@ -39,8 +40,7 @@ export function ListaDetalle() {
                 <div className='flex'>
                     <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
-            </div
-
+            </div>
             
             {state.list.products.length != 0?
                 state.list.products.map((product)=>
@@ -54,10 +54,9 @@ export function ListaDetalle() {
                     </button> 
                 </div>
             }
-         
-           <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
-         </div>
-
+        
+          <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
+        </div>
     )
 }
 
