@@ -8,7 +8,7 @@ import trash from '../images/trash.png'
 
 export function List({ list }) {
 	const navigate = useNavigate();
-  const { lists, getLists, deleteList } = useContext(ListContext);
+  const { deleteList } = useContext(ListContext);
   const [popUpDelete, setPopUpDelete] = useState(false);
 
   const navigateListDetails = () =>{

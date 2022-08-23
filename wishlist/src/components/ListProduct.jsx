@@ -1,9 +1,29 @@
 //la que termine primero
 
-import React from 'react'
+import React, {useState, useContext} from 'react';
+import trash from '../images/trash.png';
+import { Popup } from '../components/Popup';
+import { ListContext } from '../context/ListContext';
 
-export default function ListProduct() {
+export function ListProduct({product, listId}) {
+  const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
+  const { deleteProduct } = useContext(ListContext);
+
+  const handleDeleteProduct = () =>{
+    deleteProduct(listId, product);
+}
+
   return (
-    <div>ListProduct</div>
+    <div key={product.productId} className="flex p-2 items-center w-3/4">
+      <img src={product.images[0]} className="w-14 mr-5"></img>
+      <div className="flex flex-col">
+        <p className="text-xs">{product.brand}</p>
+        <p className="text-sm">{product.name}</p>
+      </div>
+      <button className='justify-self-end w-auto' onClick={()=>{setPopUpDeleteProduct(true); console.log(product)}}>
+        <img className='w-4' src={trash}/>
+      </button>
+      <Popup trigger={popUpDeleteProduct} setTrigger={setPopUpDeleteProduct} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} product={product} clickFunction ={handleDeleteProduct}/>
+    </div>
   )
 }

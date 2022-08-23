@@ -4,82 +4,65 @@ import React, {useState, useContext, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
-import trash from '../images/trash.png'
+import {ListProduct} from '../components/ListProduct'
+
 import ActionButton from "../components/ActionButton";
-import MenuAside from "../components/MenuAside";
-import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { getLists, deleteProduct, editList, deleteList } = useContext(ListContext);
-    const [popUp, setPopUp] = useState(false);
+    const { editList, deleteList, getList, list } = useContext(ListContext);
     const [popUpEdit, setPopUpEdit] = useState(false);
-    const [popUpDelete, setPopUpDelete] = useState(false);
-    const [confirm, setConfirm] = useState(false);
+    const [popUpDeleteList, setPopUpDeleteList] = useState(false);
     const [alert, setAlert] = useState(false);
 
     useEffect(()=>{
-        getLists()
+        getList(state.list.docId);
     },[])
 
     const handleEditList = (name) =>{
-        editList(state.list.docId, name)
+        editList(state.list.docId, name);
+        getList(state.list.docId);
     }
 
-    const handleDeleteProduct = async (id, product) =>{
-        setPopUp(true);
-        if(confirm){
-            await deleteProduct(id, product);
-            setConfirm(false);
-        }
-    }
-    
-    return (
+    return (     
         <div>
-            <div className='flex justify-between mx-10 my-5'>
-                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link> 
-                <button className='btn-orange bg-btnlista w-[200px] p-0 m-0'>    
-                    <Link className='text'to="/">Agregar productos a la lista</Link>
-                </button>     
+            <div className='flex justify-between mb-20'>
+                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>   
             </div>
-            <div className='flex p-5 justify-between mx-10 my-5'>
-                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={state.list.name}/>
-                <div className='flex'>
-                    <div className='font-bold mr-5'>{state.list.name}</div>
+            <div className='flex justify-between'>
+                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={list.name}/>
+                <div className='flex '>
+                    <h1 className='font-bold mr-5'>{list.name}</h1>
                     <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
                 </div>
-                <Popup trigger={popUpDelete} setTrigger={setPopUpDelete} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
+                <Popup trigger={popUpDeleteList} setTrigger={setPopUpDeleteList} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
                 <div className='flex'>
-                    <button onClick={()=>(setPopUpDelete(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
+                    <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
-            </div>
-            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
-            {state.list.products.map((product)=>
-                <div key={product.productId} className="flex p-2 items-center w-3/4">
-                    <img src={product.images[0]} className="w-14 mr-5"></img>
-                    <div className="flex flex-col">
-                        <p className="text-xs">{product.brand}</p>
-                        <p className="text-sm">{product.name}</p>
-                    </div>
-                    <button className='justify-self-end w-auto' onClick={()=>{handleDeleteProduct(state.list.docId, product)}}>
-                        <img className='w-4' src={trash}/>
-                    </button>
+            </div
+
+            
+            {state.list.products.length != 0?
+                state.list.products.map((product)=>
+                    <ListProduct product={product} listId={state.list.docId}/>
+                )
+            :
+                <div className=" flex justify-between items-center border-y py-[13px] border-gray-search border-y-2 mt-[21px]">
+                    <h1>No hay Productos en esta Lista</h1>
+                    <button className='btn-orange bg-btnlista w-[200px] text-[14px] h-10 p-0 m-0'>    
+                        <Link className='text'to="/">Agrega productos a la lista</Link>
+                    </button> 
                 </div>
-            )}
-            <div>
-              <MenuAside />
-            </div>
-            <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
-        </div>
-        
+            }
+         
+           <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
+         </div>
+
     )
 }
 
 {/* <div>
-ListaDetalle
-<Link className="bg-orange-500" to="/">
-  Agregar producto
-</Link>
+
 <div className="bg-gray-light  sticky w-screen h-screen m-0 border-slate-300    mb-3 mx-8">
   <div className=" font-style::lato text-m content-start font-bold pb-[13px] text-base border-b text-color-border-b flex items-center border-text-color-border-b"> */}
     /* aqui va un icono back */
