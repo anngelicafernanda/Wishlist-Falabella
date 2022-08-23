@@ -19,6 +19,7 @@ module.exports = {
 			copyright: '#181818',
 			textCopyright: '#848484',
 			footer:'#222222',
+			btnlista:"#495867"
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
