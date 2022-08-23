@@ -31,7 +31,6 @@ export function ListaDetalle() {
         if(confirm){
             await deleteProduct(id, product);
             setConfirm(false);
-            setAlert(true);
         }
     }
     
@@ -65,12 +64,12 @@ export function ListaDetalle() {
                     <button className='justify-self-end w-auto' onClick={()=>{handleDeleteProduct(state.list.docId, product)}}>
                         <img className='w-4' src={trash}/>
                     </button>
-                    <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
                 </div>
             )}
             <div>
-            <MenuAside />
+              <MenuAside />
             </div>
+            <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
         </div>
         
     )
