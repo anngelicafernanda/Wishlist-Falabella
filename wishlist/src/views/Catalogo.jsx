@@ -39,13 +39,16 @@ export function Catalogo() {
                         <p>Por Falabella</p>
                         <p>${p.offerings[0].price.toLocaleString('de-DE')}</p>
                         <div className='flex flex-col items-center'>
-                            <button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar Productos</button>
-                            <select name="" id="">
-                                <option>Agregar a tu lista</option>
+                            <button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
+{/*                             <select name="" id="">
+                                <option>Agregar a la lista</option>
                                 {lists.map((list)=>
                                     <option key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</option>
                                 )}
-                            </select>
+                            </select> */}
+                            {lists.map((list)=>
+                                    <div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
+                                )}
                         </div>
                     </div>
                 )}  

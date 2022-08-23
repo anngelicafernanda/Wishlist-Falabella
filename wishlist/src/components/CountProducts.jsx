@@ -7,6 +7,8 @@ export const CountProducts = ({
 	icon,
 	imgProduct,
 }) => {
+
+	console.log(imgProduct)
 	return (
 		<div className="rounded border border-slate-300 h-[126px] mt-4 p-4">
 			<h1 className="text-black font-bold text-[18px]">
