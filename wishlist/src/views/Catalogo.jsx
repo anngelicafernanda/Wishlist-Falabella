@@ -37,8 +37,7 @@ export function Catalogo() {
 			{products.map((p) => (
 				<div
 					className=" min-w-[228px] h-auto bg-white overflow-y-hidden"
-					key={p.productId}
-				>
+					key={p.productId}>
 					<img className="w-full h-auto" src={p.images[0]}></img>
 					<div className="p-[10px]">
 						<p>+ SUSTENTABLE</p>
@@ -46,21 +45,21 @@ export function Catalogo() {
 						<p className="text-info">{p.name}</p>
 						<p>Por Falabella</p>
 						<p>${p.offerings[0].price.toLocaleString('de-DE')}</p>
-            <div className='flex flex-col items-center'>
-               <button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
-               <div className="dropdrown">
-               <div className="addToList" onClick={(e) => setIsActive(!isActive)}>Agregar a la Lista</div>
-                 {isActive && (
-                  <div className="dropdownContent">
-                   {lists.map((list)=>
-                      <div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
-                   )}
-                 </div>
-                 )}
-                 </div>
-               </div>
-			</div>
-		</div>
+						<div className='flex flex-col items-center'>
+							<button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
+							<div className="dropdrown">
+							<div className="addToList" onClick={(e) => setIsActive(!isActive)}>Agregar a la Lista</div>
+								{isActive && (
+								<div className="dropdownContent">
+									{lists.map((list)=>
+										<div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
+									)}
+								</div>
+								)}
+							</div>
+						</div>
+					</div>
+				</div>
 			))}
 		<Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
 		</main>
