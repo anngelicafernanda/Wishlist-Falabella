@@ -1,22 +1,26 @@
 //trini (con ange)
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import CountProducts from '../components/CountProducts';
 
-export function List({list}) {
-  const navigate = useNavigate();
+export function List({ list }) {
+	const navigate = useNavigate();
+	console.log(list.name);
+	list.products.map((product) => {
+		console.log(product);
+	});
 
-  list.products.map((product)=>{
-    console.log(product.brand)
-  })
-
-  return (
-    <div onClick={()=>{navigate('/Lista-detalle')}}>
-      <div>{list.name}</div>
-      <div>
-        {list.products.map((product)=>
-          <img src={product.images[0]}/>
-        )}
-      </div>
-    </div>
-  )
+	return (
+		<div
+			onClick={() => {
+				navigate('/Lista-detalle');
+			}}
+		>
+			<CountProducts
+				nameList={list.name}
+				productCounter={'prueba'}
+				imgProduct={list.products.map((product) => product.images[0])}
+			/>
+		</div>
+	);
 }
