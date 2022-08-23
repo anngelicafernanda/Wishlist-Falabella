@@ -7,6 +7,7 @@ export const ListContext = createContext();
 export const ListContextProvider = ({ children }) => {
 
     const [lists, setLists] = useState([]);
+    const [list, setList] = useState([]);
 
     const getLists = () => {
         const q = query(collection(db, 'lists'), orderBy('date', 'desc'));
@@ -15,6 +16,11 @@ export const ListContextProvider = ({ children }) => {
                 return ({ ...list.data(), docId: list.id })
             }))
         })
+    };
+
+    const getList = async (id) => {
+        const result = await getDoc(doc(db, "lists", id));
+        return setList({...result.data(), docId : result.id})
     };
 
     const addProduct = (id, product) => {
@@ -44,6 +50,8 @@ export const ListContextProvider = ({ children }) => {
         <ListContext.Provider value={{
             lists,
             getLists,
+            list,
+            getList,
             addProduct,
             deleteProduct,
             deleteList,
