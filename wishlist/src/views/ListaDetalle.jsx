@@ -55,7 +55,11 @@ export function ListaDetalle() {
                     </button>
                 </div>
             )}
+            <div>
+        <MenuAside />
         </div>
+        </div>
+        
     )
 }
 
