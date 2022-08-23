@@ -29,7 +29,7 @@ export function MisListas() {
     <h4>VISTA Mis Listas</h4>
     <br></br>
     <button onClick={() => setPopUp(true)}>Crear Lista</button>
-    <Popup trigger={popUp} setTrigger={setPopUp} btnName={"Crear"} clickFunction ={createList} />
+    <Popup trigger={popUp} setTrigger={setPopUp} title={<h4>Nueva Lista</h4>} desc={<p>Dale nombre a tu lista</p>} btnName={"Crear lista"} clickFunction ={createList} />
     <div>
         {lists.map((list)=>
         <List key={list.docId} list={list} />
