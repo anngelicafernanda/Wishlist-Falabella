@@ -5,16 +5,13 @@ import {CountProducts} from '../components/CountProducts';
 
 export function List({ list }) {
 	const navigate = useNavigate();
-	console.log(list.name);
-	list.products.map((product) => {
-		console.log(product);
-	});
+  const navigateListDetails = () =>{
+    navigate(`/Mis-Listas/${list.name}`, { state: { list } })
+  }
 
 	return (
 		<div
-			onClick={() => {
-				navigate('/Lista-detalle');
-			}}
+			onClick={navigateListDetails}
 		>
 			<CountProducts
 				nameList={list.name}
