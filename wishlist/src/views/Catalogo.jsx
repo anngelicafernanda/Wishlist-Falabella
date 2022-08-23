@@ -6,9 +6,6 @@ import { Alert } from '../components/Alert';
 export function Catalogo() {
 	const [products, setProducts] = useState([]);
 	const { lists, getLists, addProduct } = useContext(ListContext);
-
-    const [products, setProducts] = useState([]);
-    const { lists, getLists, addProduct } = useContext(ListContext);
     const [isActive, setIsActive] = useState(false);
     const [alert, setAlert] = useState(false);
     
@@ -49,7 +46,7 @@ export function Catalogo() {
 						<p className="text-info">{p.name}</p>
 						<p>Por Falabella</p>
 						<p>${p.offerings[0].price.toLocaleString('de-DE')}</p>
-             <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center'>
                <button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
                <div className="dropdrown">
                <div className="addToList" onClick={(e) => setIsActive(!isActive)}>Agregar a la Lista</div>
@@ -62,10 +59,10 @@ export function Catalogo() {
                  )}
                  </div>
                </div>
-					</div>
-           <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
-				</div>
+			</div>
+		</div>
 			))}
+		<Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
 		</main>
 	);
 }
