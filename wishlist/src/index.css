@@ -15,7 +15,7 @@ body {
 
 @layer components {
 	.btn-orange {
-		@apply bg-orangeButton rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[19px];
+		@apply bg-orangeButton rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[14px];
 	}
 
 	.card-image {
@@ -29,5 +29,4 @@ body {
 	.footer {
 		@apply bg-footer h-[300px] w-full;
 	}
-
 }
