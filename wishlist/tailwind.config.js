@@ -20,7 +20,10 @@ module.exports = {
 			textCopyright: '#848484',
 			footer: '#222222',
 			btnlista: '#495867',
+      alert: '#FAFAFA',
+			bgAlert: '#4A4A4A',
 			marca: '#767676',
+
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
