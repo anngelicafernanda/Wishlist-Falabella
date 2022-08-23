@@ -1,9 +1,12 @@
 //key
+
 import React, {useState, useContext, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
 import trash from '../images/trash.png'
+import ActionButton from "../components/ActionButton";
+import MenuAside from "../components/MenuAside";
 
 export function ListaDetalle() {
     const {state} = useLocation();
@@ -24,6 +27,51 @@ export function ListaDetalle() {
     }
     
     return (
+    <div>
+        ListaDetalle
+        <Link className="bg-orange-500" to="/">
+          Agregar producto
+        </Link>
+        <div className="bg-gray-light  sticky w-screen h-screen m-0 border-slate-300    mb-3 mx-8">
+          <div className=" font-style::lato text-m content-start font-bold pb-[13px] text-base border-b text-color-border-b flex items-center border-text-color-border-b">
+            {/* aqui va un icono back */}
+            <p>Volver a mis listas</p>
+          </div>
+          <div className="grid grid-flow-col border-b justify-between mt-[70px] pb-[13px] border-text-color-border-b">
+            <div className="grid grid-flow-col gap-[15px]">
+              <h1 className="font-style:lato font-bold text-base">
+                Compras del mes
+              </h1>
+              <div className="justify-center  space-y-{amount} flex items-center border-text-color-eliminar">
+                <p className="font-style:lato text-xs text-base flex-row-reverse underline text-text-color-eliminar">
+                  Editar
+                </p>
+              </div>
+            </div>
+            <p
+              className="font-sans text-xs text-base text-color-eliminar text-right mr-8 underline
+          text-text-color-eliminar"
+            >
+              Eliminar lista
+            </p>
+          </div>
+          <div className=" flex justify-between border-b pb-[13px] mt-[21px] border-text-color-border-b">
+            <h1>No hay Productos en esta Lista</h1>
+
+            <button className=" flex justify-between border-solid pb-[14px] ">
+              <ActionButton
+                className="btn-orange text-white text-[14px] "
+                title="Agrega productos a la lista"
+                callback={alert}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <MenuAside />
+      </div>
+    </>
         <div>
             <div className='flex justify-between m-10'>
             <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
@@ -43,6 +91,9 @@ export function ListaDetalle() {
                     </button>
                 </div>
             )}
+                  <div>
+        <MenuAside />
+      </div>
         </div>
     )
 }
