@@ -1,10 +1,14 @@
-const CountProducts = ({
+import trash from '../images/trash.png'
+
+export const CountProducts = ({
 	nameList,
 	productCounter,
 	products,
 	icon,
 	imgProduct,
 }) => {
+
+	console.log(imgProduct)
 	return (
 		<div className="rounded border border-slate-300 h-[126px] mt-4 p-4">
 			<h1 className="text-black font-bold text-[18px]">
@@ -21,10 +25,8 @@ const CountProducts = ({
 						</div>
 					)}
 				</div>
-				<img src="" alt="Eliminar" className="w-[20px] h-auto" />
+				<img src={trash} alt="Eliminar" className="w-[20px] h-auto" />
 			</div>
 		</div>
 	);
 };
-
-export default CountProducts;

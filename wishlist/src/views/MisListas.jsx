@@ -3,15 +3,12 @@ import { List } from '../components/List';
 import {
 	Timestamp,
 	addDoc,
-	collection,
-	query,
-	onSnapshot,
-	orderBy,
+	collection
 } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
-import InformationCard from '../components/InformationCard';
+import {InformationCard} from '../components/InformationCard';
 
 export function MisListas() {
 	const { lists, getLists } = useContext(ListContext);
