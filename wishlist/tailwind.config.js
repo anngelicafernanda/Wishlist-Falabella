@@ -25,6 +25,8 @@ module.exports = {
 			marca: '#767676',
 			falabella: '#333333',
 			linea: '#BBBBBB',
+			footerText: '#6A6A6A',
+			inputFooter: '#333333',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],

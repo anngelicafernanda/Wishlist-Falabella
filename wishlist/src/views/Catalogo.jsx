@@ -33,6 +33,7 @@ export function Catalogo() {
 	};
 
 	return (
+
 		<>
 			<div className=" bg-body bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
 				<div className="grid grid-flow-col place-content-center ml-[40px]">
@@ -100,6 +101,8 @@ export function Catalogo() {
 										</div>
 									)}
 								</div>
+
+
 							</div>
 						</div>
 					</div>
