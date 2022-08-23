@@ -55,6 +55,16 @@ export function Header() {
 					{/* aqui va una imagen */}
 				</div>
 			</div>
+			<div className="grid grid-flow-col place-content-center mr-[40px] gap-[15px]">
+				<p>Vende con nosotros</p>
+				<p>Fpay</p>
+				<select value="Tarjeta CMR" name="item-menu-1" id="item-menu-1">
+					<option value="Tarjeta CMR">Tarjeta CMR</option>
+				</select>
+				<select value="Ayuda" name="item-menu-2" id="item-menu-2">
+					<option value="Ayuda">Ayuda</option>
+				</select>
+			</div>
 		</header>
 	);
 }
