@@ -13,7 +13,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<Catalogo />}/>
         <Route path="/Mis-Listas" element={<MisListas />}/>
-        <Route path="/Lista-detalle" element={<ListaDetalle />}/>
+        <Route path="Mis-Listas/:name" element={<ListaDetalle />}/>
       </Routes>
     </MainLayout>
     </ListContextProvider>

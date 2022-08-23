@@ -6,11 +6,14 @@ export function List({list}) {
   const navigate = useNavigate();
 
   list.products.map((product)=>{
-    console.log(product.brand)
+    console.log(product.offerings[0].price)
   })
 
   return (
-    <div onClick={()=>{navigate('/Lista-detalle')}}>
+    <div onClick={()=>{navigate(`/Mis-Listas/${list.name}`,
+    { state: {list} }
+    )}}>
+
       <div>{list.name}</div>
       <div>
         {list.products.map((product)=>

@@ -1,10 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { List } from '../components/List';
-import { Timestamp, addDoc, collection, query, onSnapshot, orderBy } from 'firebase/firestore';
+import { Timestamp, addDoc, collection} from 'firebase/firestore';
 import {db} from '../firebase/config'
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup'
-
 
 export function MisListas() {
     const { lists, getLists } = useContext(ListContext);

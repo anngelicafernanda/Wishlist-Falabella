@@ -10,7 +10,7 @@ import { ListContext } from '../context/ListContext';
 export function Catalogo() {
 
     const [products, setProducts] = useState([]);
-    const { lists, getLists, updateList } = useContext(ListContext);
+    const { lists, getLists, addProduct } = useContext(ListContext);
 
     const getProduct = async () => {
      try {
@@ -26,8 +26,8 @@ export function Catalogo() {
        getLists();
      },[]) 
 
-     const addProduct = (list, product) =>{
-        updateList(list.docId, product);
+     const handleAddProduct = (list, product) =>{
+        addProduct(list.docId, product);
         alert(`Tu producto ha sido agregado a ${list.name}`)
      }
 
@@ -40,7 +40,7 @@ export function Catalogo() {
         <div key={p.productId}>
             <img src={p.images[0]}></img>
             {lists.map((list)=>
-                <div key={list.docId} onClick={()=>{addProduct(list, p)}}>{list.name}</div>
+                <div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
             )}
             
         </div>

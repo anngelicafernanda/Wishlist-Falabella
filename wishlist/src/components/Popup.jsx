@@ -9,9 +9,14 @@ export function Popup(props) {
     const [name, setName] = useState("");
 
 
-    const handleClick = () => {
-        if(props.btnName === "Crear lista") {
+    const handleClick = () => { //hacer un switch case
+        if(props.title.props.children === "Nueva Lista") {
             props.clickFunction(name)
+        }
+        else if(props.title.props.children === "Eliminar Producto"){
+            console.log('hola')
+            props.clickFunction(true)
+            props.setTrigger(false)
         }
     }
 
