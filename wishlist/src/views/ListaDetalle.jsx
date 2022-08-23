@@ -7,6 +7,7 @@ import { ListContext } from '../context/ListContext';
 import trash from '../images/trash.png'
 import ActionButton from "../components/ActionButton";
 import MenuAside from "../components/MenuAside";
+import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
     const {state} = useLocation();
@@ -14,6 +15,7 @@ export function ListaDetalle() {
     const [popUp, setPopUp] = useState(false);
     const [popUpEdit, setPopUpEdit] = useState(false);
     const [confirm, setConfirm] = useState(false);
+    const [alert, setAlert] = useState(false);
 
     useEffect(()=>{
         getLists()
@@ -27,7 +29,8 @@ export function ListaDetalle() {
         setPopUp(true);
         if(confirm){
             await deleteProduct(id, product);
-            setConfirm(false)
+            setConfirm(false);
+            setAlert(true);
         }
     }
     
@@ -37,13 +40,13 @@ export function ListaDetalle() {
                 <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
                 <Link className='text-s bg-gray-ligth' to="/">Agregar productos a la lista</Link>
             </div>
-            <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={<h4>Editar Lista</h4>} btnName={"Aceptar"} clickFunction ={handleEditList}/>
+            <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={'Editar Lista'} btnName={"Aceptar"} clickFunction ={handleEditList}/>
+            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar Producto'} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
+
             <div className='flex p-5 '>
                 <div className='font-bold mr-5'>{state.list.name}</div>
                 <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
-            </div>
-            <Popup trigger={popUp} setTrigger={setPopUp} title={<h4>Eliminar Producto</h4>} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
-            {state.list.products.map((product)=>
+            </div>            {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
                     <img src={product.images[0]} className="w-14 mr-5"></img>
                     <div className="flex flex-col">
@@ -53,11 +56,12 @@ export function ListaDetalle() {
                     <button className='justify-self-end w-auto' onClick={()=>{handleDeleteProduct(state.list.docId, product)}}>
                         <img className='w-4' src={trash}/>
                     </button>
+                    <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
                 </div>
             )}
             <div>
-        <MenuAside />
-        </div>
+            <MenuAside />
+            </div>
         </div>
         
     )
@@ -70,8 +74,8 @@ ListaDetalle
 </Link>
 <div className="bg-gray-light  sticky w-screen h-screen m-0 border-slate-300    mb-3 mx-8">
   <div className=" font-style::lato text-m content-start font-bold pb-[13px] text-base border-b text-color-border-b flex items-center border-text-color-border-b"> */}
-    {/* aqui va un icono back */}
-{/*     <p>Volver a mis listas</p>
+    /* aqui va un icono back */
+/*     <p>Volver a mis listas</p>
   </div>
   <div className="grid grid-flow-col border-b justify-between mt-[70px] pb-[13px] border-text-color-border-b">
     <div className="grid grid-flow-col gap-[15px]">
@@ -79,13 +83,13 @@ ListaDetalle
         Compras del mes
       </h1>
       <div className="justify-center  space-y-{amount} flex items-center border-text-color-eliminar">
-        <p className="font-style:lato text-xs text-base flex-row-reverse underline text-text-color-eliminar">
+        <p className="font-style:lato text-xstext-base flex-row-reverse underline text-text-color-eliminar">
           Editar
         </p>
       </div>
     </div>
     <p
-      className="font-sans text-xs text-base text-color-eliminar text-right mr-8 underline
+      className="font-sans text-xstext-base text-color-eliminar text-right mr-8 underline
   text-text-color-eliminar"
     >
       Eliminar lista
@@ -107,4 +111,4 @@ ListaDetalle
 <div>
 <MenuAside />
 </div>
-</>  */}
+</>  */

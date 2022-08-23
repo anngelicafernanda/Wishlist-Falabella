@@ -19,7 +19,9 @@ module.exports = {
 			copyright: '#181818',
 			textCopyright: '#848484',
 			footer:'#222222',
-			btnlista:"#495867"
+			btnlista:"#495867",
+			alert: '#FAFAFA',
+			bgAlert: '#4A4A4A',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
