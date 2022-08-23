@@ -11,28 +11,24 @@ import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { getLists, deleteProduct, editList, deleteList } = useContext(ListContext);
-    const [popUp, setPopUp] = useState(false);
+    const { deleteProduct, editList, deleteList, getList, list } = useContext(ListContext);
+    const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
     const [popUpEdit, setPopUpEdit] = useState(false);
-    const [popUpDelete, setPopUpDelete] = useState(false);
-    const [confirm, setConfirm] = useState(false);
+    const [popUpDeleteList, setPopUpDeleteList] = useState(false);
     const [alert, setAlert] = useState(false);
 
     useEffect(()=>{
-        getLists()
+        getList(state.list.docId);
     },[])
 
     const handleEditList = (name) =>{
-        editList(state.list.docId, name)
+        editList(state.list.docId, name);
+        getList(state.list.docId);
     }
 
-    const handleDeleteProduct = async (id, product) =>{
-        setPopUp(true);
-        if(confirm){
-            await deleteProduct(id, product);
-            setConfirm(false);
-            setAlert(true);
-        }
+    const handleDeleteProduct = (product) =>{
+        deleteProduct(state.list.docId, product);
+        getList(state.list.docId);
     }
     
     return (
@@ -44,17 +40,16 @@ export function ListaDetalle() {
                 </button>     
             </div>
             <div className='flex p-5 justify-between mx-10 my-5'>
-                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={state.list.name}/>
+                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={list.name}/>
                 <div className='flex'>
-                    <div className='font-bold mr-5'>{state.list.name}</div>
+                    <div className='font-bold mr-5'>{list.name}</div>
                     <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
                 </div>
-                <Popup trigger={popUpDelete} setTrigger={setPopUpDelete} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
+                <Popup trigger={popUpDeleteList} setTrigger={setPopUpDeleteList} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
                 <div className='flex'>
-                    <button onClick={()=>(setPopUpDelete(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
+                    <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
             </div>
-            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
             {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
                     <img src={product.images[0]} className="w-14 mr-5"></img>
@@ -62,15 +57,13 @@ export function ListaDetalle() {
                         <p className="text-xs">{product.brand}</p>
                         <p className="text-sm">{product.name}</p>
                     </div>
-                    <button className='justify-self-end w-auto' onClick={()=>{handleDeleteProduct(state.list.docId, product)}}>
+                    <button className='justify-self-end w-auto' onClick={()=>{setPopUpDeleteProduct(true)}}>
                         <img className='w-4' src={trash}/>
                     </button>
-                    <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
+                    <Popup trigger={popUpDeleteProduct} setTrigger={setPopUpDeleteProduct} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} product={product.name} clickFunction ={handleDeleteProduct}/>
+                 <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
                 </div>
             )}
-            <div>
-            <MenuAside />
-            </div>
         </div>
         
     )
