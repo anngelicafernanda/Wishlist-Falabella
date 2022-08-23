@@ -10,9 +10,10 @@ import MenuAside from "../components/MenuAside";
 
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { getLists, deleteProduct, editList } = useContext(ListContext);
+    const { getLists, deleteProduct, editList, deleteList } = useContext(ListContext);
     const [popUp, setPopUp] = useState(false);
     const [popUpEdit, setPopUpEdit] = useState(false);
+    const [popUpDelete, setPopUpDelete] = useState(false);
     const [confirm, setConfirm] = useState(false);
 
     useEffect(()=>{
@@ -34,15 +35,23 @@ export function ListaDetalle() {
     return (
         <div>
             <div className='flex justify-between mx-10 my-5'>
-                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>      
-                <Link className='text-s bg-gray-ligth' to="/">Agregar productos a la lista</Link>
+                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link> 
+                <button className='btn-orange bg-btnlista w-[200px] p-0 m-0'>    
+                    <Link className='text'to="/">Agregar productos a la lista</Link>
+                </button>     
             </div>
-            <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={<h4>Editar Lista</h4>} btnName={"Aceptar"} clickFunction ={handleEditList}/>
-            <div className='flex p-5 '>
-                <div className='font-bold mr-5'>{state.list.name}</div>
-                <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
+            <div className='flex p-5 justify-between mx-10 my-5'>
+                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={state.list.name}/>
+                <div className='flex'>
+                    <div className='font-bold mr-5'>{state.list.name}</div>
+                    <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
+                </div>
+                <Popup trigger={popUpDelete} setTrigger={setPopUpDelete} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
+                <div className='flex'>
+                    <button onClick={()=>(setPopUpDelete(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
+                </div>
             </div>
-            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar producto'} desc={<p>Estas apunto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
+            <Popup trigger={popUp} setTrigger={setPopUp} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} clickFunction ={setConfirm}/>
             {state.list.products.map((product)=>
                 <div key={product.productId} className="flex p-2 items-center w-3/4">
                     <img src={product.images[0]} className="w-14 mr-5"></img>

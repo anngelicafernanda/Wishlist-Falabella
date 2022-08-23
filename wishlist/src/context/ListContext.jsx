@@ -34,13 +34,20 @@ export const ListContextProvider = ({ children }) => {
         deleteDoc(doc(db, "lists", id));
     }
 
+    const editList = (id, name) =>{
+        updateDoc(doc(db, "lists", id), {
+            name
+        });
+    }
+
     return (
         <ListContext.Provider value={{
             lists,
             getLists,
             addProduct,
             deleteProduct,
-            deleteList
+            deleteList,
+            editList
         }}>
             {children}
         </ListContext.Provider>
