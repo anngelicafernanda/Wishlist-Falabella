@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { db } from '../firebase/config'
-import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion } from 'firebase/firestore'
+import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore'
 
 export const ListContext = createContext();
 
@@ -15,20 +15,32 @@ export const ListContextProvider = ({ children }) => {
                 return ({ ...list.data(), docId: list.id })
             }))
         })
-        console.log(lists)
     };
 
-    const updateList = async (id, product) => {
+    const addProduct = (id, product) => {
         updateDoc(doc(db, "lists", id), {
             products: arrayUnion(product)
         })
+    }
+
+    const deleteProduct = (id, product) =>{
+        console.log(product)
+        updateDoc(doc(db, "lists", id), {
+            products: arrayRemove(product)
+        });
+    }
+
+    const deleteList = (id) =>{
+        deleteDoc(doc(db, "lists", id));
     }
 
     return (
         <ListContext.Provider value={{
             lists,
             getLists,
-            updateList
+            addProduct,
+            deleteProduct,
+            deleteList
         }}>
             {children}
         </ListContext.Provider>
