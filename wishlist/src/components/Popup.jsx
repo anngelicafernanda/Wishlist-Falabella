@@ -10,8 +10,8 @@ export function Popup(props) {
             props.clickFunction(name)
         }
         else if(props.title === "Eliminar producto"){
-            console.log('hola')
-            props.clickFunction(true)
+            console.log(props.product)
+            props.clickFunction(props.product)
             props.setTrigger(false)
         }
         else if(props.title === "Eliminar lista"){
@@ -22,7 +22,6 @@ export function Popup(props) {
             props.clickFunction(name)
             props.setTrigger(false)
         }
-
     }
 
     return (props.trigger) ? (
