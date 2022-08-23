@@ -18,14 +18,21 @@ module.exports = {
 			container: '#F5F5F5',
 			copyright: '#181818',
 			textCopyright: '#848484',
-			footer:'#222222',
-			btnlista:"#495867"
+			footer: '#222222',
+			btnlista: '#495867',
+			marca: '#767676',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
 		},
 
-		extend: {},
+		extend: {
+			gridAutoColumns: {
+				menu: 'auto auto 1fr auto auto auto',
+				search: 'auto 1fr',
+				'lists-layout': 'auto 1fr',
+			},
+		},
 	},
 	plugins: [],
 };
