@@ -10,7 +10,7 @@ import CMR from "../imgFalabella/cmr-card.svg";
 import giftcard from "../imgFalabella/gift-cards.svg";
 import cambiarcontraseña from "../imgFalabella/passwords.svg";
 import cerrarsesion from "../imgFalabella/close-session.svg";
-import iconsidebar from "../imgFalabella/rigth-arrow-sidebar.svg";
+import iconsidebar from "../imgFalabella/RightArrow";
 
 const MenuAside = () => {
   let sidebarNavItems = [
