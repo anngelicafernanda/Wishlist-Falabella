@@ -10,8 +10,8 @@ export function Footer() {
           <p>Infórmate de lo último de Falabella. </p>
           <p>Nuestras ofertas y novedades directamente en  tu e-mail.</p>
           <div>
-            <input className='bg-inputFooter' type="text" name="" id="" value="Ingresa tu E-mail"/>
-            <input className='bg-inputFooter' type="text" name="" id="" value="Ingresa tu RUT"/>
+            <input className='bg-inputFooter' type="text" name="" id="" placeholder="Ingresa tu E-mail"/>
+            <input className='bg-inputFooter' type="text" name="" id="" placeholder="Ingresa tu RUT"/>
           </div>
           <input type="checkbox" name="" id="" />
           <p>Acepto términos y condiciones</p>

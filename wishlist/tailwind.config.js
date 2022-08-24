@@ -28,6 +28,7 @@ module.exports = {
 			footerText: '#6A6A6A',
 			inputFooter: '#333333',
 			ordenarPor: '#9B9B9B',
+			'gray-drop': '#636363',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],

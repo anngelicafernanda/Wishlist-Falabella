@@ -5,6 +5,7 @@ import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
+import check from '../images/check.png';
 
 export function Catalogo() {
 	const { lists, getLists, addProduct} = useContext(ListContext);
@@ -102,14 +103,15 @@ export function Catalogo() {
 								</button>
 								<div className="dropdrown">
 
-								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
+								<select  onChange={(e)=>{handleChange(e, p)}} className=" border rounded-full px-[75px] py-2 h-[35px] w-full mt-6 mb-4 text-[14px]">
 								<option>Agregar a la Lista</option>
 									{lists.map((list)=> 
 									list.productsId.includes(p.productId)?
-										<option key={list.docId} value="disabled">{list.name} X</option>:
-										<option key={list.docId} value={list.docId}>{list.name}</option>
+										<option key={list.docId} className="text-sm" value="disabled">{list.name}                             ✅
+										</option>:
+										<option key={list.docId} className="text-sm" value={list.docId}>{list.name}</option>
 									)}
-								<option value='crear'>+ Crear lista</option>	
+								<option value='crear' className="text-base font-bold">+ Crear lista</option>	
 								</select>
 								</div>
 							</div>
