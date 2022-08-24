@@ -6,10 +6,11 @@ import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct, createList } = useContext(ListContext);
+	const { lists, getLists, addProduct} = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
     const [alert, setAlert] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState({});
        
 	const getProduct = async () => {
 		try {
@@ -30,16 +31,13 @@ export function Catalogo() {
 
 	const handleChange = (e, p) => {
 		if(e.currentTarget.value==='crear'){
-			setPopUp(true)
+			setSelectedProduct(p)
+			setPopUp(true);
 		}else{
 			addProduct(e.currentTarget.value, p);
 			setAlert(true);
 		}	
 	}
-
-	const handleCreateList = (name) => {
-		createList(name);
-	};
 
 	return (
 		<>
@@ -93,7 +91,7 @@ export function Catalogo() {
 									{lists.map((list)=> 
 										<option key={list.docId} value={list.docId}>{list.name}</option>
 									)}
-								<option value="crear">+ Crear lista</option>	
+								<option value='crear'>+ Crear lista</option>	
 								</select>
 								</div>
 							</div>
@@ -108,10 +106,10 @@ export function Catalogo() {
 				<Popup
 					trigger={popUp}
 					setTrigger={setPopUp}
-					title={'Nueva lista'}
+					title={'Crear lista'}
 					desc={<p>Dale nombre a tu lista</p>}
 					btnName={'Crear lista'}
-					clickFunction={handleCreateList}
+					product={selectedProduct}
 				/>
 			</main>
 		</>
