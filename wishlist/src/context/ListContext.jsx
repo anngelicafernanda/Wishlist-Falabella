@@ -18,6 +18,19 @@ export const ListContextProvider = ({ children }) => {
 		});
 	};
 
+    const createListfromProduct = async (name, product) => {
+		await addDoc(collection(db, 'lists'), {
+			date: Timestamp.fromDate(new Date()),
+			name: name,
+			products: [],
+			userId: 'JuanaPerez1234',
+		}).then((response)=>{
+            updateDoc(doc(db, "lists", response.id), {
+                products: arrayUnion(product)
+            })
+        })
+	};
+
     const getLists = () => {
         const q = query(collection(db, 'lists'), orderBy('date', 'desc'));
         onSnapshot(q, (data) => {
@@ -66,7 +79,8 @@ export const ListContextProvider = ({ children }) => {
             deleteProduct,
             deleteList,
             editList,
-            createList
+            createList,
+            createListfromProduct
         }}>
             {children}
         </ListContext.Provider>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ListContext } from '../context/ListContext';
 import "./popup.css";
 
 export function Popup(props) {
-
+    const {createListfromProduct} = useContext(ListContext);
     const [name, setName] = useState("");
     const navigate = useNavigate();
 
@@ -23,6 +24,11 @@ export function Popup(props) {
         }
         else if(props.title === "Editar lista"){
             props.clickFunction(name)
+            props.setTrigger(false)
+        }
+        else if (props.title === "Crear lista"){
+            console.log('hola')
+            createListfromProduct(name, props.product)
             props.setTrigger(false)
         }
     }
