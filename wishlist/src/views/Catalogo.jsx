@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { ListContext } from '../context/ListContext';
-import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
@@ -11,7 +10,6 @@ export function Catalogo() {
 	const { lists, getLists, addProduct} = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
-    const [alert, setAlert] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
        
 	const getProduct = async () => {
@@ -40,10 +38,10 @@ export function Catalogo() {
 			console.log('este producto ya está en la lista')
 		}else{
 			addProduct(e.currentTarget.value, p, p.productId);
-			setAlert(true);
-      setTimeout(() => {
-			setAlert(false);
-		}, 3000);
+		// 	setAlert(true);
+		// 	setTimeout(() => {
+		// 	setAlert(false);
+		// }, 3000);
 	}	
     
 	}
@@ -119,11 +117,6 @@ export function Catalogo() {
 					</div>
 				))}
 			</main>
-			<Alert
-					trigger={alert}
-					setTrigger={setAlert}
-					alert="Su producto fue agregado exitosamente a la lista"
-				/>
 				<Popup
 					trigger={popUp}
 					setTrigger={setPopUp}
@@ -131,6 +124,7 @@ export function Catalogo() {
 					desc={<p>Dale nombre a tu lista</p>}
 					btnName={'Crear lista'}
 					product={selectedProduct}
+					alert={"Lista creada"}
 				/>
 		</>
 	);

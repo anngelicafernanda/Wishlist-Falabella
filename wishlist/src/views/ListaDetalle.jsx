@@ -3,14 +3,13 @@ import { Link, useLocation} from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
 import {ListProduct} from '../components/ListProduct'
-// import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
     const {state} = useLocation();
     const { editList, deleteList, getList, list, deleteProduct } = useContext(ListContext);
     const [popUpEdit, setPopUpEdit] = useState(false);
     const [popUpDeleteList, setPopUpDeleteList] = useState(false);
-    const [alert, setAlert] = useState(false);
+
 
     useEffect(()=>{
         getList(state.list.docId);
@@ -31,6 +30,7 @@ export function ListaDetalle() {
 
 
     return (     
+        <>
         <div>
             <div className='flex justify-between mb-20'>
                 <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link> 
@@ -40,25 +40,14 @@ export function ListaDetalle() {
                     </button> }
             </div>
             <div className='flex justify-between'>
-                <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={list.name}/>
                 <div className='flex '>
                     <h1 className='font-bold mr-5'>{list.name}</h1>
                     <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
                 </div>
-                <Popup 
-                  trigger={popUpDeleteList} 
-                  setTrigger={setPopUpDeleteList} 
-                  title={'Eliminar lista'} 
-                  desc={<p>Estás a punto de eliminar la lista</p>} 
-                  btnName={"Aceptar"} 
-                  id={state.list.docId} 
-                  clickFunction ={deleteList}
-                  />
                 <div className='flex'>
                     <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
             </div>
-            
             {list.products != undefined && state.list.products.length != 0?
                 list.products.map((product)=>
                     <ListProduct product={product} listId={state.list.docId} deleteFunction={handleDeleteProduct}/>
@@ -72,5 +61,34 @@ export function ListaDetalle() {
                 </div>
             }
         </div>
+        <Popup 
+            trigger={popUpDeleteList} 
+            setTrigger={setPopUpDeleteList} 
+            title={'Eliminar lista'} 
+            desc={<p>Estás a punto de eliminar la lista</p>} 
+            btnName={"Aceptar"} 
+            id={state.list.docId} 
+            clickFunction ={deleteList}
+            alert={"Easdadasdasdasdasd"}
+        /> 
+        <Popup trigger={popUpEdit} 
+        setTrigger={setPopUpEdit} 
+        title={"Editar lista"} 
+        btnName={"Aceptar"} 
+        clickFunction ={handleEditList} 
+        nameList={list.name}
+        alert={"Lista editada"}
+        />
+        </>
     )
 }
+{/* <Popup 
+trigger={popUpDeleteList} 
+setTrigger={setPopUpDeleteList} 
+title={'Eliminar lista'} 
+desc={<p>Estás a punto de eliminar la lista</p>} 
+btnName={"Aceptar"} 
+id={state.list.docId} 
+clickFunction ={deleteList}
+alert={"E"}
+/> */}
