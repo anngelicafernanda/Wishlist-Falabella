@@ -27,6 +27,7 @@ export function Catalogo() {
 		getProduct();
 		getLists();
 	}, []);
+
 	
 	const handleChange = (e, p) => {	
 		if(e.currentTarget.value==='crear'){
@@ -37,8 +38,13 @@ export function Catalogo() {
 		}else{
 			addProduct(e.currentTarget.value, p, p.productId);
 			setAlert(true);
-		}	
+      setTimeout(() => {
+			setAlert(false);
+		}, 3000);
+	}	
+    
 	}
+
 
 	return (
 		<>
@@ -101,7 +107,8 @@ export function Catalogo() {
 						</div>
 					</div>
 				))}
-				<Alert
+			</main>
+			<Alert
 					trigger={alert}
 					setTrigger={setAlert}
 					alert="Su producto fue agregado exitosamente a la lista"

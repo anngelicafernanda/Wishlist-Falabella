@@ -3,10 +3,13 @@ import { List } from '../components/List';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
 import {InformationCard} from '../components/InformationCard';
+import { Alert } from '../components/Alert';
+import { async } from '@firebase/util';
 
 export function MisListas() {
 	const { lists, getLists, createList } = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
+	const [alert, setAlert] = useState(true);
 
 	useEffect(() => {
 		getLists();
@@ -15,6 +18,7 @@ export function MisListas() {
 	const handleCreateList = (name) => {
 		createList(name);
 	};
+
 
 	return (
 		<>
@@ -41,6 +45,9 @@ export function MisListas() {
 								title={'Nueva lista'}
 								desc={<p>Dale nombre a tu lista</p>}
 								btnName={'Crear lista'}
+								active={alert} 
+								setActive={setAlert} 
+								alert='Su producto fue eliminado exitosamente de la lista'
 								clickFunction={handleCreateList}
 							/>
 						</div>
@@ -69,7 +76,11 @@ export function MisListas() {
 							title={'Nueva lista'}
 							desc={<p>Dale nombre a tu lista</p>}
 							btnName={'Crear lista'}
+							active={alert} 
+							setActive={setAlert} 
+							alert='Su producto fue eliminado exitosamente de la lista'
 							clickFunction={handleCreateList}
+
 						/>
 					</div>
 					<h2 className="text-color-listTitle text-[16px]">Mis Listas</h2>

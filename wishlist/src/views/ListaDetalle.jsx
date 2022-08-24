@@ -3,7 +3,7 @@ import { Link, useLocation} from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
 import {ListProduct} from '../components/ListProduct'
-import { Alert } from '../components/Alert';
+// import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
     const {state} = useLocation();
@@ -21,10 +21,14 @@ export function ListaDetalle() {
         editList(state.list.docId, name);
         getList(state.list.docId);
     }
+
     const handleDeleteProduct = (id, product, productId) =>{
         deleteProduct(id, product, productId);
         getList(id);          
     }
+    
+
+
 
     return (     
         <div>
@@ -41,7 +45,15 @@ export function ListaDetalle() {
                     <h1 className='font-bold mr-5'>{list.name}</h1>
                     <button onClick={()=>(setPopUpEdit(true))} className='text-xs'>Editar</button>
                 </div>
-                <Popup trigger={popUpDeleteList} setTrigger={setPopUpDeleteList} title={'Eliminar lista'} desc={<p>Estás a punto de elimnar la lista</p>} btnName={"Aceptar"} id={state.list.docId} clickFunction ={deleteList}/>
+                <Popup 
+                  trigger={popUpDeleteList} 
+                  setTrigger={setPopUpDeleteList} 
+                  title={'Eliminar lista'} 
+                  desc={<p>Estás a punto de eliminar la lista</p>} 
+                  btnName={"Aceptar"} 
+                  id={state.list.docId} 
+                  clickFunction ={deleteList}
+                  />
                 <div className='flex'>
                     <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
@@ -59,8 +71,6 @@ export function ListaDetalle() {
                     </button> 
                 </div>
             }
-        
-          <Alert trigger={alert} setTrigger={setAlert} alert='Su producto fue agregado exitosamente a la lista' />
         </div>
     )
 }
