@@ -3,10 +3,13 @@ import { List } from '../components/List';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
 import {InformationCard} from '../components/InformationCard';
+import { Alert } from '../components/Alert';
+
 
 export function MisListas() {
 	const { lists, getLists, createList } = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
+	const [alert, setAlert] = useState(true);
 
 	useEffect(() => {
 		getLists();
@@ -16,6 +19,7 @@ export function MisListas() {
 		createList(name);
 	};
 
+
 	return (
 		<>
 			{lists.length === 0 && (
@@ -24,8 +28,8 @@ export function MisListas() {
 						<div>
 							<h1 className="text-[24px] text-[#333333]">Mis Listas</h1>
 							<p className="text-[16px] text-[#333333]">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim
-								feugiat ut fringilla eu fusce urna donec nisl, bibendum.{' '}
+								¡Crea y modifica listas con tus productos favoritos de
+								Falabella.com!
 							</p>
 						</div>
 						<div>
@@ -41,18 +45,21 @@ export function MisListas() {
 								title={'Nueva lista'}
 								desc={<p>Dale nombre a tu lista</p>}
 								btnName={'Crear lista'}
+								active={alert} 
+								setActive={setAlert} 
+								alert='Su producto fue eliminado exitosamente de la lista'
 								clickFunction={handleCreateList}
 							/>
 						</div>
 						<InformationCard
 							icon={<img></img>}
 							title="Organiza/ Ahorra tiempo"
-							description="Enim feugiat ut fringilla eu fusce urna donec nisl, bibendum. "
+							description="Podrás tener a la mano los productos que desees"
 						/>
 						<InformationCard
 							icon={<img></img>}
 							title="Regala"
-							description="Enim feugiat ut fringilla eu fusce urna donec nisl, bibendum. "
+							description="Crea listas especiales para regalar a tus más cercanos"
 						/>
 					</div>
 				</>
@@ -69,7 +76,11 @@ export function MisListas() {
 							title={'Nueva lista'}
 							desc={<p>Dale nombre a tu lista</p>}
 							btnName={'Crear lista'}
+							active={alert} 
+							setActive={setAlert} 
+							alert='Su producto fue eliminado exitosamente de la lista'
 							clickFunction={handleCreateList}
+
 						/>
 					</div>
 					<h2 className="text-color-listTitle text-[16px]">Mis Listas</h2>

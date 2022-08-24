@@ -4,12 +4,14 @@ import { ListContext } from '../context/ListContext';
 import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
+import RightArrow from '../imgFalabella/RightArrow';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct, createList } = useContext(ListContext);
+	const { lists, getLists, addProduct} = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
     const [alert, setAlert] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState({});
        
 	const getProduct = async () => {
 		try {
@@ -28,43 +30,54 @@ export function Catalogo() {
 	}, []);
 
 
-	const handleChange = (e, p) => {
+	
+	const handleChange = (e, p) => {	
 		if(e.currentTarget.value==='crear'){
-			setPopUp(true)
+			setSelectedProduct(p)
+			setPopUp(true);
+		}else if (e.currentTarget.value==='disabled'){
+			console.log('este producto ya está en la lista')
 		}else{
-			addProduct(e.currentTarget.value, p);
+			addProduct(e.currentTarget.value, p, p.productId);
 			setAlert(true);
-		}	
+      setTimeout(() => {
+			setAlert(false);
+		}, 3000);
+	}	
+    
 	}
-
-	const handleCreateList = (name) => {
-		createList(name);
-	};
 
 	return (
 		<>
 			<div className=" bg-body bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
-				<div className="grid grid-flow-col place-content-center ml-[40px]">
-					{/* <img src={cart} alt="" className="w-[25px] h-auto " /> */}
-					<p>
-						<img src={MineShaft} alt="" className="w-[10px] h-auto " />
-						Home Poleras
-						<span className="font-bold"> Poleras LED</span>
-					</p>
+				<div className="grid grid-flow-col items-center ml-[40px] gap-[10px] ml-[120px]">
+					<img src={MineShaft} alt="" className="w-[10px] h-auto inline " />
+					<p>Home</p>
+					<RightArrow className="" />
+					<p>Poleras</p>
+					<RightArrow className="" />
+					<p className="font-bold"> Poleras LED</p>
 				</div>
 			</div>
-
 			<div className="container max-w-[1280px] mx-auto gap-[10px] py-[20px] bg-white h-[120px] mt-[5px]">
-				<div className=" w-[250px] h-[50px] p-[10px]  ">
-					<h2>Ordenar por:</h2>
-					<select className="  m-[10px]">
-						<option className="" value="">
+				<div className=" w-[250px] h-[50px] p-[10px] ml-[40px]">
+					<label
+						for="Ordernar"
+						className="text-ordenarPor text-[12px] block ml-[15px]"
+					>
+						Ordenar por:
+					</label>
+					<select
+						id="Ordenar"
+						className="border-b m-[10px] mt-[5px] border-b-ordenarPor pb-[10px] w-[250px]"
+					>
+						<option className="bold text-[14px] text-falabella" value="">
 							Recomendados
 						</option>
 					</select>
 				</div>
 			</div>
-			<main className=" container max-w-[1280px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
+			<main className="container max-w-[1280px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
 				{products.map((p) => (
 					<div
 						className=" min-w-[228px] h-auto bg-white overflow-y-hidden"
@@ -88,19 +101,23 @@ export function Catalogo() {
 									Agregar al carro
 								</button>
 								<div className="dropdrown">
+
 								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
 								<option>Agregar a la Lista</option>
 									{lists.map((list)=> 
+									list.productsId.includes(p.productId)?
+										<option key={list.docId} value="disabled">{list.name} X</option>:
 										<option key={list.docId} value={list.docId}>{list.name}</option>
 									)}
-								<option value="crear">+ Crear lista</option>	
+								<option value='crear'>+ Crear lista</option>	
 								</select>
 								</div>
 							</div>
 						</div>
 					</div>
 				))}
-				<Alert
+			</main>
+			<Alert
 					trigger={alert}
 					setTrigger={setAlert}
 					alert="Su producto fue agregado exitosamente a la lista"
@@ -108,12 +125,11 @@ export function Catalogo() {
 				<Popup
 					trigger={popUp}
 					setTrigger={setPopUp}
-					title={'Nueva lista'}
+					title={'Crear lista'}
 					desc={<p>Dale nombre a tu lista</p>}
 					btnName={'Crear lista'}
-					clickFunction={handleCreateList}
+					product={selectedProduct}
 				/>
-			</main>
 		</>
 	);
 }
