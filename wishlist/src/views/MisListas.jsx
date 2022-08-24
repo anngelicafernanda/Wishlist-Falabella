@@ -1,31 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { List } from '../components/List';
-import {
-	Timestamp,
-	addDoc,
-	collection
-} from 'firebase/firestore';
-import { db } from '../firebase/config';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
 import {InformationCard} from '../components/InformationCard';
 
 export function MisListas() {
-	const { lists, getLists } = useContext(ListContext);
+	const { lists, getLists, createList } = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
 
 	useEffect(() => {
 		getLists();
 	}, []);
 
-	const createList = (name) => {
-		addDoc(collection(db, 'lists'), {
-			date: Timestamp.fromDate(new Date()),
-			name: name,
-			products: [],
-			userId: 'JuanaPerez1234',
-		});
-		setPopUp(false);
+	const handleCreateList = (name) => {
+		createList(name);
 	};
 
 	return (
@@ -53,7 +41,7 @@ export function MisListas() {
 								title={'Nueva lista'}
 								desc={<p>Dale nombre a tu lista</p>}
 								btnName={'Crear lista'}
-								clickFunction={createList}
+								clickFunction={handleCreateList}
 							/>
 						</div>
 						<InformationCard
@@ -81,7 +69,7 @@ export function MisListas() {
 							title={'Nueva lista'}
 							desc={<p>Dale nombre a tu lista</p>}
 							btnName={'Crear lista'}
-							clickFunction={createList}
+							clickFunction={handleCreateList}
 						/>
 					</div>
 					<h2 className="text-color-listTitle text-[16px]">Mis Listas</h2>
