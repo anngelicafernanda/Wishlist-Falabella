@@ -1,4 +1,5 @@
 import './index.css';
+import 'boxicons/css/boxicons.min.css';
 import { Routes, Route } from 'react-router-dom';
 import { MainLayout } from './Layout/MainLayout';
 import { Catalogo } from './views/Catalogo';
