@@ -29,7 +29,11 @@ export function ListaDetalle() {
     return (     
         <div>
             <div className='flex justify-between mb-20'>
-                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link>   
+                <Link className='text-xs' to="/Mis-Listas">Volver a Mis Listas</Link> 
+                {state.list.products.length != 0&&  
+                <button className='btn-orange w-[200px] text-[14px] h-10 p-0 m-0'>    
+                        <Link className='text'to="/">Agrega productos a la lista</Link>
+                    </button> }
             </div>
             <div className='flex justify-between'>
                 <Popup trigger={popUpEdit} setTrigger={setPopUpEdit} title={"Editar lista"} btnName={"Aceptar"} clickFunction ={handleEditList} nameList={list.name}/>
