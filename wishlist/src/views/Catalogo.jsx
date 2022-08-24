@@ -7,13 +7,14 @@ import MineShaft from '../images/MineShaft.png';
 export function Catalogo() {
 	const [products, setProducts] = useState([]);
 	const { lists, getLists, addProduct } = useContext(ListContext);
-	const [isActive, setIsActive] = useState(false);
-	const [alert, setAlert] = useState(false);
 
+    const [alert, setAlert] = useState(false);
+    
+    
 	const getProduct = async () => {
 		try {
 			const response = await axios.get(
-				'https://raw.githubusercontent.com/ivanmirson/hackathon-laboratoria/main/wishlist/data-wishlist.json',
+				'https://raw.githubusercontent.com/TrinidadMedina/hackathon-laboratoria/main/wishlist/data-wishlist.json',
 			);
 			return setProducts(response.data.products);
 		} catch (error) {
@@ -26,11 +27,11 @@ export function Catalogo() {
 		getLists();
 	}, []);
 
-	const handleAddProduct = (list, product) => {
-		addProduct(list.docId, product);
+
+	const handleChange = (e, p) => {
+		addProduct(e.currentTarget.value, p);
 		setAlert(true);
-		// alert(`Tu producto ha sido agregado a ${list.name}`);
-	};
+	}
 
 	return (
 
@@ -80,29 +81,13 @@ export function Catalogo() {
 									Agregar al carro
 								</button>
 								<div className="dropdrown">
-									<div
-										className="addToList mt-[24px]"
-										onClick={(e) => setIsActive(!isActive)}
-									>
-										Agregar a la Lista
-									</div>
-									{isActive && (
-										<div className="dropdownContent">
-											{lists.map((list) => (
-												<div
-													key={list.docId}
-													onClick={() => {
-														handleAddProduct(list, p);
-													}}
-												>
-													{list.name}
-												</div>
-											))}
-										</div>
+								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
+								<option>Agregar a la Lista</option>
+									{lists.map((list)=> 
+										<option key={list.docId} value={list.docId} id={p.productId} >{list.name}</option>
 									)}
+								</select>
 								</div>
-
-
 							</div>
 						</div>
 					</div>
