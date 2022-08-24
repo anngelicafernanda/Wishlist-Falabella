@@ -26,7 +26,7 @@ export function List({ list }) {
 						  <h3 className="pt-4 text-black text-[14px]">No hay productos en esta lista</h3>
 					  )}
             {list.products.map((product)=>
-            	<div className="icon pt-4 bg-container">
+            	<div key={product.productId} className="icon pt-4 bg-container">
                 <img src={product.images[0]} alt="" className="w-[47px] h-auto" />
               </div>
             )}
