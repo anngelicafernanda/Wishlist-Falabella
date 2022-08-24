@@ -28,10 +28,15 @@ export function Catalogo() {
 	}, []);
 
 
+
 	const handleChange = (e, p) => {
 		addProduct(e.currentTarget.value, p);
-		setAlert(true);
+		setAlert(true)
+		setTimeout(() => {
+			setAlert(false);
+		}, 3000);
 	}
+
 
 	return (
 
@@ -92,12 +97,12 @@ export function Catalogo() {
 						</div>
 					</div>
 				))}
-				<Alert
+			</main>
+			<Alert
 					trigger={alert}
 					setTrigger={setAlert}
 					alert="Su producto fue agregado exitosamente a la lista"
 				/>
-			</main>
 		</>
 	);
 }
