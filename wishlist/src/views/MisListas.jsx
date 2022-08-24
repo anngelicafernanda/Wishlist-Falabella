@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { List } from '../components/List';
-import {
-	Timestamp,
-	addDoc,
-	collection
-} from 'firebase/firestore';
-import { db } from '../firebase/config';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
 import {InformationCard} from '../components/InformationCard';
@@ -13,7 +7,7 @@ import { Alert } from '../components/Alert';
 import { async } from '@firebase/util';
 
 export function MisListas() {
-	const { lists, getLists } = useContext(ListContext);
+	const { lists, getLists, createList } = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
 	const [alert, setAlert] = useState(true);
 
@@ -21,14 +15,8 @@ export function MisListas() {
 		getLists();
 	}, []);
 
-	const createList = (name) => {
-		addDoc(collection(db, 'lists'), {
-			date: Timestamp.fromDate(new Date()),
-			name: name,
-			products: [],
-			userId: 'JuanaPerez1234',
-		});
-		setPopUp(false);
+	const handleCreateList = (name) => {
+		createList(name);
 	};
 
 
@@ -57,10 +45,10 @@ export function MisListas() {
 								title={'Nueva lista'}
 								desc={<p>Dale nombre a tu lista</p>}
 								btnName={'Crear lista'}
-								clickFunction={createList}
 								active={alert} 
 								setActive={setAlert} 
 								alert='Su producto fue eliminado exitosamente de la lista'
+								clickFunction={handleCreateList}
 							/>
 						</div>
 						<InformationCard
@@ -88,10 +76,11 @@ export function MisListas() {
 							title={'Nueva lista'}
 							desc={<p>Dale nombre a tu lista</p>}
 							btnName={'Crear lista'}
-							clickFunction={createList}
 							active={alert} 
 							setActive={setAlert} 
 							alert='Su producto fue eliminado exitosamente de la lista'
+							clickFunction={handleCreateList}
+
 						/>
 					</div>
 					<h2 className="text-color-listTitle text-[16px]">Mis Listas</h2>

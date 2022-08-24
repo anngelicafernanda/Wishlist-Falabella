@@ -9,4 +9,5 @@ export const Logo = () => (
 			</clipPath>
 		</defs>
 	</svg>
+	// prueba
 );
