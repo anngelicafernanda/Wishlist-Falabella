@@ -1,15 +1,16 @@
 //key
 import React from "react";
 import { Link } from "react-router-dom";
-import user from "../assess/img/Shape.png";
-import compras from "../assess/img/Vector.png";
-import lista from "../assess/img/Group.png";
-import direccion from "../assess/img/direccion png.png";
-import pago from "../assess/img/pago.png";
-import giftcard from "../assess/img/giftcard.png";
-import cambiarcontraseña from "../assess/img/cambiar contrasena.png";
-import Combined from "../assess/img/Combined png.png";
-import iconoFoward from "../assess/img/foward.png";
+import user from "../imgFalabella/personal-data.svg";
+import compras from "../imgFalabella/Vector.png";
+import lista from "../imgFalabella/my-lists.svg";
+import direccion from "../imgFalabella/my-addresses.svg";
+import pago from "../imgFalabella/payments-methods.svg";
+import CMR from "../imgFalabella/cmr-card.svg";
+import giftcard from "../imgFalabella/gift-cards.svg";
+import cambiarcontraseña from "../imgFalabella/passwords.svg";
+import cerrarsesion from "../imgFalabella/close-session.svg";
+import iconsidebar from "../imgFalabella/rigth-arrow-sidebar.svg";
 
 const MenuAside = () => {
   let sidebarNavItems = [
@@ -44,6 +45,13 @@ const MenuAside = () => {
       section: "Mis medios de pago",
     },
     {
+      display: "Mi CMR",
+      icon: <img src={CMR} />,
+      to: "/Mi CMR",
+      section: "Mi CMR",
+    },
+
+    {
       display: "Mis Gift cards",
       icon: <img src={giftcard} />,
       to: "/Mis Gift cards",
@@ -57,7 +65,7 @@ const MenuAside = () => {
     },
     {
       display: "Cerrar sesion",
-      icon: <img src={Combined} />,
+      icon: <img src={cerrarsesion} />,
       to: "/Cerrar sesion",
       section: "Cerrar sesion",
     },
@@ -67,11 +75,11 @@ const MenuAside = () => {
       <div className=" bg-white w-[321px] h-[559px] shadow-xl rounded ">
         {sidebarNavItems.map((item, index) => (
           <Link to={item.to} key={index}>
-            <div className="flex w-full p-[20px] text-sm font-medium  hover:border-l-4 ">
+            <div className="flex w-full p-[21px] text-sm font-medium  hover:border-l-4 shadow-sm ">
               <i className="mr-[10px]">{item.icon}</i>
-              <h2 className="text-[16px] ">{item.display}</h2>
-              <div className=" w-10 ml-auto p-1 ">
-                <img src={iconoFoward} />
+              <h2 className="text-[16px] tex-[#333333] ">{item.display}</h2>
+              <div className=" w-6 ml-auto p-1 ">
+                <img src={iconsidebar} />
               </div>
             </div>
           </Link>
