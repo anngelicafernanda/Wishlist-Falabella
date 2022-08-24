@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Logo } from './Logo.svg';
 import search from '../images/search.png';
 import menu from '../images/menu.png';
-import cart from '../images/cart.png';
+import CarHeader from '../imgFalabella/CarHeader';
+import LocationOrange from '../imgFalabella/LocationOrange';
+import Search from '../imgFalabella/search';
 
 export function Header() {
 	return (
@@ -39,7 +41,7 @@ export function Header() {
 						type="button"
 						className="rounded-full bg-search-font w-[46px] h-[46px] gird place-content-center absolute top-[12px] right-0"
 					>
-						<img src={search} alt="" className="w-[32px] h-auto mx-auto" />
+						<Search />
 					</button>
 				</div>
 				<div className="grid place-content-center auto-cols-max text-[19px] leading-[16px] ml-[30px] border-r my-[12px] pr-[30px]">
@@ -56,14 +58,13 @@ export function Header() {
 					</Link>
 				</div>
 				<div className="grid place-content-center auto-cols-max text-[19px] leading-[16px] ml-[30px] pr-[50px] my-[12px]">
-					<img src="" alt="" className="w-[30px] h-auto" />
+					<CarHeader />
 				</div>
 			</div>
 			<div className="bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between">
 				<div className="grid grid-flow-col place-content-center ml-[40px]">
-					<img src={cart} alt="" className="w-[25px] h-auto " />
-
-					<p>
+					<LocationOrange />
+					<p className="pl-[15px]">
 						Entrega en <span className="font-bold">Providencia</span>
 					</p>
 				</div>
