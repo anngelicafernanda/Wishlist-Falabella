@@ -1,29 +1,60 @@
 //la que termine primero
 
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import trash from '../images/trash.png';
 import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
+import ActionButton from './ActionButton';
+import { Link } from 'react-router-dom';
 
-export function ListProduct({product, listId}) {
-  const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
-  const { deleteProduct } = useContext(ListContext);
+export function ListProduct({ product, listId, deleteFunction }) {
+	const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
 
-  const handleDeleteProduct = () =>{
-    deleteProduct(listId, product);
-}
+	return (
+		<>
+			<div
+				key={product.productId}
+				className="rounded border border-slate-300 h-[126px] mt-4 p-4 flex justify-between"
+			>
+				<div className="flex justify-between justify-center  w-[300px] h-auto">
+					<img src={product.images[0]} alt="" className="w-auto h-auto" />
 
-  return (
-    <div key={product.productId} className="flex p-2 items-center w-3/4">
-      <img src={product.images[0]} className="w-14 mr-5"></img>
-      <div className="flex flex-col">
-        <p className="text-xs">{product.brand}</p>
-        <p className="text-sm">{product.name}</p>
-      </div>
-      <button className='justify-self-end w-auto' onClick={()=>{setPopUpDeleteProduct(true); console.log(product)}}>
-        <img className='w-4' src={trash}/>
-      </button>
-      <Popup trigger={popUpDeleteProduct} setTrigger={setPopUpDeleteProduct} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} product={product} clickFunction ={handleDeleteProduct}/>
-    </div>
-  )
+					<div className="flex flex-col justify-center  ">
+						<p className=" text-[10px] text-linea">{product.brand}</p>
+						<p className="text-[13px] text-inputFooter w-[150px]">
+							{product.name}
+						</p>
+					</div>
+					<p className="text-[13px] text-inputFooter w-auto h-[100px]  ">
+						{product.offerings[0].price.toLocaleString('de-DE')}
+					</p>
+				</div>
+				<div className="">
+					<ActionButton
+						title="Agregar al carro"
+						className="btn-gray w-[257px] p-[10px]"
+					/>
+					<button
+						className="justify-self-end w-auto p-[10px]"
+						onClick={() => {
+							setPopUpDeleteProduct(true);
+							console.log(product);
+						}}
+					>
+						<img className="w-4" src={trash} />
+					</button>
+				</div>
+				<Popup
+					trigger={popUpDeleteProduct}
+					setTrigger={setPopUpDeleteProduct}
+					title={'Eliminar producto'}
+					desc={<p>Estás a punto de elimnar un producto de la lista</p>}
+					btnName={'Aceptar'}
+					product={product}
+					id={listId}
+					clickFunction={deleteFunction}
+				/>
+			</div>
+		</>
+	);
 }

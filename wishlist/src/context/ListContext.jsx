@@ -34,6 +34,7 @@ export const ListContextProvider = ({ children }) => {
         updateDoc(doc(db, "lists", id), {
             products: arrayRemove(product)
         });
+
     }
 
     const deleteList = (id) =>{
