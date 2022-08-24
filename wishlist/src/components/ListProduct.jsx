@@ -5,13 +5,8 @@ import trash from '../images/trash.png';
 import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
 
-export function ListProduct({product, listId}) {
+export function ListProduct({product, listId, deleteFunction}) {
   const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
-  const { deleteProduct } = useContext(ListContext);
-
-  const handleDeleteProduct = () =>{
-    deleteProduct(listId, product);
-}
 
   return (
     <div key={product.productId} className="flex p-2 items-center w-3/4">
@@ -23,7 +18,7 @@ export function ListProduct({product, listId}) {
       <button className='justify-self-end w-auto' onClick={()=>{setPopUpDeleteProduct(true); console.log(product)}}>
         <img className='w-4' src={trash}/>
       </button>
-      <Popup trigger={popUpDeleteProduct} setTrigger={setPopUpDeleteProduct} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} product={product} clickFunction ={handleDeleteProduct}/>
+      <Popup trigger={popUpDeleteProduct} setTrigger={setPopUpDeleteProduct} title={'Eliminar producto'} desc={<p>Estás a punto de elimnar un producto de la lista</p>} btnName={"Aceptar"} product={product} id={listId} clickFunction ={deleteFunction}/>
     </div>
   )
 }
