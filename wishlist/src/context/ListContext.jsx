@@ -15,6 +15,7 @@ export const ListContextProvider = ({ children }) => {
 			name: name,
 			products: [],
 			userId: 'JuanaPerez1234',
+            productsId: []
 		});
 	};
 
@@ -24,9 +25,11 @@ export const ListContextProvider = ({ children }) => {
 			name: name,
 			products: [],
 			userId: 'JuanaPerez1234',
+            productsId: []
 		}).then((response)=>{
             updateDoc(doc(db, "lists", response.id), {
-                products: arrayUnion(product)
+                products: arrayUnion(product),
+                productsId: arrayUnion(product.productId)
             })
         })
 	};
@@ -45,16 +48,18 @@ export const ListContextProvider = ({ children }) => {
         return setList({...result.data(), docId : result.id})
     };
 
-    const addProduct = (id, product) => {
+    const addProduct = (id, product, productId) => {
         updateDoc(doc(db, "lists", id), {
-            products: arrayUnion(product)
+            products: arrayUnion(product),
+            productsId: arrayUnion(productId)
         })
     }
 
-    const deleteProduct = (id, product) =>{
+    const deleteProduct = (id, product, productId) =>{
         console.log(product)
         updateDoc(doc(db, "lists", id), {
-            products: arrayRemove(product)
+            products: arrayRemove(product),
+            productsId: arrayRemove(productId)
         });
 
     }

@@ -21,8 +21,8 @@ export function ListaDetalle() {
         editList(state.list.docId, name);
         getList(state.list.docId);
     }
-    const handleDeleteProduct = (id, product) =>{
-        deleteProduct(id, product);
+    const handleDeleteProduct = (id, product, productId) =>{
+        deleteProduct(id, product, productId);
         getList(id);          
     }
 

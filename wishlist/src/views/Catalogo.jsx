@@ -27,14 +27,15 @@ export function Catalogo() {
 		getProduct();
 		getLists();
 	}, []);
-
-
-	const handleChange = (e, p) => {
+	
+	const handleChange = (e, p) => {	
 		if(e.currentTarget.value==='crear'){
 			setSelectedProduct(p)
 			setPopUp(true);
+		}else if (e.currentTarget.value==='disabled'){
+			console.log('este producto ya está en la lista')
 		}else{
-			addProduct(e.currentTarget.value, p);
+			addProduct(e.currentTarget.value, p, p.productId);
 			setAlert(true);
 		}	
 	}
@@ -89,6 +90,8 @@ export function Catalogo() {
 								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
 								<option>Agregar a la Lista</option>
 									{lists.map((list)=> 
+									list.productsId.includes(p.productId)?
+										<option key={list.docId} value="disabled">{list.name} X</option>:
 										<option key={list.docId} value={list.docId}>{list.name}</option>
 									)}
 								<option value='crear'>+ Crear lista</option>	
