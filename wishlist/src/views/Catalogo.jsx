@@ -6,7 +6,6 @@ import { Alert } from '../components/Alert';
 export function Catalogo() {
 	const [products, setProducts] = useState([]);
 	const { lists, getLists, addProduct } = useContext(ListContext);
-    const [isActive, setIsActive] = useState(false);
     const [alert, setAlert] = useState(false);
     
     
@@ -26,9 +25,14 @@ export function Catalogo() {
 		getLists();
 	}, []);
 
-	const handleAddProduct = (list, product) => {
-		addProduct(list.docId, product);
-		 setAlert(true);
+	const handleChange = (e, p) => {
+		addProduct(e.currentTarget.value, p);
+		setAlert(true);
+	}
+
+	const handleAddProduct = (list, products) => {
+		addProduct(list.docId, products);
+		setAlert(true);
       // alert(`Tu producto ha sido agregado a ${list.name}`);
 	};
 
@@ -48,15 +52,12 @@ export function Catalogo() {
 						<div className='flex flex-col items-center'>
 							<button className='btn-orange text-[16px] px-10 mt-0 mb-0'>Agregar al carro</button>
 							<div className="dropdrown">
-							<div className="addToList" onClick={() => setIsActive(!isActive)}>Agregar a la Lista</div>
-								{isActive ?  
-								<div className="dropdownContent">
+								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
+								<option>Agregar a la Lista</option>
 									{lists.map((list)=> 
-										<div key={list.docId} onClick={()=>{handleAddProduct(list, p)}}>{list.name}</div>
+										<option key={list.docId} value={list.docId} id={p.productId} >{list.name}</option>
 									)}
-								</div>
-								: null
-								}
+								</select>
 							</div>
 						</div>
 					</div>
