@@ -13,7 +13,7 @@ export function Catalogo() {
 	const getProduct = async () => {
 		try {
 			const response = await axios.get(
-				'https://raw.githubusercontent.com/ivanmirson/hackathon-laboratoria/main/wishlist/data-wishlist.json',
+				'https://raw.githubusercontent.com/TrinidadMedina/hackathon-laboratoria/main/wishlist/data-wishlist.json',
 			);
 			return setProducts(response.data.products);
 		} catch (error) {
