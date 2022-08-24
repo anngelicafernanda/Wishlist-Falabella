@@ -12,4 +12,4 @@ export function Alert(props) {
     </div>
   ) : "";
 }
-// className=' w-[319px] h-[41px] text-[12px] text-alert'
+// className= ' w-[319px] h-[41px] text-[12px] text-alert'
