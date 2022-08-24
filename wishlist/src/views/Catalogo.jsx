@@ -121,7 +121,6 @@ export function Catalogo() {
 					btnName={'Crear lista'}
 					product={selectedProduct}
 				/>
-			</main>
 		</>
 	);
 }
