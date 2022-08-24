@@ -3,14 +3,14 @@ import axios from 'axios';
 import { ListContext } from '../context/ListContext';
 import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
+import { Popup } from '../components/Popup';
 
 export function Catalogo() {
+	const { lists, getLists, addProduct, createList } = useContext(ListContext);
 	const [products, setProducts] = useState([]);
-	const { lists, getLists, addProduct } = useContext(ListContext);
-
+	const [popUp, setPopUp] = useState(false);
     const [alert, setAlert] = useState(false);
-    
-    
+       
 	const getProduct = async () => {
 		try {
 			const response = await axios.get(
@@ -29,12 +29,19 @@ export function Catalogo() {
 
 
 	const handleChange = (e, p) => {
-		addProduct(e.currentTarget.value, p);
-		setAlert(true);
+		if(e.currentTarget.value==='crear'){
+			setPopUp(true)
+		}else{
+			addProduct(e.currentTarget.value, p);
+			setAlert(true);
+		}	
 	}
 
-	return (
+	const handleCreateList = (name) => {
+		createList(name);
+	};
 
+	return (
 		<>
 			<div className=" bg-body bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
 				<div className="grid grid-flow-col place-content-center ml-[40px]">
@@ -84,8 +91,9 @@ export function Catalogo() {
 								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
 								<option>Agregar a la Lista</option>
 									{lists.map((list)=> 
-										<option key={list.docId} value={list.docId} id={p.productId} >{list.name}</option>
+										<option key={list.docId} value={list.docId}>{list.name}</option>
 									)}
+								<option value="crear">+ Crear lista</option>	
 								</select>
 								</div>
 							</div>
@@ -97,11 +105,15 @@ export function Catalogo() {
 					setTrigger={setAlert}
 					alert="Su producto fue agregado exitosamente a la lista"
 				/>
+				<Popup
+					trigger={popUp}
+					setTrigger={setPopUp}
+					title={'Nueva lista'}
+					desc={<p>Dale nombre a tu lista</p>}
+					btnName={'Crear lista'}
+					clickFunction={handleCreateList}
+				/>
 			</main>
 		</>
 	);
 }
-
-// {lists.map((list)=>
-//   <div key={list.docId} onClick={()=>{addProduct(list, p)}}>{list.name}</div>
-// )}

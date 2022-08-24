@@ -10,6 +10,7 @@ export function Popup(props) {
     const handleClick = () => { //hacer un switch case
         if(props.title === "Nueva lista") {
             props.clickFunction(name)
+            props.setTrigger(false)
         }
         else if(props.title === "Eliminar producto"){
             props.clickFunction(props.id, props.product)
