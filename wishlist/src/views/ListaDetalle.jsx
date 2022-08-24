@@ -1,28 +1,29 @@
-//key
-
 import React, {useState, useContext, useEffect} from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation} from 'react-router-dom'
 import { Popup } from '../components/Popup'
 import { ListContext } from '../context/ListContext';
 import {ListProduct} from '../components/ListProduct'
 import { Alert } from '../components/Alert';
 
-import ActionButton from "../components/ActionButton";
-
 export function ListaDetalle() {
     const {state} = useLocation();
-    const { editList, deleteList, getList, list } = useContext(ListContext);
+    const { editList, deleteList, getList, list, deleteProduct } = useContext(ListContext);
     const [popUpEdit, setPopUpEdit] = useState(false);
     const [popUpDeleteList, setPopUpDeleteList] = useState(false);
     const [alert, setAlert] = useState(false);
 
     useEffect(()=>{
         getList(state.list.docId);
+        console.log(list.products)
     },[])
 
     const handleEditList = (name) =>{
         editList(state.list.docId, name);
         getList(state.list.docId);
+    }
+    const handleDeleteProduct = (id, product) =>{
+        deleteProduct(id, product);
+        getList(id);          
     }
 
     return (     
@@ -42,9 +43,9 @@ export function ListaDetalle() {
                 </div>
             </div>
             
-            {state.list.products.length != 0?
-                state.list.products.map((product)=>
-                    <ListProduct product={product} listId={state.list.docId}/>
+            {list.products != undefined && state.list.products.length != 0?
+                list.products.map((product)=>
+                    <ListProduct product={product} listId={state.list.docId} deleteFunction={handleDeleteProduct}/>
                 )
             :
                 <div className=" flex justify-between items-center border-y py-[13px] border-gray-search border-y-2 mt-[21px]">
