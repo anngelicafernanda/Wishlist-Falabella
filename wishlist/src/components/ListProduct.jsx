@@ -33,7 +33,6 @@ export function ListProduct({ product, listId, deleteFunction }) {
 					<ActionButton
 						title="Agregar al carro"
 						className="btn-gray w-[257px] p-[10px]"
-						callback={'/'}
 					/>
 					<button
 						className="justify-self-end w-auto p-[10px]"
