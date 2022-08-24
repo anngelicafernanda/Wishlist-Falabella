@@ -4,13 +4,14 @@ import { ListContext } from '../context/ListContext';
 import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
+import RightArrow from '../imgFalabella/RightArrow';
 
 export function Catalogo() {
 	const { lists, getLists, addProduct, createList } = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
-    const [alert, setAlert] = useState(false);
-       
+	const [alert, setAlert] = useState(false);
+
 	const getProduct = async () => {
 		try {
 			const response = await axios.get(
@@ -27,15 +28,14 @@ export function Catalogo() {
 		getLists();
 	}, []);
 
-
 	const handleChange = (e, p) => {
-		if(e.currentTarget.value==='crear'){
-			setPopUp(true)
-		}else{
+		if (e.currentTarget.value === 'crear') {
+			setPopUp(true);
+		} else {
 			addProduct(e.currentTarget.value, p);
 			setAlert(true);
-		}	
-	}
+		}
+	};
 
 	const handleCreateList = (name) => {
 		createList(name);
@@ -44,27 +44,34 @@ export function Catalogo() {
 	return (
 		<>
 			<div className=" bg-body bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
-				<div className="grid grid-flow-col place-content-center ml-[40px]">
-					{/* <img src={cart} alt="" className="w-[25px] h-auto " /> */}
-					<p>
-						<img src={MineShaft} alt="" className="w-[10px] h-auto " />
-						Home Poleras
-						<span className="font-bold"> Poleras LED</span>
-					</p>
+				<div className="grid grid-flow-col items-center ml-[40px] gap-[10px] ml-[120px]">
+					<img src={MineShaft} alt="" className="w-[10px] h-auto inline " />
+					<p>Home</p>
+					<RightArrow className="" />
+					<p>Poleras</p>
+					<RightArrow className="" />
+					<p className="font-bold"> Poleras LED</p>
 				</div>
 			</div>
-
 			<div className="container max-w-[1280px] mx-auto gap-[10px] py-[20px] bg-white h-[120px] mt-[5px]">
-				<div className=" w-[250px] h-[50px] p-[10px]  ">
-					<h2>Ordenar por:</h2>
-					<select className="  m-[10px]">
-						<option className="" value="">
+				<div className=" w-[250px] h-[50px] p-[10px] ml-[40px]">
+					<label
+						for="Ordernar"
+						className="text-ordenarPor text-[12px] block ml-[15px]"
+					>
+						Ordenar por:
+					</label>
+					<select
+						id="Ordenar"
+						className="border-b m-[10px] mt-[5px] border-b-ordenarPor pb-[10px] w-[250px]"
+					>
+						<option className="bold text-[14px] text-falabella" value="">
 							Recomendados
 						</option>
 					</select>
 				</div>
 			</div>
-			<main className=" container max-w-[1280px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
+			<main className="container max-w-[1280px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
 				{products.map((p) => (
 					<div
 						className=" min-w-[228px] h-auto bg-white overflow-y-hidden"
@@ -88,13 +95,20 @@ export function Catalogo() {
 									Agregar al carro
 								</button>
 								<div className="dropdrown">
-								<select onChange={(e)=>{handleChange(e, p)}} className="dropdownContent">
-								<option>Agregar a la Lista</option>
-									{lists.map((list)=> 
-										<option key={list.docId} value={list.docId}>{list.name}</option>
-									)}
-								<option value="crear">+ Crear lista</option>	
-								</select>
+									<select
+										onChange={(e) => {
+											handleChange(e, p);
+										}}
+										className="dropdownContent"
+									>
+										<option>Agregar a la Lista</option>
+										{lists.map((list) => (
+											<option key={list.docId} value={list.docId}>
+												{list.name}
+											</option>
+										))}
+										<option value="crear">+ Crear lista</option>
+									</select>
 								</div>
 							</div>
 						</div>

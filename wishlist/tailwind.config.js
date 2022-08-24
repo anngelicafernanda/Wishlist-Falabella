@@ -27,6 +27,7 @@ module.exports = {
 			linea: '#BBBBBB',
 			footerText: '#6A6A6A',
 			inputFooter: '#333333',
+			ordenarPor: '#9B9B9B',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
