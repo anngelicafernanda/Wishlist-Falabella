@@ -12,23 +12,25 @@ export const ListContextProvider = ({ children }) => {
     const [alertMessage, setAlertMessage] = useState("")
 
 
-    const createList = (name) => {
+    const createList = (name, status) => {
 		addDoc(collection(db, 'lists'), {
 			date: Timestamp.fromDate(new Date()),
-			name: name,
+			name,
 			products: [],
 			userId: 'JuanaPerez1234',
-            productsId: []
+            productsId: [],
+            status
 		});
 	};
 
-    const createListfromProduct = async (name, product) => {
+    const createListfromProduct = async (name, product, status) => {
 		await addDoc(collection(db, 'lists'), {
 			date: Timestamp.fromDate(new Date()),
-			name: name,
+			name,
 			products: [],
 			userId: 'JuanaPerez1234',
-            productsId: []
+            productsId: [],
+            status
 		}).then((response)=>{
             updateDoc(doc(db, "lists", response.id), {
                 products: arrayUnion(product),
@@ -71,9 +73,10 @@ export const ListContextProvider = ({ children }) => {
         deleteDoc(doc(db, "lists", id));
     }
 
-    const editList = (id, name) =>{
+    const editList = (id, name, status) =>{
         updateDoc(doc(db, "lists", id), {
-            name
+            name,
+            status
         });
     }
 

@@ -4,7 +4,6 @@ import { ListContext } from '../context/ListContext';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
-import check from '../images/check.png';
 
 export function Catalogo() {
 	const { lists, getLists, addProduct, setAlert, setAlertMessage} = useContext(ListContext);
@@ -29,8 +28,6 @@ export function Catalogo() {
 		getLists();
 	}, []);
 
-
-	
 	const handleChange = (e, p) => {	
 		if(e.currentTarget.value==='crear'){
 			setSelectedProduct(p)
@@ -41,9 +38,8 @@ export function Catalogo() {
 			addProduct(e.currentTarget.value, p, p.productId);
 			setAlertMessage('Tu producto a sido añadido a la lista')
             setAlert(true)
-	}	
-    
-	}
+		}	
+    }
 
 	return (
 		<>

@@ -10,14 +10,14 @@ export function ListaDetalle() {
     const [popUpEdit, setPopUpEdit] = useState(false);
     const [popUpDeleteList, setPopUpDeleteList] = useState(false);
 
-
     useEffect(()=>{
         getList(state.list.docId);
         console.log(list.products)
     },[])
 
-    const handleEditList = (name) =>{
-        editList(state.list.docId, name);
+    const handleEditList = (name, status) =>{
+        console.log(status)
+        editList(state.list.docId, name, status);
         getList(state.list.docId);
     }
 
@@ -26,9 +26,6 @@ export function ListaDetalle() {
         getList(id);          
     }
     
-
-
-
     return (     
         <>
         <div>
@@ -48,6 +45,7 @@ export function ListaDetalle() {
                     <button onClick={()=>(setPopUpDeleteList(true))} className='text-xs justify-self-end self-end'>Eliminar lista</button>
                 </div>
             </div>
+            <p className="text-xs">{list.status}</p>
             {list.products != undefined && state.list.products.length != 0?
                 list.products.map((product)=>
                     <ListProduct product={product} listId={state.list.docId} deleteFunction={handleDeleteProduct}/>
