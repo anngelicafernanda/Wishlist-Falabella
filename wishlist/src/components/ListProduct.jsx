@@ -1,6 +1,4 @@
-//la que termine primero
-
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import trash from '../images/trash.png';
 import { Popup } from '../components/Popup';
 
@@ -24,7 +22,7 @@ export function ListProduct({ product, listId, deleteFunction }) {
 					${product.offerings[0].price.toLocaleString('de-DE')}
 				</p>
 				<button className="btn-gray w-[200px] justify-self-end h-10 shadow-2xl px-10 m-0">
-					Agregar al carro	
+					Agregar al carro
 				</button>
 				<button
 					className="justify-self-end w-auto p-[10px]"
