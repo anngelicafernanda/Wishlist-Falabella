@@ -6,8 +6,7 @@ import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct, setAlert, setAlertMessage } =
-		useContext(ListContext);
+	const { lists, getLists, addProduct, setAlert, setAlertMessage } = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
@@ -33,7 +32,8 @@ export function Catalogo() {
 			setSelectedProduct(p);
 			setPopUp(true);
 		} else if (e.currentTarget.value === 'disabled') {
-			console.log('este producto ya está en la lista');
+			setAlertMessage('Este producto ya existe en tu lista');
+			setAlert(true);
 		} else {
 			addProduct(e.currentTarget.value, p, p.productId);
 			setAlertMessage('Tu producto a sido añadido a la lista');

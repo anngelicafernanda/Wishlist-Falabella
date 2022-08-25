@@ -21,7 +21,7 @@ export function List({ list }) {
 			<div className="rounded border border-slate-300 h-auto mt-4 p-4 ">
 				<h1
 					onClick={navigateListDetails}
-					className="text-black font-bold text-[18px]"
+					className="text-black font-bold text-[18px] cursor-pointer "
 				>
 					{list.name} ({list.products.length})
 				</h1>
@@ -50,7 +50,7 @@ export function List({ list }) {
 						onClick={() => setPopUpDelete(true)}
 						src={trash}
 						alt="Eliminar"
-						className="w-[20px] h-auto"
+						className="w-[20px] h-auto cursor-pointer"
 					/>
 				</div>
 			</div>
