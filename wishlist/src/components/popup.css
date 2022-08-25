@@ -16,8 +16,8 @@
 .popup-inner {
     position: relative;
     padding: 32px;
-    width: 335px;
-    height: 257px;
+    width: 350px;
+    height: 300px;
 
     border-radius: 10px;
     background-color: #fff;
@@ -28,7 +28,6 @@
     top: 16px;
     right: 16px;
     border: none;
-    background-color: #fff;
 }
 
 .popup-text p {

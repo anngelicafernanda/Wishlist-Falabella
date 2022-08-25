@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ListContext } from '../context/ListContext';
+import cancel from '../images/close.png'
 import "./popup.css";
 
 export function Popup(props) {
@@ -56,7 +57,7 @@ export function Popup(props) {
             (props.trigger) ? (
                 <div className="popup">
                     <div className="popup-inner">
-                        <button onClick={() => props.setTrigger(false)} className="close-btn">X</button>
+                        <button onClick={() => props.setTrigger(false)} className="close-btn"><img src={cancel} /></button>
                         <div className="popup-text">
                             <h4>{props.title}</h4>
                             <p className='fixed bottom-[290px]' >{props.desc}</p>
@@ -88,7 +89,7 @@ export function Popup(props) {
                                 </>
                                 : null}
                         </div>                        
-                        <div className='popup-btn flex justify-center h-[50px] fixed bottom-[185px] right-[455px]'>
+                        <div className='popup-btn flex justify-center h-[50px] fixed bottom-[140px] right-[455px]'>
                             <button onClick={handleClick}>{props.btnName}</button>
                         </div>
                     </div>
