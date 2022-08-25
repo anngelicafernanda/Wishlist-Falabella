@@ -12,17 +12,9 @@ export function List({ list }) {
 	const { deleteList } = useContext(ListContext);
 	const [popUpDelete, setPopUpDelete] = useState(false);
 
-
 	const navigateListDetails = () => {
 		navigate(`/Mis-Listas/${list.name}`, { state: { list } });
 	};
-
-	// const handleSetTimeOut = () => {
-	// 	setPopUpDelete(true)
-	// 	console.log("funciona")
-	// }
-
-	// handleSetTimeOut();
 
 	return (
 		<>
@@ -33,6 +25,7 @@ export function List({ list }) {
 			>
 				{list.name} ({list.products.length})
 			</h1>
+			<p className="text-xs">{list.status}</p>
 			<div className="text-black flex justify-between items-center">
 				<div className="flex ">
 					{list.products.length === 0 && (
