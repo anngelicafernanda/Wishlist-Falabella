@@ -54,16 +54,18 @@ export function List({ list }) {
 					/>
 				</div>
 			</div>
-			<Popup
-				trigger={popUpDelete}
-				setTrigger={setPopUpDelete}
-				title={'Eliminar lista'}
-				desc={<p>Estás a punto de eliminar la lista</p>}
-				btnName={'Aceptar'}
-				id={list.docId}
-				clickFunction={deleteList}
-				alert={'Elimanda'}
-			/>
+
+		</div>
+		<Popup
+			trigger={popUpDelete}
+			setTrigger={setPopUpDelete}
+			title={'Eliminar lista'}
+			desc={'Estás a punto de eliminar la lista'}
+			btnName={'Aceptar'}
+			id={list.docId}
+			clickFunction={deleteList}
+			alert={"Elimanda"}
+		/>
 		</>
 	);
 }

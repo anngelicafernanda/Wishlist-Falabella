@@ -59,8 +59,9 @@ export function Popup(props) {
                         <button onClick={() => props.setTrigger(false)} className="close-btn">X</button>
                         <div className="popup-text">
                             <h4>{props.title}</h4>
-                                {props.desc}
-
+                            <p className='fixed bottom-[290px]' >{props.desc}</p>
+                        </div>
+                        <div className="popup-submit">                         
                                 {props.btnName === "Crear lista" ? 
                                 <>
                                     <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> 
@@ -86,10 +87,11 @@ export function Popup(props) {
                                     </div>
                                 </>
                                 : null}
+                        </div>                        
+                        <div className='popup-btn flex justify-center h-[50px] fixed bottom-[185px] right-[455px]'>
+                          <button onClick={handleClick}>{props.btnName}</button>
                         </div>
-                        <div className="popup-submit">
-                        
-                            <button onClick={handleClick}>{props.btnName}</button>
+                       
                         </div>
                     </div>
                 </div>

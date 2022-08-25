@@ -59,7 +59,6 @@ export function ListaDetalle() {
 					Eliminar lista
 				</button>
 			</div>
-
 			{list.products != undefined && state.list.products.length != 0 ? (
 				list.products.map((product) => (
 					<ListProduct

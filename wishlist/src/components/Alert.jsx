@@ -11,9 +11,11 @@ export function Alert() {
   }, 3000);
 
   return alert ? (
-    <div className=' flex flex-row-reverse justify-around items-center w-[319px] h-[41px] text-[12px] text-alert bg-info rounded-md sticky bottom-5'>
-      <img src={close} onClick={() => setAlert(false)}></img>
-      <p>{alertMessage}</p>
+    <div className='w-full flex justify-center sticky bottom-5'>
+      <div className=' flex flex-row-reverse justify-around items-center w-[319px] h-[41px] text-[12px] text-alert bg-info rounded-md'>
+        <img src={close} onClick={() => setAlert(false)}></img>
+        <p>{alertMessage}</p>
+    </div>
     </div>
   ) : "";
 }

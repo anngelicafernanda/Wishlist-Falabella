@@ -136,15 +136,16 @@ export function Catalogo() {
 					</div>
 				))}
 			</main>
-			<Popup
-				trigger={popUp}
-				setTrigger={setPopUp}
-				title={'Crear lista'}
-				desc={<p>Dale nombre a tu lista</p>}
-				btnName={'Crear lista'}
-				product={selectedProduct}
-				alert={'Lista creada'}
-			/>
+				<Popup
+					trigger={popUp}
+					setTrigger={setPopUp}
+					title={'Crear lista'}
+					desc={'Dale nombre a tu lista'}
+					btnName={'Crear lista'}
+					product={selectedProduct}
+					alert={"Lista creada"}
+				/>
+
 		</>
 	);
 }

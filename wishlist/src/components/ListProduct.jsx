@@ -44,7 +44,7 @@ export function ListProduct({ product, listId, deleteFunction }) {
 				trigger={popUpDeleteProduct}
 				setTrigger={setPopUpDeleteProduct}
 				title={'Eliminar producto'}
-				desc={<p>Estás a punto de elimnar un producto de la lista</p>}
+				desc={'Estás a punto de elimnar un producto de la lista'}
 				btnName={'Aceptar'}
 				product={product}
 				id={listId}
