@@ -18,15 +18,13 @@ body {
     @apply bg-orangeButton rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[14px];
   }
 
+  .btn-gray {
+    @apply bg-btnlista rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[14px];
+  }
 
-	.btn-gray {
-		@apply bg-btnlista rounded-full px-20 py-2 h-[45px] w-full mt-6 mb-10 text-white text-[14px];
-	}
-
-	.card-image {
-		@apply h-[71px] w-auto align-middle mt-3;
-	}
-
+  .card-image {
+    @apply h-[71px] w-auto align-middle mt-3;
+  }
 
   .copyright {
     @apply flex justify-between items-center w-full h-[100px] px-20 bg-copyright text-textCopyright text-[14px];
@@ -45,11 +43,11 @@ body {
   }
 
   .popup-inner {
-    @apply relative p-[32px] w-[340px] h-[270px] rounded-xl bg-white; 
+    @apply relative p-[32px] w-[340px] h-[270px] rounded-xl bg-white;
   }
 
   .close-btn {
-    @apply absolute top-[15px] right-[20px] text-lg; 
+    @apply absolute top-[15px] right-[20px] text-lg;
   }
 
   .popup-text-h4 {
@@ -57,7 +55,7 @@ body {
   }
 
   .popup-desc {
-    @apply w-[230px] text-popupDesc text-sm font-normal my-2 mx-0 absolute top-[55px] right-[77px] ;
+    @apply w-[230px] text-popupDesc text-sm font-normal my-2 mx-0 absolute top-[55px] right-[77px];
   }
 
   .inputText {
@@ -65,30 +63,18 @@ body {
   }
 
   .popup-input {
-    @apply text-sm absolute top-[125px] right-[170px]  ;
+    @apply text-sm absolute top-[135px] right-[170px];
   }
 
   .popup-privacy {
-    @apply flex flex-col absolute top-[145px] right-[225px] ;
+    @apply flex flex-col absolute top-[160px] right-[225px];
   }
 
   .popup-privacy-label {
-    @apply ml-3 pb-1 text-sm ;
+    @apply ml-3 pb-1 text-sm;
   }
 
   .popup-btn {
-    @apply w-[240px] h-[35px] rounded-[24px] absolute bottom-[30px] right-[50px] flex items-center justify-center border-none text-sm text-white m-0 text-center bg-popupbtn;
+    @apply w-[240px] h-[35px] rounded-[24px] absolute bottom-[20px] right-[50px] flex items-center justify-center border-none text-sm text-white m-0 text-center shadow-2xl bg-popupbtn;
   }
-
 }
-
-/* .popup-btn {
-
-    background: rgba(73, 88, 103, 1);
-} */
-
-
-
-
-
-
