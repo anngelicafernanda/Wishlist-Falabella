@@ -4,6 +4,7 @@ import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
 import { ListProduct } from '../components/ListProduct';
 import RightArrow from '../imgFalabella/RightArrow';
+import Pencil from '../imgFalabella/Pencil';
 
 export function ListaDetalle() {
 	const { state } = useLocation();
@@ -41,13 +42,14 @@ export function ListaDetalle() {
 				)}
 			</div>
 			<div className="flex justify-between mt-[75px] border-slate-300">
-				<div className="flex">
+				<div className="grid grid-flow-col items-center">
 					<h1 className="font-bold mr-5">{list.name}</h1>
+					<Pencil />
 					<button
 						onClick={() => {
 							setPopUpEdit(true);
 						}}
-						className="text-xs underline text-ocho"
+						className="text-xs underline text-ocho ml-1"
 					>
 						Editar
 					</button>
