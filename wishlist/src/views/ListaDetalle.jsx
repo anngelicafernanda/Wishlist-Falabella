@@ -18,6 +18,7 @@ export function ListaDetalle() {
 	}, []);
 
 	const handleEditList = (name, status) => {
+		console.log(status);
 		editList(state.list.docId, name, status);
 		getList(state.list.docId);
 	};
@@ -85,7 +86,7 @@ export function ListaDetalle() {
 					trigger={popUpDeleteList}
 					setTrigger={setPopUpDeleteList}
 					title={'Eliminar lista'}
-					desc={<p>Estás a punto de eliminar la lista</p>}
+					desc={'Estás a punto de eliminar la lista'}
 					btnName={'Aceptar'}
 					id={state.list.docId}
 					clickFunction={deleteList}
@@ -100,7 +101,6 @@ export function ListaDetalle() {
 					btnName={'Aceptar'}
 					clickFunction={handleEditList}
 					nameList={list.name}
-					alert={'Lista editada'}
 					listStatus={list.status}
 				/>
 			)}

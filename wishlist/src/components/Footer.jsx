@@ -1,5 +1,6 @@
-//la que termine primero
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faTwitter, faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 export function Footer() {
   return (
@@ -13,7 +14,7 @@ export function Footer() {
           </p>
           <div>
             <input
-              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8"
+              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8 outline-none"
               type="text"
               name=""
               id=""
@@ -21,7 +22,7 @@ export function Footer() {
             />
 
             <input
-              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8 "
+              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8 outline-none"
               type="text"
               name=""
               id=""
@@ -35,22 +36,36 @@ export function Footer() {
           <button className="bg-inputFooter h-8 w-40 rounded-md">
             REGISTRATE AQUI
           </button>
-          <div className="flex m-3">
-            <img src="" alt="F" />
-            <img src="" alt="T" />
-            <img src="" alt="I" />
-            <img src="" alt="Y" />
+          <div className="flex justify-around w-[150px] text-base m-3">
+            <a className="icons" href="https://www.facebook.com/falabellachile">
+              <FontAwesomeIcon  icon={faFacebook} />
+            </a>
+            <a className="icons" href="https://twitter.com/FalabellaAyuda">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a className="icons" href="https://www.instagram.com/falabella_cl/">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+            <a className="icons" href="https://www.youtube.com/channel/UCMLH0vqjhCblKOjFVBG6IQw">
+              <FontAwesomeIcon icon={faYoutube} />
+            </a>
           </div>
         </div>
         <div>
           {" "}
           <h1 className="text-white">SERVICIO AL CLIENTE</h1>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-4">
             <li>Contáctanos </li>
-            <li>¿Por qué comprar en Falabella.com?</li>
+            <li>
+              ¿Por qué comprar en
+              <br /> Falabella.com?
+            </li>
             <li>Métodos y costos de envío</li>
             <li>Seguimiento de mi compra </li>
-            <li>Consultar por tus documentos electrónicos</li>
+            <li>
+              Consultar por tus documentos
+              <br /> electrónicos
+            </li>
             <li>Cambios y devoluciones</li>
             <li>Términos y condiciones</li>
             <li>Política de privacidad</li>
@@ -61,7 +76,7 @@ export function Footer() {
         <div>
           {" "}
           <p className="text-white">MÁS FALABELLA</p>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-4">
             <li>¿Como vender en Falabella.com?</li>
             <li>Nuestro empresa</li>
             <li>Inversionistas</li>
@@ -80,7 +95,7 @@ export function Footer() {
         <div>
           {" "}
           <h1 className="text-white">EMPRESAS FALABELLA</h1>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-">
             <li>Falabella TV</li>
             <li>CMR Falabella</li>
             <li>Banco Falabella</li>

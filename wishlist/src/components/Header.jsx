@@ -34,7 +34,7 @@ export function Header() {
 					</select>
 					<input
 						type="text"
-						className="h-[46px] rounded-r-full text-black pl-[15px] pr-[61px]"
+						className="h-[46px] rounded-r-full text-black pl-[15px] pr-[61px] outline-none"
 					/>
 					<button
 						type="button"
