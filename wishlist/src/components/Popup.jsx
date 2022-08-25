@@ -38,14 +38,14 @@ export function Popup(props) {
 			setAlertMessage('Introduzca un nombre para la lista');
 			setAlert(true);
 		} else if (isNameInLists) {
-			setAlertMessage('Ya tienes una lista creada con el mismo nombre');
+			setAlertMessage('Ya tiene una lista creada con el mismo nombre');
 			setAlert(true);
 		} else {
 			if (props.title === 'Nueva lista') {
 				//CHECK
 				props.clickFunction(name, status);
 				props.setTrigger(false);
-				setAlertMessage('Tu lista ha sido creada exitosamente');
+				setAlertMessage('Su lista ha sido creada exitosamente');
 				setAlert(true);
 				setStatus('Pública');
 			} else if (props.title === 'Eliminar producto') {
@@ -62,12 +62,12 @@ export function Popup(props) {
 			} else if (props.title === 'Editar lista') {
 				props.clickFunction(name, status);
 				props.setTrigger(false);
-				setAlertMessage('Tu lista ha sido editada exitosamente');
+				setAlertMessage('Su lista ha sido editada exitosamente');
 				setAlert(true);
 			} else if (props.title === 'Crear lista') {
 				createListfromProduct(name, props.product, status);
 				props.setTrigger(false);
-				setAlertMessage('Tu lista ha sido creada exitosamente');
+				setAlertMessage('Su lista ha sido creada exitosamente');
 				setAlert(true);
 				setStatus('Pública');
 			}
@@ -110,11 +110,11 @@ export function Popup(props) {
 													name="status"
 													checked
 												/>
-												Pública
+												   Lista Pública
 											</label>
 											<label className="popup-privacy-label">
 												<input type="radio" value="Privada" name="status" />
-												Privada
+												   Lista Privada
 											</label>
 										</div>
 									</div>
@@ -141,11 +141,11 @@ export function Popup(props) {
 														name="status"
 														checked
 													/>
-													Pública
+													  Lista Pública
 												</label>
 												<label className="popup-privacy-label">
 													<input type="radio" value="Privada" name="status" />
-													Privada
+													  Lista Privada
 												</label>
 											</div>
 										) : (
@@ -155,7 +155,7 @@ export function Popup(props) {
 											>
 												<label className="popup-privacy-label">
 													<input type="radio" value="Pública" name="status" />
-													Pública
+													  Lista Pública
 												</label>
 												<label className="popup-privacy-label">
 													<input
@@ -164,7 +164,7 @@ export function Popup(props) {
 														name="status"
 														checked
 													/>
-													Privada
+													  Lista Privada
 												</label>
 											</div>
 										)}

@@ -8,7 +8,7 @@ const ListsLayout = () => {
         <img src={imgUser} alt="" className="w-auto h-[60px] p-[5px]" />
         <div className="p-[5px]">
           <h2 className="font-bold text-[14px]">Bienvenid@</h2>
-          <h1 className="font-bold text-[25px]">Nicolas Hernandez</h1>
+          <h1 className="font-bold text-[25px]">Marcia Hernández</h1>
         </div>
       </div>
       <div className="grid gap-[20px] grid-flow-col auto-cols-lists-layout">
