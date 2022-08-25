@@ -74,7 +74,6 @@ const MenuAside = () => {
     <>
       <div className=" bg-white w-[321px] h-[559px] shadow-xl rounded ">
         {sidebarMenu.map((item, index) => (
-          <Link to={item.to} key={index}>
             <div className="flex w-full p-[21px] text-sm border-b- bg-white hover:border-l-4 shadow-outer hover:shadow-inner hover:bg-[#F0F0F0] hover:bg-opacity-100  transition-all duration-100 ease-in-out cursor-pointer ">
               <i className="mr-[10px]">{item.icon}</i>
               <h2 className="text-[16px] tex-[#333333]  ">{item.display}</h2>
@@ -82,7 +81,6 @@ const MenuAside = () => {
                 <RightArrow />
               </div>
             </div>
-          </Link>
         ))}
       </div>
     </>

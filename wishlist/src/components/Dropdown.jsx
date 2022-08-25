@@ -35,7 +35,7 @@ export function Dropdown({lists, product, handleSelect}) {
                         )
                         :(<div className='hover:bg-gray-light cursor-pointer p-1 border-b border-gray-light  ' id={list.docId} onClick={(e)=>{handleClick(e)}}>{list.name} </div>)
                         )}
-                        <div className='hover:bg-gray-light cursor-pointer mt-2 text-center ' id='crear' onClick={(e)=>{handleClick(e)}}>Crear lista</div>
+                        <div className='hover:bg-gray-light cursor-pointer mt-2 text-center ' id='crear' onClick={(e)=>{handleClick(e)}}>Crear lista +</div>
                 </div>
             }
             

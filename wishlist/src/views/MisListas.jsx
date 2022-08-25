@@ -3,6 +3,8 @@ import { List } from "../components/List";
 import { ListContext } from "../context/ListContext";
 import { Popup } from "../components/Popup";
 import { InformationCard } from "../components/InformationCard";
+import { RiFileList2Line, RiGiftLine } from 'react-icons/ri';
+
 
 export function MisListas() {
   const { lists, getLists, createList } = useContext(ListContext);
@@ -37,12 +39,12 @@ export function MisListas() {
               </button>
             </div>
             <InformationCard
-              icon={<img></img>}
+              icon={<RiFileList2Line className="card-image" />}
               title="Organiza/ Ahorra tiempo"
               description="Podrás tener a la mano los productos que desees"
             />
             <InformationCard
-              icon={<img></img>}
+                icon={<RiGiftLine className="card-image" />}
               title="Regala"
               description="Crea listas especiales para regalar a tus más cercanos"
             />
