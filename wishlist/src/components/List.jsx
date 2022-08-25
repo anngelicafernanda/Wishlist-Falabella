@@ -54,8 +54,6 @@ export function List({ list }) {
 					/>
 				</div>
 			</div>
-
-		</div>
 		<Popup
 			trigger={popUpDelete}
 			setTrigger={setPopUpDelete}

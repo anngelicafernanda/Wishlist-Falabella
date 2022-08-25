@@ -89,9 +89,7 @@ export function Popup(props) {
                                 : null}
                         </div>                        
                         <div className='popup-btn flex justify-center h-[50px] fixed bottom-[185px] right-[455px]'>
-                          <button onClick={handleClick}>{props.btnName}</button>
-                        </div>
-                       
+                            <button onClick={handleClick}>{props.btnName}</button>
                         </div>
                     </div>
                 </div>
