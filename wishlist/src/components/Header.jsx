@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo.svg';
-import search from '../images/search.png';
 import menu from '../images/menu.png';
 import CarHeader from '../imgFalabella/CarHeader';
 import LocationOrange from '../imgFalabella/LocationOrange';

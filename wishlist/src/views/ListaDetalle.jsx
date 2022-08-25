@@ -44,7 +44,9 @@ export function ListaDetalle() {
 				<div className="flex">
 					<h1 className="font-bold mr-5">{list.name}</h1>
 					<button
-						onClick={() => {setPopUpEdit(true)}}
+						onClick={() => {
+							setPopUpEdit(true);
+						}}
 						className="text-xs underline text-ocho"
 					>
 						Editar
@@ -57,7 +59,7 @@ export function ListaDetalle() {
 					Eliminar lista
 				</button>
 			</div>
-            <p className='text-xs'>{list.status}</p>
+			<p className="text-xs">{list.status}</p>
 			{list.products != undefined && state.list.products.length != 0 ? (
 				list.products.map((product) => (
 					<ListProduct
@@ -76,26 +78,30 @@ export function ListaDetalle() {
 					</button>
 				</div>
 			)}
-			<Popup
-				trigger={popUpDeleteList}
-				setTrigger={setPopUpDeleteList}
-				title={'Eliminar lista'}
-				desc={<p>Estás a punto de eliminar la lista</p>}
-				btnName={'Aceptar'}
-				id={state.list.docId}
-				clickFunction={deleteList}
-				alert={'Easdadasdasdasdasd'}
-			/>
-			<Popup
-				trigger={popUpEdit}
-				setTrigger={setPopUpEdit}
-				title={'Editar lista'}
-				btnName={'Aceptar'}
-				clickFunction={handleEditList}
-				nameList={list.name}
-				alert={'Lista editada'}
-				listStatus={list.status}
-			/>
+			{popUpDeleteList && (
+				<Popup
+					trigger={popUpDeleteList}
+					setTrigger={setPopUpDeleteList}
+					title={'Eliminar lista'}
+					desc={<p>Estás a punto de eliminar la lista</p>}
+					btnName={'Aceptar'}
+					id={state.list.docId}
+					clickFunction={deleteList}
+					alert={'Easdadasdasdasdasd'}
+				/>
+			)}
+			{popUpEdit && (
+				<Popup
+					trigger={popUpEdit}
+					setTrigger={setPopUpEdit}
+					title={'Editar lista'}
+					btnName={'Aceptar'}
+					clickFunction={handleEditList}
+					nameList={list.name}
+					alert={'Lista editada'}
+					listStatus={list.status}
+				/>
+			)}
 		</>
 	);
 }
