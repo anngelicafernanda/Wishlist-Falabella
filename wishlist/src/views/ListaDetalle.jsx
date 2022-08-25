@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
 import { ListProduct } from '../components/ListProduct';
-// import { Alert } from '../components/Alert';
+import RightArrow from '../imgFalabella/RightArrow';
 
 export function ListaDetalle() {
 	const { state } = useLocation();
@@ -41,7 +41,7 @@ export function ListaDetalle() {
 					</Link>
 				)}
 			</div>
-			<div className="flex justify-between mt-[75px] pb-14 border-b border-slate-300">
+			<div className="flex justify-between mt-[75px] border-slate-300">
 				<div className="flex">
 					<h1 className="font-bold mr-5">{list.name}</h1>
 					<button
@@ -58,7 +58,8 @@ export function ListaDetalle() {
 					Eliminar lista
 				</button>
 			</div>
-			{list.products !== undefined && state.list.products.length !== 0 ? (
+			<p className="text-xs">{list.status}</p>
+			{list.products != undefined && state.list.products.length != 0 ? (
 				list.products.map((product) => (
 					<ListProduct
 						product={product}
@@ -98,8 +99,8 @@ export function ListaDetalle() {
 		</>
 	);
 }
-
-/* <Popup 
+{
+	/* <Popup 
 trigger={popUpDeleteList} 
 setTrigger={setPopUpDeleteList} 
 title={'Eliminar lista'} 
@@ -109,3 +110,4 @@ id={state.list.docId}
 clickFunction ={deleteList}
 alert={"E"}
 /> */
+}
