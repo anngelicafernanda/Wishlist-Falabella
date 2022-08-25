@@ -1,28 +1,26 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import downarrow from '../imgFalabella/down-arrow-search.svg';
 import check from '../images/check.png';
 
 export function Dropdown({lists, product, handleSelect}) {
     const [dropdown, setDropdown] = useState(false)
-    const [id, setId] = useState('')
+    let dropdownRef = useRef();
 
     const handleClick = (e) =>{
         handleSelect(e.currentTarget.id,product)
         setDropdown(false)
     }
-/* 
-    const handleBtnClick = (e) =>{
-        setDropdown(!dropdown); 
-        setId(e.target.id);
-        if(id===e.target.id){
-            setDropdown(false)
-        }else{
-            
-        }
-    } */
+
+    useEffect(() => {
+        document.addEventListener("mousedown", (event) => {
+            if(!dropdownRef.current.contains(event.target)){
+                setDropdown(false)
+            }       
+        })
+    })
 
     return (
-        <div id={product.productId}className='w-[200px] m-0-auto relative'> 
+        <div ref={dropdownRef} id={product.productId}className='w-[200px] m-0-auto relative'> 
             <div id={product.productId} className=' p-[10px] shadow bg-white flex justify-between w-full rounded-full mt-2 h-10 items-center cursor-pointer '
             onClick={(e)=>{setDropdown(!dropdown)}}> Agregar a la lista
                 <img src={downarrow} className="color-black w-3"/>
@@ -44,17 +42,3 @@ export function Dropdown({lists, product, handleSelect}) {
         </div>
     )
 }
-
-/* window.addEventListener("click", function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var e;
-      for (e = 0; e < dropdowns.length; e++) {
-        var openDropdown = dropdowns[e];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }); */
-
