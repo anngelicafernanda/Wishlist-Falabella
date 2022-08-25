@@ -1,32 +1,32 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Popup } from "../components/Popup";
-import { ListContext } from "../context/ListContext";
-import { ListProduct } from "../components/ListProduct";
-import RightArrow from "../imgFalabella/RightArrow";
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Popup } from '../components/Popup';
+import { ListContext } from '../context/ListContext';
+import { ListProduct } from '../components/ListProduct';
+import RightArrow from '../imgFalabella/RightArrow';
+import Pencil from '../imgFalabella/Pencil';
 
 export function ListaDetalle() {
-  const { state } = useLocation();
-  const { editList, deleteList, getList, list, deleteProduct } =
-    useContext(ListContext);
-  const [popUpEdit, setPopUpEdit] = useState(false);
-  const [popUpDeleteList, setPopUpDeleteList] = useState(false);
+	const { state } = useLocation();
+	const { editList, deleteList, getList, list, deleteProduct } =
+		useContext(ListContext);
+	const [popUpEdit, setPopUpEdit] = useState(false);
+	const [popUpDeleteList, setPopUpDeleteList] = useState(false);
 
-  useEffect(() => {
-    getList(state.list.docId);
-  }, []);
+	useEffect(() => {
+		getList(state.list.docId);
+	}, []);
 
-  const handleEditList = (name, status) => {
-    console.log(status);
-    editList(state.list.docId, name, status);
-    getList(state.list.docId);
-  };
+	const handleEditList = (name, status) => {
+		console.log(status);
+		editList(state.list.docId, name, status);
+		getList(state.list.docId);
+	};
 
-  const handleDeleteProduct = (id, product, productId) => {
-    deleteProduct(id, product, productId);
-    getList(id);
-  };
-
+	const handleDeleteProduct = (id, product, productId) => {
+		deleteProduct(id, product, productId);
+		getList(id);
+	};
 
 	return (
 		<>
@@ -43,13 +43,14 @@ export function ListaDetalle() {
 				)}
 			</div>
 			<div className="flex justify-between mt-[75px] border-slate-300">
-				<div className="flex">
+				<div className="grid grid-flow-col items-center">
 					<h1 className="font-bold mr-5">{list.name}</h1>
+					<Pencil />
 					<button
 						onClick={() => {
 							setPopUpEdit(true);
 						}}
-						className="text-xs underline text-ocho"
+						className="text-xs underline text-ocho ml-1"
 					>
 						Editar
 					</button>
@@ -105,10 +106,9 @@ export function ListaDetalle() {
 			)}
 		</>
 	);
-
 }
 {
-  /* <Popup 
+	/* <Popup 
 trigger={popUpDeleteList} 
 setTrigger={setPopUpDeleteList} 
 title={'Eliminar lista'} 

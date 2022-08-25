@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ListContext } from '../context/ListContext';
-import cancel from '../images/close.png'
-import "./popup.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faClose } from "@fortawesome/free-solid-svg-icons"
-
+import cancel from '../images/close.png';
+import './popup.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 export function Popup(props) {
-	const { createListfromProduct, setAlert, setAlertMessage } =
+	const { createListfromProduct, setAlert, setAlertMessage, lists } =
 		useContext(ListContext);
 	const [name, setName] = useState('');
 	const navigate = useNavigate();
@@ -18,9 +17,9 @@ export function Popup(props) {
 		if (props.listStatus === 'Privada') {
 			setStatus('Privada');
 		}
-        if (props.nameList){
-            setName(props.nameList)
-        }
+		if (props.nameList) {
+			setName(props.nameList);
+		}
 	}, []);
 
 	const hasName =
@@ -29,10 +28,19 @@ export function Popup(props) {
 		props.title === 'Editar lista'
 			? name
 			: true;
+	const isNameInLists =
+		lists.some((currentList) => currentList.name === name) &&
+		props.title !== 'Editar lista';
 
 	const handleClick = () => {
 		//hacer un switch case
-		if (hasName) {
+		if (!hasName) {
+			setAlertMessage('Introduzca un nombre para la lista');
+			setAlert(true);
+		} else if (isNameInLists) {
+			setAlertMessage('Ya tienes una lista creada con el mismo nombre');
+			setAlert(true);
+		} else {
 			if (props.title === 'Nueva lista') {
 				//CHECK
 				props.clickFunction(name, status);
@@ -63,90 +71,117 @@ export function Popup(props) {
 				setAlert(true);
 				setStatus('Pública');
 			}
-		} else {
-			setAlertMessage('Introduzca un nombre para la lista');
-			setAlert(true);
 		}
 	};
 
-return (
-    <>
-        <div>
-        { props.trigger ? (
-            <div className="popup">
-                <div className="popup-inner">
-                    <button 
-                    onClick={() => props.setTrigger(false)} 
-                    className="close-btn">
-                    <FontAwesomeIcon  icon={faClose} />
-                    </button>
-                    <div className="popup-text">
-                        <h4 className='popup-text-h4'>{props.title}</h4>
-                        <p className='popup-desc'>{props.desc}</p>
-                    </div>
-                    <div className='popup-submit'>                         
-                            {props.btnName === "Crear lista" ? 
-                            <div>
-                                <input className='inputText' 
-                                onChange={(e) => setName(e.target.value)} 
-                                type="text"/> 
-                                <p className='popup-input'>Privacidad de la lista:</p>
-                                <div className='popup-privacy' onChange={(e)=>setStatus(e.target.value)}>
-                                    <label className='popup-privacy-label'><input type="radio" value="Pública" name="status" checked/>Pública</label>                                    
-                                    <label className='popup-privacy-label'><input type="radio" value="Privada" name="status"/>Privada</label>
-                                </div>
-                            </div>
-                            : null}
-                        {props.title === "Editar lista" ? ( 
-                            <div className='popup-submit'>
-                                <p className='popup-input'>Privacidad de la lista:</p>
-                                <input className='inputText' 
-                                onChange={(e) => setName(e.target.value)} 
-                                type="text" 
-                                placeholder={props.nameList}
-                                defaultValue={props.nameList}
-                                /> 
-                                {props.listStatus === 'Pública' ? (
-                                    <div className='popup-privacy' 
-                                        onChange={(e)=>setStatus(e.target.value)}>
-                                        <label className="popup-privacy-label"><input 
-                                        type="radio" 
-                                        value="Pública" 
-                                        name="status"
-                                        checked
-                                        />Pública</label>
-                                        <label className='popup-privacy-label'><input 
-                                        type="radio" 
-                                        value="Privada" 
-                                        name="status"/>Privada</label>
-                                    </div>
-                                ) : (
-                                    <div className='popup-privacy' 
-                                        onChange={(e) => setStatus(e.target.value)}>
-                                        <label className="popup-privacy-label"><input 
-                                        type="radio" 
-                                        value="Pública" 
-                                        name="status" />Pública</label>
-                                        <label className="popup-privacy-label"><input
-                                            type="radio"
-                                            value="Privada"
-                                            name="status"
-                                            checked
-                                        />Privada</label>
-                                    </div>
-                                    )}
-                            </div>
-                        ) : null}
-                    </div>                        
-                    <div>
-                        <button className='popup-btn' onClick={handleClick}>{props.btnName}</button>
-                    </div>
-                </div>
-            </div>
-            ) : ( 
-                ''
-            )}
-        </div>
-    </>
-);
+	return (
+		<>
+			<div>
+				{props.trigger ? (
+					<div className="popup">
+						<div className="popup-inner">
+							<button
+								onClick={() => props.setTrigger(false)}
+								className="close-btn"
+							>
+								<FontAwesomeIcon icon={faClose} />
+							</button>
+							<div className="popup-text">
+								<h4 className="popup-text-h4">{props.title}</h4>
+								<p className="popup-desc">{props.desc}</p>
+							</div>
+							<div className="popup-submit">
+								{props.btnName === 'Crear lista' ? (
+									<div>
+										<input
+											className="inputText"
+											onChange={(e) => setName(e.target.value)}
+											type="text"
+										/>
+										<p className="popup-input">Privacidad de la lista:</p>
+										<div
+											className="popup-privacy"
+											onChange={(e) => setStatus(e.target.value)}
+										>
+											<label className="popup-privacy-label">
+												<input
+													type="radio"
+													value="Pública"
+													name="status"
+													checked
+												/>
+												Pública
+											</label>
+											<label className="popup-privacy-label">
+												<input type="radio" value="Privada" name="status" />
+												Privada
+											</label>
+										</div>
+									</div>
+								) : null}
+								{props.title === 'Editar lista' ? (
+									<div className="popup-submit">
+										<p className="popup-input">Privacidad de la lista:</p>
+										<input
+											className="inputText"
+											onChange={(e) => setName(e.target.value)}
+											type="text"
+											placeholder={props.nameList}
+											defaultValue={props.nameList}
+										/>
+										{props.listStatus === 'Pública' ? (
+											<div
+												className="popup-privacy"
+												onChange={(e) => setStatus(e.target.value)}
+											>
+												<label className="popup-privacy-label">
+													<input
+														type="radio"
+														value="Pública"
+														name="status"
+														checked
+													/>
+													Pública
+												</label>
+												<label className="popup-privacy-label">
+													<input type="radio" value="Privada" name="status" />
+													Privada
+												</label>
+											</div>
+										) : (
+											<div
+												className="popup-privacy"
+												onChange={(e) => setStatus(e.target.value)}
+											>
+												<label className="popup-privacy-label">
+													<input type="radio" value="Pública" name="status" />
+													Pública
+												</label>
+												<label className="popup-privacy-label">
+													<input
+														type="radio"
+														value="Privada"
+														name="status"
+														checked
+													/>
+													Privada
+												</label>
+											</div>
+										)}
+									</div>
+								) : null}
+							</div>
+							<div>
+								<button className="popup-btn" onClick={handleClick}>
+									{props.btnName}
+								</button>
+							</div>
+						</div>
+					</div>
+				) : (
+					''
+				)}
+			</div>
+		</>
+	);
 }
