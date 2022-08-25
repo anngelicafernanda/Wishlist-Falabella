@@ -4,12 +4,14 @@ import { ListContext } from '../context/ListContext';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
+import { Dropdown } from '../components/Dropdown';
 
 export function Catalogo() {
 	const { lists, getLists, addProduct, setAlert, setAlertMessage } = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
+	const [dropSelect, setDropSelect] = useState('')
 
 	const getProduct = async () => {
 		try {
@@ -27,22 +29,22 @@ export function Catalogo() {
 		getLists();
 	}, []);
 
-	const handleChange = (e, p) => {
-		if (e.currentTarget.value === 'crear') {
+	const handleSelect = (value, p) => {
+		if (value === 'crear') {
 			setSelectedProduct(p);
 			setPopUp(true);
-		} else if (e.currentTarget.value === 'disabled') {
+		} else if (value === 'disabled') {
 			setAlertMessage('Este producto ya existe en tu lista');
 			setAlert(true);
 		} else {
-			addProduct(e.currentTarget.value, p, p.productId);
+			addProduct(value, p, p.productId);
 			setAlertMessage('Tu producto a sido añadido a la lista');
 			setAlert(true);
 		}
 	};
 
 	return (
-		<>
+		<>	
 			<div className="bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
 				<div className="grid grid-flow-col items-center gap-[10px] ml-[120px]">
 					<img src={MineShaft} alt="" className="w-[10px] h-auto inline " />
@@ -74,7 +76,7 @@ export function Catalogo() {
 			<main className="container max-w-[955px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
 				{products.map((p) => (
 					<div
-						className=" min-w-[228px] h-auto bg-white overflow-y-hidden"
+						className=" min-w-[228px] h-auto bg-white"
 						key={p.productId}
 					>
 						<img
@@ -95,42 +97,11 @@ export function Catalogo() {
 							<p className="text-[13px] text-falabella">
 								${p.offerings[0].price.toLocaleString('de-DE')}
 							</p>
-							<div className="flex flex-col items-center">
+							<div className="flex flex-col items-center ">
 								<button className="btn-orange text-[16px] px-10 mt-[24px] mb-0">
 									Agregar al carro
 								</button>
-								<div className="dropdrown">
-									<select
-										onChange={(e) => {
-											handleChange(e, p);
-										}}
-										className=" border rounded-full px-[75px] py-2 h-[35px] w-full mt-6 mb-4 text-[14px]"
-									>
-										<option>Agregar a la Lista</option>
-										{lists.map((list) =>
-											list.productsId.includes(p.productId) ? (
-												<option
-													key={list.docId}
-													className="text-sm"
-													value="disabled"
-												>
-													{list.name} ✅
-												</option>
-											) : (
-												<option
-													key={list.docId}
-													className="text-sm"
-													value={list.docId}
-												>
-													{list.name}
-												</option>
-											),
-										)}
-										<option value="crear" className="text-base font-bold">
-											+ Crear lista
-										</option>
-									</select>
-								</div>
+								<Dropdown selected={dropSelect} setSelected={setDropSelect} lists={lists} product={p} handleSelect={handleSelect}/>
 							</div>
 						</div>
 					</div>
