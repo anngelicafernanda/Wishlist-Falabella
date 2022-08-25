@@ -2,14 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { List } from '../components/List';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
-import {InformationCard} from '../components/InformationCard';
-
-
+import { InformationCard } from '../components/InformationCard';
 
 export function MisListas() {
-	const { lists, getLists, createList} = useContext(ListContext);
+	const { lists, getLists, createList } = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
-
 
 	useEffect(() => {
 		getLists();
@@ -68,15 +65,17 @@ export function MisListas() {
 					</div>
 				</>
 			)}
-			<Popup
-				trigger={popUp}
-				setTrigger={setPopUp}
-				title={'Nueva lista'}
-				desc={'Dale nombre a tu lista'}
-				btnName={'Crear lista'}
-				alert='Su lista fue creada exitosamente'
-				clickFunction={handleCreateList}
-			/>
+			{popUp && (
+				<Popup
+					trigger={popUp}
+					setTrigger={setPopUp}
+					title={'Nueva lista'}
+					desc={'Dale nombre a tu lista'}
+					btnName={'Crear lista'}
+					alert="Su lista fue creada exitosamente"
+					clickFunction={handleCreateList}
+				/>
+			)}
 		</>
 	);
 }

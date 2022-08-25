@@ -7,11 +7,12 @@ import RightArrow from '../imgFalabella/RightArrow';
 import { Dropdown } from '../components/Dropdown';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct, setAlert, setAlertMessage } = useContext(ListContext);
+	const { lists, getLists, addProduct, setAlert, setAlertMessage } =
+		useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
-	const [dropSelect, setDropSelect] = useState('')
+	const [dropSelect, setDropSelect] = useState('');
 
 	const getProduct = async () => {
 		try {
@@ -44,7 +45,7 @@ export function Catalogo() {
 	};
 
 	return (
-		<>	
+		<>
 			<div className="bg-white h-[50px] grid grid-flow-col place-content-center shadow-sm justify-between mt-[5px]">
 				<div className="grid grid-flow-col items-center gap-[10px] ml-[120px]">
 					<img src={MineShaft} alt="" className="w-[10px] h-auto inline " />
@@ -75,10 +76,7 @@ export function Catalogo() {
 			</div>
 			<main className="container max-w-[955px] mx-auto grid grid-cols-4 gap-[15px] py-[30px] bg-body ">
 				{products.map((p) => (
-					<div
-						className=" min-w-[228px] h-auto bg-white"
-						key={p.productId}
-					>
+					<div className=" min-w-[228px] h-auto bg-white" key={p.productId}>
 						<img
 							className="w-[228px] h-[228px] object-cover"
 							src={p.images[0]}
@@ -101,12 +99,19 @@ export function Catalogo() {
 								<button className="btn-orange text-[16px] px-10 mt-[24px] mb-0">
 									Agregar al carro
 								</button>
-								<Dropdown selected={dropSelect} setSelected={setDropSelect} lists={lists} product={p} handleSelect={handleSelect}/>
+								<Dropdown
+									selected={dropSelect}
+									setSelected={setDropSelect}
+									lists={lists}
+									product={p}
+									handleSelect={handleSelect}
+								/>
 							</div>
 						</div>
 					</div>
 				))}
 			</main>
+			{popUp && (
 				<Popup
 					trigger={popUp}
 					setTrigger={setPopUp}
@@ -114,9 +119,9 @@ export function Catalogo() {
 					desc={'Dale nombre a tu lista'}
 					btnName={'Crear lista'}
 					product={selectedProduct}
-					alert={"Lista creada"}
+					alert={'Lista creada'}
 				/>
-
+			)}
 		</>
 	);
 }
