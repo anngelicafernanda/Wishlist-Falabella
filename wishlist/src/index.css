@@ -35,4 +35,60 @@ body {
   .footer {
     @apply flex justify-between bg-footer h-[300px] w-full text-white text-[12px];
   }
+
+  .icons {
+    @apply w-[30px] h-[30px] flex justify-center items-center rounded-full  bg-falabella;
+  }
+
+  .popup {
+    @apply fixed top-0 left-0 w-full min-h-screen flex flex-col justify-center items-center bg-popupBg bg-opacity-25;
+  }
+
+  .popup-inner {
+    @apply relative p-[32px] w-[340px] h-[270px] rounded-xl bg-white; 
+  }
+
+  .close-btn {
+    @apply absolute top-[15px] right-[20px] text-lg; 
+  }
+
+  .popup-text-h4 {
+    @apply w-[150px] absolute top-[35px] right-[158px] font-bold;
+  }
+
+  .popup-desc {
+    @apply w-[230px] text-popupDesc text-sm font-normal my-2 mx-0 absolute top-[55px] right-[77px] ;
+  }
+
+  .inputText {
+    @apply w-[270px]  outline-none absolute top-[95px] right-[35px] border-b border-solid border-borderInput;
+  }
+
+  .popup-input {
+    @apply text-sm absolute top-[125px] right-[170px]  ;
+  }
+
+  .popup-privacy {
+    @apply flex flex-col absolute top-[145px] right-[225px] ;
+  }
+
+  .popup-privacy-label {
+    @apply ml-3 pb-1 text-sm ;
+  }
+
+  .popup-btn {
+    @apply w-[240px] h-[35px] rounded-[24px] absolute bottom-[30px] right-[50px] flex items-center justify-center border-none text-sm text-white m-0 text-center bg-popupbtn;
+  }
+
 }
+
+/* .popup-btn {
+
+    background: rgba(73, 88, 103, 1);
+} */
+
+
+
+
+
+

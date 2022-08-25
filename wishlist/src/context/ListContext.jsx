@@ -8,8 +8,8 @@ export const ListContextProvider = ({ children }) => {
 
     const [lists, setLists] = useState([]);
     const [list, setList] = useState([]);
-    const [alert, setAlert] = useState(false)
-    const [alertMessage, setAlertMessage] = useState("")
+    const [alert, setAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
 
 
     const createList = (name, status) => {

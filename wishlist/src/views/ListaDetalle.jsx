@@ -81,11 +81,10 @@ export function ListaDetalle() {
 				trigger={popUpDeleteList}
 				setTrigger={setPopUpDeleteList}
 				title={'Eliminar lista'}
-				desc={<p>Estás a punto de eliminar la lista</p>}
+				desc={'Estás a punto de eliminar la lista'}
 				btnName={'Aceptar'}
 				id={state.list.docId}
 				clickFunction={deleteList}
-				alert={'Easdadasdasdasdasd'}
 			/>
 			<Popup
 				trigger={popUpEdit}
@@ -94,7 +93,6 @@ export function ListaDetalle() {
 				btnName={'Aceptar'}
 				clickFunction={handleEditList}
 				nameList={list.name}
-				alert={'Lista editada'}
 			/>
 		</>
 	);

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ListContext } from '../context/ListContext';
 import cancel from '../images/close.png'
 import "./popup.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClose } from "@fortawesome/free-solid-svg-icons"
 
 export function Popup(props) {
     const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
@@ -57,40 +59,37 @@ export function Popup(props) {
             (props.trigger) ? (
                 <div className="popup">
                     <div className="popup-inner">
-                        <button onClick={() => props.setTrigger(false)} className="close-btn"><img src={cancel} /></button>
+                        <button onClick={() => props.setTrigger(false)} className="close-btn">
+                        <FontAwesomeIcon  icon={faClose} />
+                        </button>
                         <div className="popup-text">
-                            <h4>{props.title}</h4>
-                            <p className='fixed bottom-[290px]' >{props.desc}</p>
+                            <h4 className='popup-text-h4'>{props.title}</h4>
+                            <p className='popup-desc'>{props.desc}</p>
                         </div>
-                        <div className="popup-submit">                         
+                        <div>                         
                                 {props.btnName === "Crear lista" ? 
-                                <>
-                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> 
-                                    <p>Privacidad de la lista:</p>
-                                    <div onChange={(e)=>setStatus(e.target.value)}>
-                                        <input type="radio" value="Pública" name="status"/> 
-                                            <label className="text-sm">Pública</label>
-                                            <br></br>
-                                        <input type="radio" value="Privada" name="status" /> 
-                                            <label className="text-sm">Privada</label>
+                                <div className='popup-submit'>
+                                    <input className='inputText' onChange={(e) => setName(e.target.value)} type="text" required/> 
+                                    <p className='popup-input'>Privacidad de la lista:</p>
+                                    <div className='popup-privacy' onChange={(e)=>setStatus(e.target.value)}>
+                                        <label className='popup-privacy-label'><input type="radio" value="Pública" name="status"/>Pública</label>                                    
+                                        <label className='popup-privacy-label'><input type="radio" value="Privada" name="status" />Privada</label>
                                     </div>
-                                </>
+                                </div>
                                 : null}
                             {props.title === "Editar lista" ? 
-                                <>
-                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> 
-                                    <div onChange={(e)=>setStatus(e.target.value)}>
-                                        <input type="radio" value="Pública" name="status"/> 
-                                            <label className="text-sm">Pública</label>
-                                            <br></br>
-                                        <input type="radio" value="Privada" name="status" /> 
-                                            <label className="text-sm">Privada</label>
+                                <div className='popup-submit'>
+                                    <p className='popup-input'>Privacidad de la lista:</p>
+                                    <input className='inputText' onChange={(e) => setName(e.target.value)} type="text" placeholder={props.nameList}/> 
+                                    <div className='popup-privacy' onChange={(e)=>setStatus(e.target.value)}>
+                                        <label className='popup-privacy-label'><input type="radio" value="Pública" name="status"/>Pública</label>
+                                        <label className='popup-privacy-label'><input type="radio" value="Privada" name="status"/>Privada</label>
                                     </div>
-                                </>
+                                </div>
                                 : null}
                         </div>                        
-                        <div className='popup-btn flex justify-center h-[50px] fixed bottom-[140px] right-[455px]'>
-                            <button onClick={handleClick}>{props.btnName}</button>
+                        <div>
+                            <button className='popup-btn' onClick={handleClick}>{props.btnName}</button>
                         </div>
                     </div>
                 </div>
