@@ -1,11 +1,7 @@
-//la que termine primero
-
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import trash from '../images/trash.png';
 import { Popup } from '../components/Popup';
-import { ListContext } from '../context/ListContext';
 import ActionButton from './ActionButton';
-import { Link } from 'react-router-dom';
 
 export function ListProduct({ product, listId, deleteFunction }) {
 	const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);

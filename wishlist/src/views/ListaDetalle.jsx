@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
 import { ListProduct } from '../components/ListProduct';
-import RightArrow from '../imgFalabella/RightArrow';
 // import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
@@ -59,7 +58,7 @@ export function ListaDetalle() {
 					Eliminar lista
 				</button>
 			</div>
-			{list.products != undefined && state.list.products.length != 0 ? (
+			{list.products !== undefined && state.list.products.length !== 0 ? (
 				list.products.map((product) => (
 					<ListProduct
 						product={product}
@@ -99,8 +98,8 @@ export function ListaDetalle() {
 		</>
 	);
 }
-{
-	/* <Popup 
+
+/* <Popup 
 trigger={popUpDeleteList} 
 setTrigger={setPopUpDeleteList} 
 title={'Eliminar lista'} 
@@ -110,4 +109,3 @@ id={state.list.docId}
 clickFunction ={deleteList}
 alert={"E"}
 /> */
-}
