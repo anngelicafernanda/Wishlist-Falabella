@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import trash from "../images/trash.png";
+import trash from '../imgFalabella/delete2.svg'
 import { Popup } from "../components/Popup";
 
 export function ListProduct({ product, listId, deleteFunction }) {

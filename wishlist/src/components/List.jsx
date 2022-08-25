@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ListContext } from "../context/ListContext";
 import { Popup } from "./Popup";
+import trash from "../imgFalabella/delete2.svg"
 
-import trash from "../images/trash.png";
+//import trash from "../images/trash.png";
 
 export function List({ list }) {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ export function List({ list }) {
             onClick={() => setPopUpDelete(true)}
             src={trash}
             alt="Eliminar"
-            className="w-[9px] h-12"
+            className="w-4 h-auto"
           />
         </div>
       </div>
