@@ -7,19 +7,17 @@ import {InformationCard} from '../components/InformationCard';
 
 
 export function MisListas() {
-	const { lists, getLists, createList, setAlert } = useContext(ListContext);
+	const { lists, getLists, createList} = useContext(ListContext);
 	const [popUp, setPopUp] = useState(false);
 
 
 	useEffect(() => {
 		getLists();
-		//setAlert(true)
 	}, []);
 
-	const handleCreateList = (name) => {
-		createList(name);
+	const handleCreateList = (name, status) => {
+		createList(name, status);
 	};
-
 
 	return (
 		<>
