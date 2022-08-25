@@ -61,7 +61,7 @@ export function List({ list }) {
 			trigger={popUpDelete}
 			setTrigger={setPopUpDelete}
 			title={'Eliminar lista'}
-			desc={<p>Estás a punto de eliminar la lista</p>}
+			desc={'Estás a punto de eliminar la lista'}
 			btnName={'Aceptar'}
 			id={list.docId}
 			clickFunction={deleteList}

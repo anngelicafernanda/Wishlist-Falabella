@@ -120,7 +120,7 @@ export function Catalogo() {
 					trigger={popUp}
 					setTrigger={setPopUp}
 					title={'Crear lista'}
-					desc={<p>Dale nombre a tu lista</p>}
+					desc={'Dale nombre a tu lista'}
 					btnName={'Crear lista'}
 					product={selectedProduct}
 					alert={"Lista creada"}

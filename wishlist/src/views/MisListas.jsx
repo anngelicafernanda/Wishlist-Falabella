@@ -74,7 +74,7 @@ export function MisListas() {
 				trigger={popUp}
 				setTrigger={setPopUp}
 				title={'Nueva lista'}
-				desc={<p>Dale nombre a tu lista</p>}
+				desc={'Dale nombre a tu lista'}
 				btnName={'Crear lista'}
 				alert='Su lista fue creada exitosamente'
 				clickFunction={handleCreateList}
