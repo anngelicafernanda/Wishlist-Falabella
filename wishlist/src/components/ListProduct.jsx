@@ -3,9 +3,6 @@
 import React, { useState, useContext } from 'react';
 import trash from '../images/trash.png';
 import { Popup } from '../components/Popup';
-import { ListContext } from '../context/ListContext';
-import ActionButton from './ActionButton';
-import { Link } from 'react-router-dom';
 
 export function ListProduct({ product, listId, deleteFunction }) {
 	const [popUpDeleteProduct, setPopUpDeleteProduct] = useState(false);
@@ -26,15 +23,13 @@ export function ListProduct({ product, listId, deleteFunction }) {
 				<p className="text-[16px] font-bold text-inputFooter">
 					{product.offerings[0].price.toLocaleString('de-DE')}
 				</p>
-				<ActionButton
-					title="Agregar al carro"
-					className="btn-gray w-[257px] justify-self-end m-0"
-				/>
+				<button className="btn-gray w-[200px] justify-self-end h-10 shadow-2xl px-10 m-0">
+					Agregar al carro	
+				</button>
 				<button
 					className="justify-self-end w-auto p-[10px]"
 					onClick={() => {
 						setPopUpDeleteProduct(true);
-						console.log(product);
 					}}
 				>
 					<img className="w-4" src={trash} />

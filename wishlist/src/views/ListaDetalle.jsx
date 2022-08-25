@@ -4,7 +4,6 @@ import { Popup } from '../components/Popup';
 import { ListContext } from '../context/ListContext';
 import { ListProduct } from '../components/ListProduct';
 import RightArrow from '../imgFalabella/RightArrow';
-// import { Alert } from '../components/Alert';
 
 export function ListaDetalle() {
 	const { state } = useLocation();
@@ -42,7 +41,7 @@ export function ListaDetalle() {
 					</Link>
 				)}
 			</div>
-			<div className="flex justify-between mt-[75px] pb-14 border-b border-slate-300">
+			<div className="flex justify-between mt-[75px] border-slate-300">
 				<div className="flex">
 					<h1 className="font-bold mr-5">{list.name}</h1>
 					<button
@@ -59,6 +58,7 @@ export function ListaDetalle() {
 					Eliminar lista
 				</button>
 			</div>
+            <p className='text-xs'>{list.status}</p>
 			{list.products != undefined && state.list.products.length != 0 ? (
 				list.products.map((product) => (
 					<ListProduct
