@@ -27,7 +27,7 @@ const MenuAside = () => {
       section: "Mis compras",
     },
     {
-      display: "Mis lista",
+      display: "Mis listas",
       icon: <img src={lista} />,
       to: "/lista",
       section: "lista",
@@ -64,7 +64,7 @@ const MenuAside = () => {
       section: "Cambiar mi contraseña",
     },
     {
-      display: "Cerrar sesion",
+      display: "Cerrar sesión",
       icon: <img src={cerrarsesion} />,
       to: "/Cerrar sesion",
       section: "Cerrar sesion",

@@ -73,7 +73,7 @@ export function ListaDetalle() {
 				))
 			) : (
 				<div className=" flex justify-between items-center py-[13px] border-gray-search border-y-2 mt-[21px]">
-					<h1>No hay Productos en esta Lista</h1>
+					<h1>No hay productos en esta lista</h1>
 					<button className="btn-orange bg-btnlista w-[200px] text-[14px] h-10 p-0 m-0">
 						<Link className="text" to="/">
 							Agrega productos a la lista
@@ -90,7 +90,6 @@ export function ListaDetalle() {
 					btnName={'Aceptar'}
 					id={state.list.docId}
 					clickFunction={deleteList}
-					alert={'Easdadasdasdasdasd'}
 				/>
 			)}
 			{popUpEdit && (
