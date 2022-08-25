@@ -4,30 +4,27 @@ import { ListContext } from '../context/ListContext';
 import "./popup.css";
 
 export function Popup(props) {
-    const {createListfromProduct} = useContext(ListContext);
+    const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const [active, setActive ] = useState(false);
+
 
     const handleClick = () => { //hacer un switch case
 
         if(props.title === "Nueva lista") { //CHECK
             props.clickFunction(name)
             props.setTrigger(false)
-
-            setActive(true);
-            setTimeout(() => {
-                setActive(false);
-            }, 3000);
+            setAlertMessage('Tu lista ha sido creada')
+            setAlert(true)
 
         }
         else if(props.title === "Eliminar producto"){
             props.clickFunction(props.id, props.product, props.product.productId)
             props.setTrigger(false)
-            setActive(true)
-            setTimeout(() => {
-                setActive(false);
-            }, 3000);
+            setAlertMessage('Producto ha sido eliminado correctamente')
+            setAlert(true)
+
         }
         else if(props.title === "Eliminar lista"){
             props.clickFunction(props.id)
@@ -76,7 +73,7 @@ export function Popup(props) {
                 : ""
             }
             </div>
-            <div>
+{/*             <div>
                     {
                     (active) ? (
                         <div className='flex justify-center sticky bottom-5'>
@@ -88,7 +85,7 @@ export function Popup(props) {
                         ) 
                         : ""
                     }
-            </div>
+            </div> */}
         </>
     )
 }
