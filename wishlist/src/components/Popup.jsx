@@ -7,7 +7,6 @@ export function Popup(props) {
     const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
     const [name, setName] = useState("");
     const navigate = useNavigate();
-    const [active, setActive ] = useState(false);
 
 
     const handleClick = () => { //hacer un switch case
@@ -15,14 +14,14 @@ export function Popup(props) {
         if(props.title === "Nueva lista") { //CHECK
             props.clickFunction(name)
             props.setTrigger(false)
-            setAlertMessage('Tu lista ha sido creada')
+            setAlertMessage('Tu lista ha sido creada exitosamente')
             setAlert(true)
 
         }
         else if(props.title === "Eliminar producto"){
             props.clickFunction(props.id, props.product, props.product.productId)
             props.setTrigger(false)
-            setAlertMessage('Producto ha sido eliminado correctamente')
+            setAlertMessage('Su producto fue eliminado exitosamente de la lista')
             setAlert(true)
 
         }
@@ -30,23 +29,23 @@ export function Popup(props) {
             props.clickFunction(props.id)
             props.setTrigger(false)
             navigate('/Mis-Listas')
+            setAlertMessage('Su lista fue eliminada exitosamente')
+            setAlert(true)
 
-                        setActive(true)
-            setTimeout(() => {
-                setActive(false);
-            }, 3000);
         }
-        else if(props.title === "Editar lista"){ //CHECK
+        else if(props.title === "Editar lista"){ 
             props.clickFunction(name)
             props.setTrigger(false)
-            setActive(true);
+            setAlertMessage('Tu lista ha sido editada exitosamente')
+            setAlert(true)
 
         }
-        else if (props.title === "Crear lista"){  //CHECK
+        else if (props.title === "Crear lista"){ 
             console.log('hola')
             createListfromProduct(name, props.product)
             props.setTrigger(false)
-            setActive(true);
+            setAlertMessage('Tu lista ha sido creada exitosamente')
+            setAlert(true)
         }
     }
 
@@ -73,19 +72,6 @@ export function Popup(props) {
                 : ""
             }
             </div>
-{/*             <div>
-                    {
-                    (active) ? (
-                        <div className='flex justify-center sticky bottom-5'>
-                            <div className=' flex flex-row-reverse m-0 justify-around items-center w-[319px] h-[41px] text-[12px] text-alert bg-info rounded-md'>
-                                <div onClick={() => setActive(false)}>X</div>
-                                <p>{props.alert}</p>
-                            </div>
-                        </div>
-                        ) 
-                        : ""
-                    }
-            </div> */}
         </>
     )
 }

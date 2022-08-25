@@ -7,11 +7,12 @@ import RightArrow from '../imgFalabella/RightArrow';
 import check from '../images/check.png';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct} = useContext(ListContext);
+	const { lists, getLists, addProduct, setAlert, setAlertMessage} = useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
-       
+
+
 	const getProduct = async () => {
 		try {
 			const response = await axios.get(
@@ -38,10 +39,8 @@ export function Catalogo() {
 			console.log('este producto ya está en la lista')
 		}else{
 			addProduct(e.currentTarget.value, p, p.productId);
-		// 	setAlert(true);
-		// 	setTimeout(() => {
-		// 	setAlert(false);
-		// }, 3000);
+			setAlertMessage('Tu producto a sido añadido a la lista')
+            setAlert(true)
 	}	
     
 	}
