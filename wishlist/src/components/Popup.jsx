@@ -6,13 +6,14 @@ import "./popup.css";
 export function Popup(props) {
     const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
     const [name, setName] = useState("");
+    const [status, setStatus] = useState("");
     const navigate = useNavigate();
 
 
     const handleClick = () => { //hacer un switch case
 
         if(props.title === "Nueva lista") { //CHECK
-            props.clickFunction(name)
+            props.clickFunction(name, status)
             props.setTrigger(false)
             setAlertMessage('Tu lista ha sido creada exitosamente')
             setAlert(true)
@@ -34,15 +35,14 @@ export function Popup(props) {
 
         }
         else if(props.title === "Editar lista"){ 
-            props.clickFunction(name)
+            props.clickFunction(name, status)
             props.setTrigger(false)
             setAlertMessage('Tu lista ha sido editada exitosamente')
             setAlert(true)
 
         }
         else if (props.title === "Crear lista"){ 
-            console.log('hola')
-            createListfromProduct(name, props.product)
+            createListfromProduct(name, props.product, status)
             props.setTrigger(false)
             setAlertMessage('Tu lista ha sido creada exitosamente')
             setAlert(true)
@@ -59,14 +59,39 @@ export function Popup(props) {
                         <button onClick={() => props.setTrigger(false)} className="close-btn">X</button>
                         <div className="popup-text">
                             <h4>{props.title}</h4>
-                            <p className='fixed bottom-[290px] ' >{props.desc}</p>
+                            <p className='fixed bottom-[290px]' >{props.desc}</p>
                         </div>
-                        <div className="popup-submit">
-                            {props.btnName === "Crear lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText ' type="text" /> : null}
-                            {props.title === "Editar lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> : null}
-                        </div>
+                        <div className="popup-submit">                         
+                                {props.btnName === "Crear lista" ? 
+                                <>
+                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> 
+                                    <p>Privacidad de la lista:</p>
+                                    <div onChange={(e)=>setStatus(e.target.value)}>
+                                        <input type="radio" value="Pública" name="status"/> 
+                                            <label className="text-sm">Pública</label>
+                                            <br></br>
+                                        <input type="radio" value="Privada" name="status" /> 
+                                            <label className="text-sm">Privada</label>
+                                    </div>
+                                </>
+                                : null}
+                            {props.title === "Editar lista" ? 
+                                <>
+                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> 
+                                    <div onChange={(e)=>setStatus(e.target.value)}>
+                                        <input type="radio" value="Pública" name="status"/> 
+                                            <label className="text-sm">Pública</label>
+                                            <br></br>
+                                        <input type="radio" value="Privada" name="status" /> 
+                                            <label className="text-sm">Privada</label>
+                                    </div>
+                                </>
+                                : null}
+                        </div>                        
                         <div className='popup-btn flex justify-center h-[50px] fixed bottom-[185px] right-[455px]'>
-                            <button onClick={handleClick}>{props.btnName}</button>
+                          <button onClick={handleClick}>{props.btnName}</button>
+                        </div>
+                       
                         </div>
                     </div>
                 </div>

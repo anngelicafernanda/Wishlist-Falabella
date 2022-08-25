@@ -28,7 +28,9 @@ module.exports = {
 			footerText: '#6A6A6A',
 			inputFooter: '#333333',
 			ordenarPor: '#9B9B9B',
+			lineamenu: '#F0F0F0',
 			'gray-drop': '#636363',
+			ocho: '#888888',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
@@ -39,6 +41,9 @@ module.exports = {
 				menu: 'auto auto 1fr auto auto auto',
 				search: 'auto 1fr',
 				'lists-layout': 'auto 1fr',
+			},
+			gridTemplateColumns: {
+				productList: 'auto auto auto 1fr auto',
 			},
 		},
 	},
