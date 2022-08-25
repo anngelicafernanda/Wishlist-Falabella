@@ -43,7 +43,7 @@ export function Footer() {
             <a className="icons" href="https://twitter.com/FalabellaAyuda">
               <FontAwesomeIcon icon={faTwitter} />
             </a>
-            <a className="icons" href="https://www.instagram.com/falabella_cl/">
+            <a className="icons" href="https://www.instagram.com/falabellacom_cl/">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a className="icons" href="https://www.youtube.com/channel/UCMLH0vqjhCblKOjFVBG6IQw">
