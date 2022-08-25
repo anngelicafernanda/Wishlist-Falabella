@@ -19,7 +19,7 @@ export function ListProduct({ product, listId, deleteFunction }) {
 					</p>
 				</div>
 				<p className="text-[16px] font-bold text-inputFooter">
-					{product.offerings[0].price.toLocaleString('de-DE')}
+					${product.offerings[0].price.toLocaleString('de-DE')}
 				</p>
 				<button className="btn-gray w-[200px] justify-self-end h-10 shadow-2xl px-10 m-0">
 					Agregar al carro
