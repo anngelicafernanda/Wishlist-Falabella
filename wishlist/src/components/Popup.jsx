@@ -1,14 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ListContext } from '../context/ListContext';
 import cancel from '../images/close.png'
 import "./popup.css";
 
 export function Popup(props) {
+
     const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
     const [name, setName] = useState("");
-    const [status, setStatus] = useState("");
     const navigate = useNavigate();
+    const [status, setStatus] = useState("Pública")
+
+    useEffect(()=>{
+        if(props.listStatus==='Privada'){
+            setStatus("Privada")
+        }
+    },[])
 
 
     const handleClick = () => { //hacer un switch case
@@ -18,7 +25,7 @@ export function Popup(props) {
             props.setTrigger(false)
             setAlertMessage('Tu lista ha sido creada exitosamente')
             setAlert(true)
-
+            setStatus("Pública")
         }
         else if(props.title === "Eliminar producto"){
             props.clickFunction(props.id, props.product, props.product.productId)
@@ -47,6 +54,7 @@ export function Popup(props) {
             props.setTrigger(false)
             setAlertMessage('Tu lista ha sido creada exitosamente')
             setAlert(true)
+            setStatus("Pública")
         }
     }
 
@@ -68,7 +76,7 @@ export function Popup(props) {
                                     <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> 
                                     <p>Privacidad de la lista:</p>
                                     <div onChange={(e)=>setStatus(e.target.value)}>
-                                        <input type="radio" value="Pública" name="status"/> 
+                                        <input type="radio" value="Pública" name="status" checked/> 
                                             <label className="text-sm">Pública</label>
                                             <br></br>
                                         <input type="radio" value="Privada" name="status" /> 
@@ -77,16 +85,25 @@ export function Popup(props) {
                                 </>
                                 : null}
                             {props.title === "Editar lista" ? 
-                                <>
-                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> 
-                                    <div onChange={(e)=>setStatus(e.target.value)}>
-                                        <input type="radio" value="Pública" name="status"/> 
-                                            <label className="text-sm">Pública</label>
-                                            <br></br>
-                                        <input type="radio" value="Privada" name="status" /> 
-                                            <label className="text-sm">Privada</label>
-                                    </div>
-                                </>
+      <>
+      <input onChange={(e) => setName(e.target.value)} className='' type="text" placeholder={props.nameList}/> 
+          {props.listStatus==="Pública"?
+              <div onChange={(e)=>setStatus(e.target.value)}>
+                  <input type="radio" value="Pública" name="status" checked/> 
+                  <label className="text-sm">Pública</label>
+                  <br></br>
+              <input type="radio" value="Privada" name="status" /> 
+                  <label className="text-sm">Privada</label>
+              </div>:  
+             <div onChange={(e)=>setStatus(e.target.value)}>
+             <input type="radio" value="Pública" name="status"/> 
+             <label className="text-sm">Pública</label>
+             <br></br>
+         <input type="radio" value="Privada" name="status" checked/> 
+             <label className="text-sm">Privada</label>
+             </div>
+      }  
+  </>
                                 : null}
                         </div>                        
                         <div className='popup-btn flex justify-center h-[50px] fixed bottom-[140px] right-[455px]'>
