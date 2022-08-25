@@ -3,6 +3,7 @@ import { List } from '../components/List';
 import { ListContext } from '../context/ListContext';
 import { Popup } from '../components/Popup';
 import { InformationCard } from '../components/InformationCard';
+import MyAddresses from '../imgFalabella/MyAddresses';
 
 export function MisListas() {
 	const { lists, getLists, createList } = useContext(ListContext);
