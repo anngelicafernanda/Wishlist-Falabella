@@ -10,10 +10,8 @@ export function ListaDetalle() {
     const [popUpEdit, setPopUpEdit] = useState(false);
     const [popUpDeleteList, setPopUpDeleteList] = useState(false);
 
-
     useEffect(()=>{
         getList(state.list.docId);
-        console.log(list.products)
     },[])
 
     const handleEditList = (name) =>{
@@ -26,9 +24,6 @@ export function ListaDetalle() {
         getList(id);          
     }
     
-
-
-
     return (     
         <>
         <div>
