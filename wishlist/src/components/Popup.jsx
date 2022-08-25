@@ -15,6 +15,9 @@ export function Popup(props) {
 		if (props.listStatus === 'Privada') {
 			setStatus('Privada');
 		}
+        if (props.nameList){
+            setName(props.nameList)
+        }
 	}, []);
 
 	const hasName =
@@ -109,6 +112,7 @@ export function Popup(props) {
 											className=""
 											type="text"
 											placeholder={props.nameList}
+                                            defaultValue={props.nameList}
 										/>
 										{props.listStatus === 'Pública' ? (
 											<div onChange={(e) => setStatus(e.target.value)}>
