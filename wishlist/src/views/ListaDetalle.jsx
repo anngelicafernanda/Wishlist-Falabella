@@ -17,7 +17,6 @@ export function ListaDetalle() {
 	}, []);
 
 	const handleEditList = (name, status) => {
-		console.log(status);
 		editList(state.list.docId, name, status);
 		getList(state.list.docId);
 	};
@@ -45,7 +44,7 @@ export function ListaDetalle() {
 				<div className="flex">
 					<h1 className="font-bold mr-5">{list.name}</h1>
 					<button
-						onClick={() => setPopUpEdit(true)}
+						onClick={() => {setPopUpEdit(true)}}
 						className="text-xs underline text-ocho"
 					>
 						Editar
@@ -95,6 +94,7 @@ export function ListaDetalle() {
 				clickFunction={handleEditList}
 				nameList={list.name}
 				alert={'Lista editada'}
+				listStatus={list.status}
 			/>
 		</>
 	);

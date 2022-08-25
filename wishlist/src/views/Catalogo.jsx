@@ -11,7 +11,6 @@ export function Catalogo() {
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
-	const [dropSelect, setDropSelect] = useState('')
 
 	const getProduct = async () => {
 		try {
@@ -28,6 +27,7 @@ export function Catalogo() {
 		getProduct();
 		getLists();
 	}, []);
+
 
 	const handleSelect = (value, p) => {
 		if (value === 'crear') {
@@ -101,7 +101,7 @@ export function Catalogo() {
 								<button className="btn-orange text-[16px] px-10 mt-[24px] mb-0">
 									Agregar al carro
 								</button>
-								<Dropdown selected={dropSelect} setSelected={setDropSelect} lists={lists} product={p} handleSelect={handleSelect}/>
+								<Dropdown lists={lists} product={p} handleSelect={handleSelect}/>
 							</div>
 						</div>
 					</div>
