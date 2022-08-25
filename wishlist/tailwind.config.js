@@ -31,6 +31,10 @@ module.exports = {
 			lineamenu: '#F0F0F0',
 			'gray-drop': '#636363',
 			ocho: '#888888',
+			popupBg: '#666666',
+			popupDesc: '#7A7A7A',
+			borderInput: '#9f9696',
+			popupbtn: '#495867',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],
