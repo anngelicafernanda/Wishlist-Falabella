@@ -29,6 +29,7 @@ module.exports = {
 			inputFooter: '#333333',
 			ordenarPor: '#9B9B9B',
 			lineamenu: "#F0F0F0"
+			'gray-drop': '#636363',
 		},
 		fontFamily: {
 			lato: ['Lato', 'sans-serif'],

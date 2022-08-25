@@ -12,7 +12,6 @@ export function List({ list }) {
 	const { deleteList } = useContext(ListContext);
 	const [popUpDelete, setPopUpDelete] = useState(false);
 
-	const [alert, setAlert] = useState(false);
 
 	const navigateListDetails = () => {
 		navigate(`/Mis-Listas/${list.name}`, { state: { list } });
@@ -26,6 +25,7 @@ export function List({ list }) {
 	// handleSetTimeOut();
 
 	return (
+		<>
 		<div className="rounded border border-slate-300 h-auto mt-4 p-4">
 			<h1
 				onClick={navigateListDetails}
@@ -55,16 +55,29 @@ export function List({ list }) {
 					alt="Eliminar"
 					className="w-[20px] h-auto"
 				/>
-				<Popup
-					trigger={popUpDelete}
-					setTrigger={setPopUpDelete}
-					title={'Eliminar lista'}
-					desc={<p>Estás a punto de elimnar la lista</p>}
-					btnName={'Aceptar'}
-					id={list.docId}
-					clickFunction={deleteList}
-				/>
 			</div>
 		</div>
+		<Popup
+			trigger={popUpDelete}
+			setTrigger={setPopUpDelete}
+			title={'Eliminar lista'}
+			desc={<p>Estás a punto de eliminar la lista</p>}
+			btnName={'Aceptar'}
+			id={list.docId}
+			clickFunction={deleteList}
+			alert={"Elimanda"}
+		/>
+		</>
+
 	);
 }
+{/* <Popup
+trigger={popUpDelete}
+setTrigger={setPopUpDelete}
+title={'Eliminar lista'}
+desc={<p>Estás a punto de eliminar la lista</p>}
+btnName={'Aceptar'}
+id={list.docId}
+clickFunction={deleteList}
+alert={"Lista Eliminada"}
+/> */}
