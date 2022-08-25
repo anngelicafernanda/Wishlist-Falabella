@@ -5,7 +5,7 @@ import cancel from '../images/close.png';
 import './popup.css';
 
 export function Popup(props) {
-	const { createListfromProduct, setAlert, setAlertMessage } =
+	const { createListfromProduct, setAlert, setAlertMessage, lists } =
 		useContext(ListContext);
 	const [name, setName] = useState('');
 	const navigate = useNavigate();
@@ -15,9 +15,9 @@ export function Popup(props) {
 		if (props.listStatus === 'Privada') {
 			setStatus('Privada');
 		}
-        if (props.nameList){
-            setName(props.nameList)
-        }
+		if (props.nameList) {
+			setName(props.nameList);
+		}
 	}, []);
 
 	const hasName =
@@ -26,10 +26,19 @@ export function Popup(props) {
 		props.title === 'Editar lista'
 			? name
 			: true;
+	const isNameInLists =
+		lists.some((currentList) => currentList.name === name) &&
+		props.title !== 'Editar lista';
 
 	const handleClick = () => {
 		//hacer un switch case
-		if (hasName) {
+		if (!hasName) {
+			setAlertMessage('Introduzca un nombre para la lista');
+			setAlert(true);
+		} else if (isNameInLists) {
+			setAlertMessage('Ya tienes una lista creada con el mismo nombre');
+			setAlert(true);
+		} else {
 			if (props.title === 'Nueva lista') {
 				//CHECK
 				props.clickFunction(name, status);
@@ -60,9 +69,6 @@ export function Popup(props) {
 				setAlert(true);
 				setStatus('Pública');
 			}
-		} else {
-			setAlertMessage('Introduzca un nombre para la lista');
-			setAlert(true);
 		}
 	};
 
@@ -112,7 +118,7 @@ export function Popup(props) {
 											className=""
 											type="text"
 											placeholder={props.nameList}
-                                            defaultValue={props.nameList}
+											defaultValue={props.nameList}
 										/>
 										{props.listStatus === 'Pública' ? (
 											<div onChange={(e) => setStatus(e.target.value)}>
@@ -144,9 +150,12 @@ export function Popup(props) {
 									</>
 								) : null}
 							</div>
-							<div className="popup-btn flex justify-center h-[50px] fixed bottom-[140px] right-[455px]">
-								<button onClick={handleClick}>{props.btnName}</button>
-							</div>
+							<button
+								onClick={handleClick}
+								className="popup-btn flex justify-center items-center h-[50px] fixed bottom-[140px] right-[455px]"
+							>
+								{props.btnName}
+							</button>
 						</div>
 					</div>
 				) : (
