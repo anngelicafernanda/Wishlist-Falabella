@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { db } from '../firebase/config'
-import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc, Timestamp, addDoc} from 'firebase/firestore'
+import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc, Timestamp, addDoc, connectFirestoreEmulator} from 'firebase/firestore'
 
 export const ListContext = createContext();
 
@@ -8,6 +8,9 @@ export const ListContextProvider = ({ children }) => {
 
     const [lists, setLists] = useState([]);
     const [list, setList] = useState([]);
+    const [alert, setAlert] = useState(false)
+    const [alertMessage, setAlertMessage] = useState("")
+
 
     const createList = (name) => {
 		addDoc(collection(db, 'lists'), {
@@ -85,7 +88,11 @@ export const ListContextProvider = ({ children }) => {
             deleteList,
             editList,
             createList,
-            createListfromProduct
+            createListfromProduct,
+            alert,
+            setAlert,
+            alertMessage,
+            setAlertMessage
         }}>
             {children}
         </ListContext.Provider>
