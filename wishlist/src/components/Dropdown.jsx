@@ -22,7 +22,7 @@ export function Dropdown({lists, product, handleSelect}) {
                     {lists.map((list)=>
                         list.productsId.includes(product.productId) ? (
                             <div className='hover:bg-gray-light cursor-pointer flex justify-between p-1 border-b border-gray-light ' id='disabled' onClick={(e)=>{handleClick(e)}}>{list.name} 
-                                <img src={check2} className='w-4 h-4'/>
+                                <img src={check} className='w-4 h-4'/>
                             </div>
                         )
                         :(<div className='hover:bg-gray-light cursor-pointer p-1 border-b border-gray-light  ' id={list.docId} onClick={(e)=>{handleClick(e)}}>{list.name} </div>)
