@@ -13,7 +13,7 @@ export function Footer() {
           </p>
           <div>
             <input
-              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8"
+              className="bg-inputFooter border-b-4 border-b-[#8fca02] m-2 h-8 "
               type="text"
               name=""
               id=""
@@ -45,12 +45,18 @@ export function Footer() {
         <div>
           {" "}
           <h1 className="text-white">SERVICIO AL CLIENTE</h1>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-4">
             <li>Contáctanos </li>
-            <li>¿Por qué comprar en Falabella.com?</li>
+            <li>
+              ¿Por qué comprar en
+              <br /> Falabella.com?
+            </li>
             <li>Métodos y costos de envío</li>
             <li>Seguimiento de mi compra </li>
-            <li>Consultar por tus documentos electrónicos</li>
+            <li>
+              Consultar por tus documentos
+              <br /> electrónicos
+            </li>
             <li>Cambios y devoluciones</li>
             <li>Términos y condiciones</li>
             <li>Política de privacidad</li>
@@ -61,7 +67,7 @@ export function Footer() {
         <div>
           {" "}
           <p className="text-white">MÁS FALABELLA</p>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-4">
             <li>¿Como vender en Falabella.com?</li>
             <li>Nuestro empresa</li>
             <li>Inversionistas</li>
@@ -80,7 +86,7 @@ export function Footer() {
         <div>
           {" "}
           <h1 className="text-white">EMPRESAS FALABELLA</h1>
-          <ul className="m-2 py-4">
+          <ul className="m-2 py-4 leading-">
             <li>Falabella TV</li>
             <li>CMR Falabella</li>
             <li>Banco Falabella</li>
