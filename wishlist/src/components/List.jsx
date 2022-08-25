@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ListContext } from "../context/ListContext";
 import { Popup } from "./Popup";
 
-import trash from "../imgFalabella/delete2.svg";
+import trash from "../images/trash.png";
 
 export function List({ list }) {
   const navigate = useNavigate();
@@ -54,21 +54,23 @@ export function List({ list }) {
           />
         </div>
       </div>
-      <Popup
-        trigger={popUpDelete}
-        setTrigger={setPopUpDelete}
-        title={"Eliminar lista"}
-        desc={"Estás a punto de eliminar la lista"}
-        btnName={"Aceptar"}
-        id={list.docId}
-        clickFunction={deleteList}
-        alert={"Elimanda"}
-      />
+      {popUpDelete && (
+        <Popup
+          trigger={popUpDelete}
+          setTrigger={setPopUpDelete}
+          title={"Eliminar lista"}
+          desc={"Estás a punto de eliminar la lista"}
+          btnName={"Aceptar"}
+          id={list.docId}
+          clickFunction={deleteList}
+          alert={"Elimanda"}
+        />
+      )}
     </>
   );
 }
-{
-  /* <Popup
+
+/* <Popup
 trigger={popUpDelete}
 setTrigger={setPopUpDelete}
 title={'Eliminar lista'}
@@ -78,4 +80,3 @@ id={list.docId}
 clickFunction={deleteList}
 alert={"Lista Eliminada"}
 /> */
-}

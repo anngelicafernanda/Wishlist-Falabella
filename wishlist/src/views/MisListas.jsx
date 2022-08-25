@@ -33,7 +33,7 @@ export function MisListas() {
                 className="btn-orange text-[19px]"
                 onClick={() => setPopUp(true)}
               >
-                Crear lista
+                Crear Lista+
               </button>
             </div>
             <InformationCard
@@ -53,7 +53,7 @@ export function MisListas() {
         <>
           <div className="w-[240px]">
             <button className="btn-orange" onClick={() => setPopUp(true)}>
-              Crear lista
+              Crear Lista+
             </button>
           </div>
           <h2 className="text-color-listTitle text-[14px]">Mis Listas</h2>
@@ -65,15 +65,17 @@ export function MisListas() {
           </div>
         </>
       )}
-      <Popup
-        trigger={popUp}
-        setTrigger={setPopUp}
-        title={"Nueva lista"}
-        desc={"Dale nombre a tu lista"}
-        btnName={"Crear lista"}
-        alert="Su lista fue creada exitosamente"
-        clickFunction={handleCreateList}
-      />
+      {popUp && (
+        <Popup
+          trigger={popUp}
+          setTrigger={setPopUp}
+          title={"Nueva lista"}
+          desc={"Dale nombre a tu lista"}
+          btnName={"Crear lista"}
+          alert="Su lista fue creada exitosamente"
+          clickFunction={handleCreateList}
+        />
+      )}
     </>
   );
 }
