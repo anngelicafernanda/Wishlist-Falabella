@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import downarrow from '../imgFalabella/down-arrow-search.svg';
 import check from '../images/check.png';
-import check2 from '../images/check2.png'
 
 export function Dropdown({lists, product, handleSelect}) {
     const [dropdown, setDropdown] = useState(false)
@@ -11,7 +10,7 @@ export function Dropdown({lists, product, handleSelect}) {
         handleSelect(e.currentTarget.id,product)
         setDropdown(false)
     }
-
+/* 
     const handleBtnClick = (e) =>{
         setDropdown(!dropdown); 
         setId(e.target.id);
@@ -20,13 +19,12 @@ export function Dropdown({lists, product, handleSelect}) {
         }else{
             
         }
-
-    }
+    } */
 
     return (
         <div id={product.productId}className='w-[200px] m-0-auto relative'> 
             <div id={product.productId} className=' p-[10px] shadow bg-white flex justify-between w-full rounded-full mt-2 h-10 items-center cursor-pointer '
-            onClick={(e)=>{handleBtnClick(e)}}> Agregar a la lista
+            onClick={(e)=>{setDropdown(!dropdown)}}> Agregar a la lista
                 <img src={downarrow} className="color-black w-3"/>
             </div>
             {dropdown && 

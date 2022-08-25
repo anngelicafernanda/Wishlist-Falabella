@@ -33,7 +33,7 @@ export function MisListas() {
                 className="btn-orange text-[19px]"
                 onClick={() => setPopUp(true)}
               >
-                Crear Lista+
+                Crear Lista
               </button>
             </div>
             <InformationCard
@@ -53,11 +53,10 @@ export function MisListas() {
         <>
           <div className="w-[240px]">
             <button className="btn-orange" onClick={() => setPopUp(true)}>
-              Crear Lista+
+              Crear Lista
             </button>
           </div>
           <h2 className="text-color-listTitle text-[14px]">Mis Listas</h2>
-
           <div>
             {lists.map((list) => (
               <List key={list.docId} list={list} />
