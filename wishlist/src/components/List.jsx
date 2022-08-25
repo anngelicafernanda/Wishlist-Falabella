@@ -12,18 +12,9 @@ export function List({ list }) {
 	const { deleteList } = useContext(ListContext);
 	const [popUpDelete, setPopUpDelete] = useState(false);
 
-	const [alert, setAlert] = useState(false);
-
 	const navigateListDetails = () => {
 		navigate(`/Mis-Listas/${list.name}`, { state: { list } });
 	};
-
-	// const handleSetTimeOut = () => {
-	// 	setPopUpDelete(true)
-	// 	console.log("funciona")
-	// }
-
-	// handleSetTimeOut();
 
 	return (
 		<div className="rounded border border-slate-300 h-auto mt-4 p-4 ">
@@ -33,6 +24,7 @@ export function List({ list }) {
 			>
 				{list.name} ({list.products.length})
 			</h1>
+			<p className="text-xs">{list.status}</p>
 			<div className="text-black grid justify-between grid-flow-col items-center ">
 				<div className="flex ">
 					{list.products.length === 0 && (
@@ -49,15 +41,6 @@ export function List({ list }) {
 						</div>
 					))}
 				</div>
-				<Popup
-					trigger={popUpDelete}
-					setTrigger={setPopUpDelete}
-					title={'Eliminar lista'}
-					desc={<p>Estás a punto de elimnar la lista</p>}
-					btnName={'Aceptar'}
-					id={list.docId}
-					clickFunction={deleteList}
-				/>
 				<img
 					onClick={() => setPopUpDelete(true)}
 					src={trash}
@@ -66,5 +49,27 @@ export function List({ list }) {
 				/>
 			</div>
 		</div>
+		<Popup
+			trigger={popUpDelete}
+			setTrigger={setPopUpDelete}
+			title={'Eliminar lista'}
+			desc={<p>Estás a punto de eliminar la lista</p>}
+			btnName={'Aceptar'}
+			id={list.docId}
+			clickFunction={deleteList}
+			alert={"Elimanda"}
+		/>
+		</>
+
 	);
 }
+{/* <Popup
+trigger={popUpDelete}
+setTrigger={setPopUpDelete}
+title={'Eliminar lista'}
+desc={<p>Estás a punto de eliminar la lista</p>}
+btnName={'Aceptar'}
+id={list.docId}
+clickFunction={deleteList}
+alert={"Lista Eliminada"}
+/> */}

@@ -10,7 +10,6 @@ import CMR from '../imgFalabella/cmr-card.svg';
 import giftcard from '../imgFalabella/gift-cards.svg';
 import cambiarcontraseña from '../imgFalabella/passwords.svg';
 import cerrarsesion from '../imgFalabella/close-session.svg';
-import iconsidebar from '../imgFalabella/RightArrow';
 import RightArrow from '../imgFalabella/RightArrow';
 
 const MenuAside = () => {
@@ -76,10 +75,10 @@ const MenuAside = () => {
 			<div className=" bg-white w-[321px] h-[559px] shadow-xl rounded ">
 				{sidebarNavItems.map((item, index) => (
 					<Link to={item.to} key={index}>
-						<div className="flex w-full p-[21px] text-sm font-medium  hover:border-l-4 shadow-sm ">
+						<div className="flex w-full p-[21px] text-sm border-b- bg-white hover:border-l-4 shadow-outer hover:shadow-inner hover:bg-[#F0F0F0] hover:bg-opacity-100  transition-all duration-100 ease-in-out cursor-pointer ">
 							<i className="mr-[10px]">{item.icon}</i>
-							<h2 className="text-[16px] tex-[#333333] ">{item.display}</h2>
-							<div className=" w-6 ml-auto p-1 ">
+							<h2 className="text-[16px] tex-[#333333]  ">{item.display}</h2>
+							<div className=" w-6 ml-auto p-1  ">
 								<RightArrow />
 							</div>
 						</div>

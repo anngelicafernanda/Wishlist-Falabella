@@ -12,15 +12,14 @@ export function ListaDetalle() {
 		useContext(ListContext);
 	const [popUpEdit, setPopUpEdit] = useState(false);
 	const [popUpDeleteList, setPopUpDeleteList] = useState(false);
-	const [alert, setAlert] = useState(false);
 
 	useEffect(() => {
 		getList(state.list.docId);
-		console.log(list.products);
 	}, []);
 
-	const handleEditList = (name) => {
-		editList(state.list.docId, name);
+	const handleEditList = (name, status) => {
+		console.log(status);
+		editList(state.list.docId, name, status);
 		getList(state.list.docId);
 	};
 
@@ -80,14 +79,6 @@ export function ListaDetalle() {
 				</div>
 			)}
 			<Popup
-				trigger={popUpEdit}
-				setTrigger={setPopUpEdit}
-				title={'Editar lista'}
-				btnName={'Aceptar'}
-				clickFunction={handleEditList}
-				nameList={list.name}
-			/>
-			<Popup
 				trigger={popUpDeleteList}
 				setTrigger={setPopUpDeleteList}
 				title={'Eliminar lista'}
@@ -95,7 +86,29 @@ export function ListaDetalle() {
 				btnName={'Aceptar'}
 				id={state.list.docId}
 				clickFunction={deleteList}
+				alert={'Easdadasdasdasdasd'}
+			/>
+			<Popup
+				trigger={popUpEdit}
+				setTrigger={setPopUpEdit}
+				title={'Editar lista'}
+				btnName={'Aceptar'}
+				clickFunction={handleEditList}
+				nameList={list.name}
+				alert={'Lista editada'}
 			/>
 		</>
 	);
+}
+{
+	/* <Popup 
+trigger={popUpDeleteList} 
+setTrigger={setPopUpDeleteList} 
+title={'Eliminar lista'} 
+desc={<p>Estás a punto de eliminar la lista</p>} 
+btnName={"Aceptar"} 
+id={state.list.docId} 
+clickFunction ={deleteList}
+alert={"E"}
+/> */
 }

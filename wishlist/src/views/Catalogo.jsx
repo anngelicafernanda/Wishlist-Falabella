@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { ListContext } from '../context/ListContext';
-import { Alert } from '../components/Alert';
 import MineShaft from '../images/MineShaft.png';
 import { Popup } from '../components/Popup';
 import RightArrow from '../imgFalabella/RightArrow';
 
 export function Catalogo() {
-	const { lists, getLists, addProduct } = useContext(ListContext);
+	const { lists, getLists, addProduct, setAlert, setAlertMessage } =
+		useContext(ListContext);
 	const [products, setProducts] = useState([]);
 	const [popUp, setPopUp] = useState(false);
-	const [alert, setAlert] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
 
 	const getProduct = async () => {
@@ -37,10 +36,8 @@ export function Catalogo() {
 			console.log('este producto ya está en la lista');
 		} else {
 			addProduct(e.currentTarget.value, p, p.productId);
+			setAlertMessage('Tu producto a sido añadido a la lista');
 			setAlert(true);
-			setTimeout(() => {
-				setAlert(false);
-			}, 3000);
 		}
 	};
 
@@ -107,21 +104,31 @@ export function Catalogo() {
 										onChange={(e) => {
 											handleChange(e, p);
 										}}
-										className="dropdownContent"
+										className=" border rounded-full px-[75px] py-2 h-[35px] w-full mt-6 mb-4 text-[14px]"
 									>
 										<option>Agregar a la Lista</option>
 										{lists.map((list) =>
 											list.productsId.includes(p.productId) ? (
-												<option key={list.docId} value="disabled">
-													{list.name} X
+												<option
+													key={list.docId}
+													className="text-sm"
+													value="disabled"
+												>
+													{list.name} ✅
 												</option>
 											) : (
-												<option key={list.docId} value={list.docId}>
+												<option
+													key={list.docId}
+													className="text-sm"
+													value={list.docId}
+												>
 													{list.name}
 												</option>
 											),
 										)}
-										<option value="crear">+ Crear lista</option>
+										<option value="crear" className="text-base font-bold">
+											+ Crear lista
+										</option>
 									</select>
 								</div>
 							</div>
@@ -129,11 +136,6 @@ export function Catalogo() {
 					</div>
 				))}
 			</main>
-			<Alert
-				trigger={alert}
-				setTrigger={setAlert}
-				alert="Su producto fue agregado exitosamente a la lista"
-			/>
 			<Popup
 				trigger={popUp}
 				setTrigger={setPopUp}
@@ -141,6 +143,7 @@ export function Catalogo() {
 				desc={<p>Dale nombre a tu lista</p>}
 				btnName={'Crear lista'}
 				product={selectedProduct}
+				alert={'Lista creada'}
 			/>
 		</>
 	);

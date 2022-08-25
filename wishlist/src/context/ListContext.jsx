@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { db } from '../firebase/config'
-import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc, Timestamp, addDoc} from 'firebase/firestore'
+import { collection, query, onSnapshot, orderBy, updateDoc, getDoc, doc, arrayUnion, arrayRemove, deleteDoc, Timestamp, addDoc, connectFirestoreEmulator} from 'firebase/firestore'
 
 export const ListContext = createContext();
 
@@ -8,24 +8,29 @@ export const ListContextProvider = ({ children }) => {
 
     const [lists, setLists] = useState([]);
     const [list, setList] = useState([]);
+    const [alert, setAlert] = useState(false)
+    const [alertMessage, setAlertMessage] = useState("")
 
-    const createList = (name) => {
+
+    const createList = (name, status) => {
 		addDoc(collection(db, 'lists'), {
 			date: Timestamp.fromDate(new Date()),
-			name: name,
+			name,
 			products: [],
 			userId: 'JuanaPerez1234',
-            productsId: []
+            productsId: [],
+            status
 		});
 	};
 
-    const createListfromProduct = async (name, product) => {
+    const createListfromProduct = async (name, product, status) => {
 		await addDoc(collection(db, 'lists'), {
 			date: Timestamp.fromDate(new Date()),
-			name: name,
+			name,
 			products: [],
 			userId: 'JuanaPerez1234',
-            productsId: []
+            productsId: [],
+            status
 		}).then((response)=>{
             updateDoc(doc(db, "lists", response.id), {
                 products: arrayUnion(product),
@@ -68,9 +73,10 @@ export const ListContextProvider = ({ children }) => {
         deleteDoc(doc(db, "lists", id));
     }
 
-    const editList = (id, name) =>{
+    const editList = (id, name, status) =>{
         updateDoc(doc(db, "lists", id), {
-            name
+            name,
+            status
         });
     }
 
@@ -85,7 +91,11 @@ export const ListContextProvider = ({ children }) => {
             deleteList,
             editList,
             createList,
-            createListfromProduct
+            createListfromProduct,
+            alert,
+            setAlert,
+            alertMessage,
+            setAlertMessage
         }}>
             {children}
         </ListContext.Provider>

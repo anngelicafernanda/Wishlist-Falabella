@@ -4,36 +4,48 @@ import { ListContext } from '../context/ListContext';
 import "./popup.css";
 
 export function Popup(props) {
-    const {createListfromProduct} = useContext(ListContext);
+    const {createListfromProduct, setAlert, setAlertMessage} = useContext(ListContext);
     const [name, setName] = useState("");
+    const [status, setStatus] = useState("");
     const navigate = useNavigate();
+
 
     const handleClick = () => { //hacer un switch case
 
-        if(props.title === "Nueva lista") {
-            props.clickFunction(name)
-
-            props.setActive(true)
+        if(props.title === "Nueva lista") { //CHECK
+            props.clickFunction(name, status)
             props.setTrigger(false)
+            setAlertMessage('Tu lista ha sido creada exitosamente')
+            setAlert(true)
 
         }
         else if(props.title === "Eliminar producto"){
             props.clickFunction(props.id, props.product, props.product.productId)
             props.setTrigger(false)
+            setAlertMessage('Su producto fue eliminado exitosamente de la lista')
+            setAlert(true)
+
         }
         else if(props.title === "Eliminar lista"){
             props.clickFunction(props.id)
             props.setTrigger(false)
             navigate('/Mis-Listas')
+            setAlertMessage('Su lista fue eliminada exitosamente')
+            setAlert(true)
+
         }
-        else if(props.title === "Editar lista"){
-            props.clickFunction(name)
+        else if(props.title === "Editar lista"){ 
+            props.clickFunction(name, status)
             props.setTrigger(false)
+            setAlertMessage('Tu lista ha sido editada exitosamente')
+            setAlert(true)
+
         }
-        else if (props.title === "Crear lista"){
-            console.log('hola')
-            createListfromProduct(name, props.product)
+        else if (props.title === "Crear lista"){ 
+            createListfromProduct(name, props.product, status)
             props.setTrigger(false)
+            setAlertMessage('Tu lista ha sido creada exitosamente')
+            setAlert(true)
         }
     }
 
@@ -48,10 +60,35 @@ export function Popup(props) {
                         <div className="popup-text">
                             <h4>{props.title}</h4>
                                 {props.desc}
+
+                                {props.btnName === "Crear lista" ? 
+                                <>
+                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> 
+                                    <p>Privacidad de la lista:</p>
+                                    <div onChange={(e)=>setStatus(e.target.value)}>
+                                        <input type="radio" value="Pública" name="status"/> 
+                                            <label className="text-sm">Pública</label>
+                                            <br></br>
+                                        <input type="radio" value="Privada" name="status" /> 
+                                            <label className="text-sm">Privada</label>
+                                    </div>
+                                </>
+                                : null}
+                            {props.title === "Editar lista" ? 
+                                <>
+                                    <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> 
+                                    <div onChange={(e)=>setStatus(e.target.value)}>
+                                        <input type="radio" value="Pública" name="status"/> 
+                                            <label className="text-sm">Pública</label>
+                                            <br></br>
+                                        <input type="radio" value="Privada" name="status" /> 
+                                            <label className="text-sm">Privada</label>
+                                    </div>
+                                </>
+                                : null}
                         </div>
                         <div className="popup-submit">
-                            {props.btnName === "Crear lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" /> : null}
-                            {props.title === "Editar lista" ? <input onChange={(e) => setName(e.target.value)} className='inputText' type="text" placeholder={props.nameList}/> : null}
+                        
                             <button onClick={handleClick}>{props.btnName}</button>
                         </div>
                     </div>
@@ -59,19 +96,6 @@ export function Popup(props) {
                 ) 
                 : ""
             }
-            </div>
-            <div>
-                    {
-                    (props.active) ? (
-                        <div className='flex justify-center sticky bottom-5'>
-                            <div className=' flex flex-row-reverse m-0 justify-around items-center w-[319px] h-[41px] text-[12px] text-alert bg-info rounded-md'>
-                                <div onClick={() => props.setActive(false)}>X</div>
-                                <p>{props.alert}</p>
-                            </div>
-                        </div>
-                        ) 
-                        : ""
-                    }
             </div>
         </>
     )
