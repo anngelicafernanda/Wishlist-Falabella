@@ -26,14 +26,14 @@ export function List({ list }) {
 	// handleSetTimeOut();
 
 	return (
-		<div className="rounded border border-slate-300 h-auto mt-4 p-4">
+		<div className="rounded border border-slate-300 h-auto mt-4 p-4 ">
 			<h1
 				onClick={navigateListDetails}
 				className="text-black font-bold text-[18px]"
 			>
 				{list.name} ({list.products.length})
 			</h1>
-			<div className="text-black flex justify-between items-center">
+			<div className="text-black grid justify-between grid-flow-col items-center ">
 				<div className="flex ">
 					{list.products.length === 0 && (
 						<h3 className="pt-4 text-black text-[14px]">
@@ -49,12 +49,6 @@ export function List({ list }) {
 						</div>
 					))}
 				</div>
-				<img
-					onClick={() => setPopUpDelete(true)}
-					src={trash}
-					alt="Eliminar"
-					className="w-[20px] h-auto"
-				/>
 				<Popup
 					trigger={popUpDelete}
 					setTrigger={setPopUpDelete}
@@ -63,6 +57,12 @@ export function List({ list }) {
 					btnName={'Aceptar'}
 					id={list.docId}
 					clickFunction={deleteList}
+				/>
+				<img
+					onClick={() => setPopUpDelete(true)}
+					src={trash}
+					alt="Eliminar"
+					className="w-[20px] h-auto"
 				/>
 			</div>
 		</div>

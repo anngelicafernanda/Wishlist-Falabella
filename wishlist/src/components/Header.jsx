@@ -39,7 +39,7 @@ export function Header() {
 					/>
 					<button
 						type="button"
-						className="rounded-full bg-search-font w-[46px] h-[46px] gird place-content-center absolute top-[12px] right-0"
+						className="rounded-full bg-search-font w-[46px] h-[46px] grid place-content-center absolute top-[12px] right-0 "
 					>
 						<Search />
 					</button>
